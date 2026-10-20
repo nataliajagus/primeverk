@@ -33,8 +33,8 @@
   // ---- hero: tło + box oferty zmieniają się razem ----
   var hero = $(".fs-hero");
   if (hero) {
-    var slides = $$(".sl-slide", hero), items = $$(".offer-item", hero), tabs = $$(".sl-tab", hero);
-    var link = $(".offer-link", hero), count = $(".offer-count b", hero), slugs = link.dataset.slugs.split(","), cur = 0, timer = null;
+    var slides = $$(".sl-slide", hero), items = $$(".offer-item", hero), tabs = $$(".offer-dot", hero);
+    var link = $(".offer-link", hero), slugs = link.dataset.slugs.split(","), cur = 0, timer = null;
     var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches, DUR = 7000;
     hero.style.setProperty("--dur", DUR + "ms");
     var restart = function () {
@@ -49,7 +49,6 @@
       slides.forEach(function (s, k) { s.classList.toggle("on", k === cur); });
       items.forEach(function (s, k) { s.classList.toggle("on", k === cur); s.setAttribute("aria-hidden", k === cur ? "false" : "true"); });
       tabs.forEach(function (t, k) { t.classList.toggle("on", k === cur); t.setAttribute("aria-selected", k === cur ? "true" : "false"); });
-      count.textContent = cur + 1;
       link.href = link.dataset.base + slugs[cur] + "/";
       if (!hero.classList.contains("paused")) restart(); else { hero.classList.remove("playing"); void hero.offsetWidth; hero.classList.add("playing"); }
     };

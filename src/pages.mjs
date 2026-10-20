@@ -129,7 +129,7 @@ export function homePage(L) {
       <div class="cta-row">${btn(urlFor(c, '/prices/#calculator'), L.ui.calc, 'gold')}${btn(urlFor(c, '/contact/'), L.ui.quote, 'line')}</div>
     </div>
     <aside class="offer" aria-live="polite">
-      <div class="offer-head"><span>${L.nav.services}</span><span class="offer-count"><b>1</b> / ${SERVICES.length}</span></div>
+      <div class="offer-head"><span>${L.nav.services}</span><span class="offer-dots" role="tablist" aria-label="${L.nav.services}">${SERVICES.map((s, i) => `<button class="offer-dot${i === 0 ? ' on' : ''}" type="button" role="tab" aria-selected="${i === 0}" aria-label="${L.svc[s].name}" data-i="${i}"></button>`).join('')}</span></div>
       <div class="offer-stack">${SERVICES.map((s, i) => {
         const S = L.svc[s], fp = fromPrice(s), unit = fp.unit === 'm2' ? L.ui.perM2 : L.ui.perMb;
         return `<div class="offer-item${i === 0 ? ' on' : ''}" role="group" aria-roledescription="slide" aria-label="${i + 1} / ${SERVICES.length}">
@@ -145,7 +145,6 @@ export function homePage(L) {
       </div>
     </aside>
   </div>
-  <div class="sl-tabs-wrap"><div class="wrap"><div class="sl-tabs" role="tablist" aria-label="${L.nav.services}">${SERVICES.map((s, i) => `<button class="sl-tab${i === 0 ? ' on' : ''}" type="button" role="tab" aria-selected="${i === 0}" data-i="${i}">${icon(s)}<span>${L.svc[s].name}</span></button>`).join('')}</div></div></div>
 </section>
 
 <section class="section" id="services">
