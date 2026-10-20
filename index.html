@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="is">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prime Verk – Málun, spartl, flísar og baðherbergi</title>
+  <meta name="description" content="">
+  <meta name="theme-color" content="#242528">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-in">
+      <a href="#top" class="brand" aria-label="Prime Verk"><img src="assets/logo.svg" alt="Prime Verk" width="112" height="50"></a>
+      <nav id="nav" class="nav" aria-label="Main">
+        <a href="#services" data-i18n="nav.services"></a>
+        <a href="#prices" data-i18n="nav.prices"></a>
+        <a href="#calculator" data-i18n="nav.calc"></a>
+        <a href="#work" data-i18n="nav.work"></a>
+        <a href="#contact" data-i18n="nav.contact"></a>
+      </nav>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="is">IS</button>
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="pl">PL</button>
+      </div>
+      <button id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap hero-in">
+        <div class="hero-text">
+          <p class="eyebrow" data-i18n="hero.eyebrow"></p>
+          <h1 data-i18n="hero.title"></h1>
+          <p class="lead" data-i18n="hero.text"></p>
+          <div class="cta-row">
+            <a class="btn btn-gold" href="#calculator" data-i18n="hero.cta1"></a>
+            <a class="btn btn-ghost" href="#contact" data-i18n="hero.cta2"></a>
+          </div>
+          <ul class="hero-facts">
+            <li data-i18n="hero.stat1"></li>
+            <li data-i18n="hero.stat2"></li>
+          </ul>
+        </div>
+        <aside class="price-card" aria-label="Price highlight">
+          <span class="pc-label" data-i18n="hero.card.label"></span>
+          <div class="pc-price"><strong>3.000</strong><span data-i18n="hero.card.unit"></span></div>
+          <span class="pc-vat" data-i18n="hero.card.novat"></span>
+          <p class="pc-note" data-i18n="hero.card.note"></p>
+          <a class="pc-link" href="#prices">→ <span data-i18n="nav.prices"></span></a>
+        </aside>
+      </div>
+    </section>
+
+    <!-- USP -->
+    <section class="usp">
+      <div class="wrap usp-grid">
+        <div><h3 data-i18n="usp.1.t"></h3><p data-i18n="usp.1.d"></p></div>
+        <div><h3 data-i18n="usp.2.t"></h3><p data-i18n="usp.2.d"></p></div>
+        <div><h3 data-i18n="usp.3.t"></h3><p data-i18n="usp.3.d"></p></div>
+        <div><h3 data-i18n="usp.4.t"></h3><p data-i18n="usp.4.d"></p></div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section">
+      <div class="wrap">
+        <p class="eyebrow" data-i18n="services.eyebrow"></p>
+        <h2 data-i18n="services.title"></h2>
+        <p class="sec-lead" data-i18n="services.lead"></p>
+        <div class="svc-grid">
+          <article class="svc"><span class="svc-n">01</span><h3 data-i18n="svc.paint.t"></h3><p data-i18n="svc.paint.d"></p></article>
+          <article class="svc"><span class="svc-n">02</span><h3 data-i18n="svc.spackle.t"></h3><p data-i18n="svc.spackle.d"></p></article>
+          <article class="svc"><span class="svc-n">03</span><h3 data-i18n="svc.tiles.t"></h3><p data-i18n="svc.tiles.d"></p></article>
+          <article class="svc"><span class="svc-n">04</span><h3 data-i18n="svc.bath.t"></h3><p data-i18n="svc.bath.d"></p></article>
+          <article class="svc"><span class="svc-n">05</span><h3 data-i18n="svc.floor.t"></h3><p data-i18n="svc.floor.d"></p></article>
+          <article class="svc svc-cta"><h3 data-i18n="calc.title"></h3><a class="btn btn-dark" href="#calculator" data-i18n="hero.cta1"></a></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICES -->
+    <section id="prices" class="section section-dark">
+      <div class="wrap">
+        <p class="eyebrow" data-i18n="prices.eyebrow"></p>
+        <h2 data-i18n="prices.title"></h2>
+        <p class="sec-lead" data-i18n="prices.lead"></p>
+        <span class="vat-badge" data-i18n="prices.badge"></span>
+        <div id="price-list" class="price-grid"></div>
+        <p class="fine" data-i18n="prices.note"></p>
+      </div>
+    </section>
+
+    <!-- CALCULATOR -->
+    <section id="calculator" class="section">
+      <div class="wrap">
+        <p class="eyebrow" data-i18n="calc.eyebrow"></p>
+        <h2 data-i18n="calc.title"></h2>
+        <p class="sec-lead" data-i18n="calc.lead"></p>
+        <div class="calc">
+          <div id="calc-fields" class="calc-fields"></div>
+          <div class="calc-side">
+            <div id="calc-result" class="calc-result" aria-live="polite"></div>
+            <p class="fine" data-i18n="calc.disclaimer"></p>
+            <button id="calc-send" class="btn btn-gold" type="button" disabled data-i18n="calc.send"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work" class="section section-sand">
+      <div class="wrap">
+        <p class="eyebrow" data-i18n="work.eyebrow"></p>
+        <h2 data-i18n="work.title"></h2>
+        <p class="sec-lead" data-i18n="work.lead"></p>
+        <!-- Podmień kafelki .ph na <img src="assets/realizacje/xx.jpg" alt="..."> gdy będą zdjęcia -->
+        <div class="gallery">
+          <div class="ph ph-1"><span data-i18n="work.soon"></span></div>
+          <div class="ph ph-2"><span data-i18n="work.soon"></span></div>
+          <div class="ph ph-3"><span data-i18n="work.soon"></span></div>
+          <div class="ph ph-4"><span data-i18n="work.soon"></span></div>
+          <div class="ph ph-5"><span data-i18n="work.soon"></span></div>
+          <div class="ph ph-6"><span data-i18n="work.soon"></span></div>
+        </div>
+        <a class="btn btn-dark" data-fb href="#" target="_blank" rel="noopener" data-i18n="work.fb"></a>
+      </div>
+    </section>
+
+    <!-- REVIEWS (placeholder – bez zmyślonych opinii; podmienić na prawdziwe) -->
+    <section id="reviews" class="section">
+      <div class="wrap">
+        <p class="eyebrow" data-i18n="rev.eyebrow"></p>
+        <h2 data-i18n="rev.title"></h2>
+        <div class="rev-grid">
+          <figure class="rev"><span class="stars">★★★★★</span><blockquote data-i18n="rev.soon"></blockquote><figcaption data-i18n="rev.who"></figcaption></figure>
+          <figure class="rev"><span class="stars">★★★★★</span><blockquote data-i18n="rev.soon"></blockquote><figcaption data-i18n="rev.who"></figcaption></figure>
+          <figure class="rev"><span class="stars">★★★★★</span><blockquote data-i18n="rev.soon"></blockquote><figcaption data-i18n="rev.who"></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- AREA + PROCESS -->
+    <section class="section">
+      <div class="wrap two-col">
+        <div>
+          <p class="eyebrow" data-i18n="area.eyebrow"></p>
+          <h2 data-i18n="area.title"></h2>
+          <p class="sec-lead" data-i18n="area.text"></p>
+          <ul class="chips"><li>Reykjavík</li><li>Kópavogur</li><li>Hafnarfjörður</li><li>Keflavík</li><li>Selfoss</li></ul>
+        </div>
+        <div>
+          <p class="eyebrow" data-i18n="process.eyebrow"></p>
+          <h2 data-i18n="process.title"></h2>
+          <ol class="steps">
+            <li><h3 data-i18n="process.1.t"></h3><p data-i18n="process.1.d"></p></li>
+            <li><h3 data-i18n="process.2.t"></h3><p data-i18n="process.2.d"></p></li>
+            <li><h3 data-i18n="process.3.t"></h3><p data-i18n="process.3.d"></p></li>
+            <li><h3 data-i18n="process.4.t"></h3><p data-i18n="process.4.d"></p></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section section-dark">
+      <div class="wrap contact">
+        <div>
+          <p class="eyebrow" data-i18n="contact.eyebrow"></p>
+          <h2 data-i18n="contact.title"></h2>
+          <p class="sec-lead" data-i18n="contact.lead"></p>
+          <dl class="contact-list">
+            <div><dt data-i18n="contact.phone"></dt><dd><a data-phone href="#"></a></dd></div>
+            <div><dt data-i18n="contact.email"></dt><dd><a data-email href="#"></a></dd></div>
+            <div><dt data-i18n="contact.area"></dt><dd data-i18n="contact.areaV"></dd></div>
+          </dl>
+        </div>
+        <form id="contact-form" class="form">
+          <label><span data-i18n="form.name"></span><input id="f-name" type="text" required autocomplete="name"></label>
+          <div class="row2">
+            <label><span data-i18n="form.phone"></span><input id="f-phone" type="tel" autocomplete="tel"></label>
+            <label><span data-i18n="form.email"></span><input id="f-email" type="email" autocomplete="email"></label>
+          </div>
+          <label><span data-i18n="form.msg"></span><textarea id="f-msg" rows="6" required data-i18n-ph="form.msg.ph"></textarea></label>
+          <button class="btn btn-gold" type="submit" data-i18n="form.send"></button>
+          <p class="fine" data-i18n="form.note"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap foot-in">
+      <img src="assets/logo-light.svg" alt="Prime Verk" width="96" height="43">
+      <p><span data-i18n="footer.vat"></span><br>© <span id="year"></span> Prime Verk. <span data-i18n="footer.rights"></span></p>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
