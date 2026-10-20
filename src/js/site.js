@@ -76,6 +76,51 @@
     show(0);
   }
 
+  // ---- karuzela usług ----
+  var car = $(".car");
+  if (car) {
+    var ctrack = $(".car-track", car), cprev = $(".car-arrow.prev", car), cnext = $(".car-arrow.next", car), thumb = $(".car-thumb", car);
+    var calmCar = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var stepW = function () { var c = $(".car-card", ctrack); return c.getBoundingClientRect().width + 20; };
+    var sync = function () {
+      var max = ctrack.scrollWidth - ctrack.clientWidth, x = ctrack.scrollLeft;
+      thumb.style.width = Math.max(12, ctrack.clientWidth / ctrack.scrollWidth * 100) + "%";
+      thumb.style.left = (max > 0 ? x / ctrack.scrollWidth * 100 : 0) + "%";
+      cprev.disabled = x <= 4; cnext.disabled = x >= max - 4;
+    };
+    cnext.addEventListener("click", function () { ctrack.scrollBy({ left: stepW(), behavior: calmCar ? "auto" : "smooth" }); });
+    cprev.addEventListener("click", function () { ctrack.scrollBy({ left: -stepW(), behavior: calmCar ? "auto" : "smooth" }); });
+    ctrack.addEventListener("scroll", sync, { passive: true });
+    window.addEventListener("resize", sync);
+    ctrack.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { e.preventDefault(); cnext.click(); } else if (e.key === "ArrowLeft") { e.preventDefault(); cprev.click(); }
+    });
+    // przeciąganie myszą (dotyk przewija natywnie)
+    var down = false, moved = false, sx0 = 0, sl0 = 0;
+    ctrack.addEventListener("pointerdown", function (e) {
+      if (e.pointerType !== "mouse" || e.button !== 0) return;
+      down = true; moved = false; sx0 = e.clientX; sl0 = ctrack.scrollLeft;
+    });
+    window.addEventListener("pointermove", function (e) {
+      if (!down) return;
+      var dx = e.clientX - sx0;
+      if (!moved && Math.abs(dx) > 6) { moved = true; ctrack.classList.add("dragging"); }
+      if (moved) ctrack.scrollLeft = sl0 - dx;
+    });
+    window.addEventListener("pointerup", function () {
+      if (!down) return;
+      down = false;
+      if (moved) {
+        ctrack.classList.remove("dragging");
+        var w = stepW(), i = Math.round(ctrack.scrollLeft / w);
+        ctrack.scrollTo({ left: i * w, behavior: calmCar ? "auto" : "smooth" });
+        setTimeout(function () { moved = false; }, 0);
+      }
+    });
+    ctrack.addEventListener("click", function (e) { if (moved) { e.preventDefault(); e.stopPropagation(); } }, true);
+    sync();
+  }
+
   // ---- before / after ----
   $$('.ba').forEach(function (ba) {
     var input = $('input', ba);

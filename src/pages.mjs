@@ -93,6 +93,23 @@ const ctaBand = L => `<section class="cta-band"><div class="wrap cta-in">
 
 const SVC_TONE = { painting: 'gold', plastering: 'basalt', tiling: 'concrete', bathrooms: 'slate', flooring: 'gold' };
 
+const CAR_FOCUS = { painting: '72% 50%', plastering: '42% 50%', tiling: '40% 50%', bathrooms: '78% 50%', flooring: '68% 50%' };
+function carCard(L, s) {
+  const S = L.svc[s], fp = fromPrice(s), unit = fp.unit === 'm2' ? L.ui.perM2 : L.ui.perMb;
+  return `<a class="car-card" href="${urlFor(L.code, '/services/' + s + '/')}" style="--op:${CAR_FOCUS[s]}" draggable="false">
+    ${photo('svc-' + s + '-card', { label: S.photos[0], ratio: '4x3', ic: s, tone: SVC_TONE[s] })}
+    <span class="car-ic">${icon(s)}</span>
+    <div class="car-body">
+      <h3>${S.name}</h3>
+      <p>${S.short}</p>
+      <div class="car-foot-row">
+        <span class="car-price"><em>${L.ui.from}</em><strong>${fmtNum(fp.min)}</strong><i>${unit}</i><b class="tag-vat">${L.ui.vat}</b></span>
+        <span class="car-go">${icon('arrow')}</span>
+      </div>
+    </div>
+  </a>`;
+}
+
 function svcCard(L, s, big = false) {
   const fp = fromPrice(s);
   return `<a class="svc-card${big ? ' big' : ''} reveal" href="${urlFor(L.code, '/services/' + s + '/')}">
@@ -149,12 +166,15 @@ export function homePage(L) {
   </div>
 </section>
 
-<section class="section" id="services">
+<section class="section car-sec" id="services">
   <div class="wrap">
     ${secHead(L.nav.services, H.servicesTitle, H.servicesLead)}
-    <div class="svc-grid">
-      ${svcCard(L, 'painting', true)}${svcCard(L, 'plastering', true)}
-      ${svcCard(L, 'tiling')}${svcCard(L, 'bathrooms')}${svcCard(L, 'flooring')}
+  </div>
+  <div class="car" aria-roledescription="carousel" aria-label="${L.nav.services}">
+    <div class="car-track" tabindex="0">${SERVICES.map(s => carCard(L, s)).join('')}</div>
+    <div class="wrap car-foot">
+      <div class="car-progress" aria-hidden="true"><span class="car-thumb"></span></div>
+      <div class="car-nav"><button class="car-arrow prev" type="button" aria-label="Previous">${icon('arrow')}</button><button class="car-arrow next" type="button" aria-label="Next">${icon('arrow')}</button></div>
     </div>
   </div>
 </section>
