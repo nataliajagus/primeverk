@@ -1,0 +1,44 @@
+# Sloty na zdjęcia stockowe
+
+Wrzuć plik do `src/img/<slot>.jpg` (lub .webp/.png), uruchom `node src/build.mjs` – placeholder zniknie.
+
+| Slot (nazwa pliku) | Proporcje | Co ma być na zdjęciu (PL) |
+|---|---|---|
+| `home-hero-main` | 3:4 | Wykończenia wnętrz · Reykjavík i okolice |
+| `home-hero-a` | 1:1 | Płytki podłogowe w korytarzu |
+| `home-hero-b` | 1:1 | Panele w jasnym pokoju |
+| `svc-painting-card` | 4:3 | Pomalowany salon |
+| `svc-plastering-card` | 4:3 | Szpachlowana ściana |
+| `svc-tiling-card` | 4:3 | Płytki podłogowe w korytarzu |
+| `svc-bathrooms-card` | 4:3 | Nowoczesna łazienka z płytkami |
+| `svc-flooring-card` | 4:3 | Panele w jasnym pokoju |
+| `why-photo` | 4:5 | Szpachlowana ściana |
+| `ba-after` | 21:9 | Po |
+| `ba-before` | 21:9 | Przed |
+| `proj-1` | 4:3 | Salon po malowaniu |
+| `proj-2` | 4:5 | Łazienka z płytkami |
+| `proj-3` | 4:3 | Korytarz z nową podłogą |
+| `proj-4` | 4:3 | Szpachlowane ściany |
+| `proj-5` | 4:5 | Kuchnia, płytki ścienne |
+| `proj-6` | 4:3 | Sypialnia po remoncie |
+| `contact-photo` | 4:3 | Wykończenia wnętrz · Reykjavík i okolice |
+| `svc-painting-hero` | 4:3 | Pomalowany salon |
+| `svc-painting-1` | 4:3 | Pomalowany salon |
+| `svc-painting-2` | 4:5 | Wałek i farba na ścianie |
+| `svc-painting-3` | 4:3 | Biała ściana, kontrast kolorów |
+| `svc-plastering-hero` | 4:3 | Szpachlowana ściana |
+| `svc-plastering-1` | 4:3 | Szpachlowana ściana |
+| `svc-plastering-2` | 4:5 | Łączenie płyt G-K |
+| `svc-plastering-3` | 4:3 | Renowacja starej ściany |
+| `svc-tiling-hero` | 4:3 | Płytki podłogowe w korytarzu |
+| `svc-tiling-1` | 4:3 | Płytki podłogowe w korytarzu |
+| `svc-tiling-2` | 4:5 | Wielki format w salonie |
+| `svc-tiling-3` | 4:3 | Mozaika na ścianie |
+| `svc-bathrooms-hero` | 4:3 | Nowoczesna łazienka z płytkami |
+| `svc-bathrooms-1` | 4:3 | Nowoczesna łazienka z płytkami |
+| `svc-bathrooms-2` | 4:5 | Prysznic walk-in |
+| `svc-bathrooms-3` | 4:3 | Mozaika w łazience |
+| `svc-flooring-hero` | 4:3 | Panele w jasnym pokoju |
+| `svc-flooring-1` | 4:3 | Panele w jasnym pokoju |
+| `svc-flooring-2` | 4:5 | Winylowa podłoga w kuchni |
+| `svc-flooring-3` | 4:3 | Przygotowanie podłoża |

@@ -1,0 +1,9 @@
+{
+  "name": "primeverk",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node src/build.mjs",
+    "build:pages": "node src/build.mjs"
+  }
+}
