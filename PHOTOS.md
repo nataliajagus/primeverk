@@ -6,7 +6,7 @@ Wrzuć plik do `src/img/<slot>.jpg` (lub .webp/.png), uruchom `node src/build.mj
 |---|---|---|
 | `home-hero-main` | 3:4 | Wykończenia wnętrz · Reykjavík i okolice |
 | `home-hero-a` | 1:1 | Płytki podłogowe w korytarzu |
-| `home-hero-b` | 1:1 | Panele w jasnym pokoju |
+| `home-hero-b` | 1:1 | Wałek i farba na ścianie |
 | `svc-painting-card` | 4:3 | Pomalowany salon |
 | `svc-plastering-card` | 4:3 | Szpachlowana ściana |
 | `svc-tiling-card` | 4:3 | Płytki podłogowe w korytarzu |

@@ -131,7 +131,7 @@ export function homePage(L) {
     <div class="hero-mosaic">
       <div class="m-a">${photo('home-hero-main', { label: H.eyebrow, ratio: '3x4', tone: 'basalt', ic: 'painting', cls: 'fill', prio: true })}</div>
       <div class="m-b">${photo('home-hero-a', { label: L.svc.tiling.photos[0], ratio: '1x1', tone: 'concrete', ic: 'tiling', cls: 'fill', prio: true })}</div>
-      <div class="m-c">${photo('home-hero-b', { label: L.svc.flooring.photos[0], ratio: '1x1', tone: 'slate', ic: 'flooring', cls: 'fill', prio: true })}</div>
+      <div class="m-c">${photo('home-hero-b', { label: L.svc.painting.photos[1], ratio: '1x1', tone: 'slate', ic: 'flooring', cls: 'fill', prio: true })}</div>
       ${priceTag(L, { label: H.tagLabel, price: '3.000', unit: L.ui.perM2, note: H.tagNote, cls: 'tag-hero' })}
     </div>
   </div>
