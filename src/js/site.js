@@ -30,10 +30,11 @@
   var fab = $(".fab");
   if (fab) { var onScroll = function () { fab.classList.toggle("show", window.scrollY > 420); }; window.addEventListener("scroll", onScroll, { passive: true }); onScroll(); }
 
-  // ---- hero: slider usług ----
+  // ---- hero: tło + box oferty zmieniają się razem ----
   var hero = $(".fs-hero");
   if (hero) {
-    var slides = $$(".sl-slide", hero), tabs = $$(".sl-tab", hero), cur = 0, timer = null;
+    var slides = $$(".sl-slide", hero), items = $$(".offer-item", hero), tabs = $$(".sl-tab", hero);
+    var link = $(".offer-link", hero), count = $(".offer-count b", hero), slugs = link.dataset.slugs.split(","), cur = 0, timer = null;
     var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches, DUR = 7000;
     hero.style.setProperty("--dur", DUR + "ms");
     var restart = function () {
@@ -45,8 +46,11 @@
     };
     var show = function (i) {
       cur = (i + slides.length) % slides.length;
-      slides.forEach(function (s, k) { s.classList.toggle("on", k === cur); s.setAttribute("aria-hidden", k === cur ? "false" : "true"); });
+      slides.forEach(function (s, k) { s.classList.toggle("on", k === cur); });
+      items.forEach(function (s, k) { s.classList.toggle("on", k === cur); s.setAttribute("aria-hidden", k === cur ? "false" : "true"); });
       tabs.forEach(function (t, k) { t.classList.toggle("on", k === cur); t.setAttribute("aria-selected", k === cur ? "true" : "false"); });
+      count.textContent = cur + 1;
+      link.href = link.dataset.base + slugs[cur] + "/";
       if (!hero.classList.contains("paused")) restart(); else { hero.classList.remove("playing"); void hero.offsetWidth; hero.classList.add("playing"); }
     };
     $(".sl-arrow.next", hero).addEventListener("click", function () { show(cur + 1); });
@@ -60,7 +64,7 @@
     var sx = null;
     hero.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; }, { passive: true });
     hero.addEventListener("touchend", function (e) { if (sx === null) return; var dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1)); sx = null; }, { passive: true });
-    if (!calm) restart();
+    show(0);
   }
 
   // ---- before / after ----

@@ -120,24 +120,30 @@ export function homePage(L) {
   const faqs = L.generalFaq.slice(0, 4);
   const body = `
 <section class="fs-hero" id="hero" aria-roledescription="carousel" aria-label="${L.nav.services}">
-  <h1 class="sr-only">${stripTags(H.title)}</h1>
-  ${SERVICES.map((s, i) => {
-    const S = L.svc[s], fp = fromPrice(s), unit = fp.unit === 'm2' ? L.ui.perM2 : L.ui.perMb;
-    return `<article class="sl-slide${i === 0 ? ' on' : ''}" role="group" aria-roledescription="slide" aria-label="${i + 1} / ${SERVICES.length}"${i === 0 ? '' : ' aria-hidden="true"'}>
-    <div class="sl-bg">${photo('hero-' + s, { label: S.photos[0], ratio: '16x9', tone: SVC_TONE[s], ic: s, cls: 'bg', prio: i === 0 })}</div><div class="fs-shade"></div>
-    <div class="wrap sl-copy">
+  ${SERVICES.map((s, i) => `<div class="sl-slide${i === 0 ? ' on' : ''}" aria-hidden="true"><div class="sl-bg">${photo('hero-' + s, { label: L.svc[s].photos[0], ratio: '16x9', tone: SVC_TONE[s], ic: s, cls: 'bg', prio: i === 0 })}</div><div class="fs-shade"></div></div>`).join('')}
+  <div class="fs-grid">
+    <div class="fs-copy">
       <p class="eyebrow"><i></i>${H.eyebrow}</p>
-      <h2>${S.hero}</h2>
-      <p class="lead">${S.lead}</p>
-      <div class="cta-row">${btn(urlFor(c, '/services/' + s + '/'), L.ui.more, 'gold')}${btn(urlFor(c, '/contact/'), L.ui.quote, 'line')}</div>
-      <p class="sl-price">${L.ui.from} ${fmtNum(fp.min)} ${unit} · ${L.ui.vat}</p>
+      <h1>${H.title}</h1>
+      <p class="lead">${H.lead}</p>
+      <div class="cta-row">${btn(urlFor(c, '/prices/#calculator'), L.ui.calc, 'gold')}${btn(urlFor(c, '/contact/'), L.ui.quote, 'line')}</div>
     </div>
-    ${priceTag(L, { label: S.name + ' · ' + L.ui.from, price: fmtNum(fp.min), unit, note: s === 'painting' ? H.tagNote : '', cls: 'tag-hero' })}
-  </article>`;
-  }).join('')}
-  <div class="sl-arrows">
-    <button class="sl-arrow prev" type="button" aria-label="Previous">${icon('arrow')}</button>
-    <button class="sl-arrow next" type="button" aria-label="Next">${icon('arrow')}</button>
+    <aside class="offer" aria-live="polite">
+      <div class="offer-head"><span>${L.nav.services}</span><span class="offer-count"><b>1</b> / ${SERVICES.length}</span></div>
+      <div class="offer-stack">${SERVICES.map((s, i) => {
+        const S = L.svc[s], fp = fromPrice(s), unit = fp.unit === 'm2' ? L.ui.perM2 : L.ui.perMb;
+        return `<div class="offer-item${i === 0 ? ' on' : ''}" role="group" aria-roledescription="slide" aria-label="${i + 1} / ${SERVICES.length}">
+          <span class="svc-ic">${icon(s)}</span>
+          <h3>${S.name}</h3>
+          <p>${S.short}</p>
+          <div class="offer-price"><span class="offer-from">${L.ui.from}</span><strong>${fmtNum(fp.min)}</strong><em>${unit}</em><span class="tag-vat">${L.ui.vat}</span></div>
+        </div>`;
+      }).join('')}</div>
+      <div class="offer-foot">
+        <a class="btn btn-dark btn-sm offer-link" href="${urlFor(c, '/services/' + SERVICES[0] + '/')}" data-base="${urlFor(c, '/services/')}" data-slugs="${SERVICES.join(',')}"><span>${L.ui.more}</span>${icon('arrow')}</a>
+        <div class="offer-nav"><button class="sl-arrow prev" type="button" aria-label="Previous">${icon('arrow')}</button><button class="sl-arrow next" type="button" aria-label="Next">${icon('arrow')}</button></div>
+      </div>
+    </aside>
   </div>
   <div class="sl-tabs-wrap"><div class="wrap"><div class="sl-tabs" role="tablist" aria-label="${L.nav.services}">${SERVICES.map((s, i) => `<button class="sl-tab${i === 0 ? ' on' : ''}" type="button" role="tab" aria-selected="${i === 0}" data-i="${i}">${icon(s)}<span>${L.svc[s].name}</span></button>`).join('')}</div></div></div>
 </section>
