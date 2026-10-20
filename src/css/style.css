@@ -299,6 +299,8 @@ p { margin: 0; }
 .foot a:hover { color: var(--gold); }
 .foot-area { color: rgba(201,199,193,.7); font-size: .95rem; }
 .foot-bot { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; border-top: 1px solid var(--line-d); padding: 22px 0; font: 500 .72rem/1.5 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: rgba(201,199,193,.6); }
+.foot-bot a { text-decoration: underline; text-underline-offset: 3px; color: var(--gold); padding: 0; display: inline; }
+.foot-bot a:hover { color: var(--gold-hi); }
 .fab { display: none; }
 
 /* ===== podstrony ===== */

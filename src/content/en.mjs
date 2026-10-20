@@ -191,5 +191,5 @@ export default {
     note: 'The form will open your email program with a ready-made message.', subject: 'Enquiry from the Prime Verk website',
     fromCalc: 'The estimate from the calculator has been added to the message.'
   },
-  footer: { tag: 'Interior finishing in Reykjavík and the surrounding area.', rights: 'All rights reserved.', pages: 'Pages', services: 'Services', contact: 'Contact' }
+  footer: { credit: 'Website by', tag: 'Interior finishing in Reykjavík and the surrounding area.', rights: 'All rights reserved.', pages: 'Pages', services: 'Services', contact: 'Contact' }
 };

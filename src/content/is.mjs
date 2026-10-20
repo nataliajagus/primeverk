@@ -191,5 +191,5 @@ export default {
     note: 'Eyðublaðið opnar tölvupóstforritið þitt með tilbúnum skilaboðum.', subject: 'Fyrirspurn af vef Prime Verk',
     fromCalc: 'Útreikningi úr reiknivélinni var bætt við skilaboðin.'
   },
-  footer: { tag: 'Innanhússfrágangur í Reykjavík og nágrenni.', rights: 'Allur réttur áskilinn.', pages: 'Síður', services: 'Þjónusta', contact: 'Hafa samband' }
+  footer: { credit: 'Vefsíða:', tag: 'Innanhússfrágangur í Reykjavík og nágrenni.', rights: 'Allur réttur áskilinn.', pages: 'Síður', services: 'Þjónusta', contact: 'Hafa samband' }
 };

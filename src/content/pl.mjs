@@ -191,5 +191,5 @@ export default {
     note: 'Formularz otworzy Twój program pocztowy z gotową wiadomością.', subject: 'Zapytanie ze strony Prime Verk',
     fromCalc: 'Wyliczenie z kalkulatora zostało dodane do wiadomości.'
   },
-  footer: { tag: 'Wykończenia wnętrz w Reykjavíku i okolicach.', rights: 'Wszelkie prawa zastrzeżone.', pages: 'Strona', services: 'Usługi', contact: 'Kontakt' }
+  footer: { credit: 'Realizacja strony:', tag: 'Wykończenia wnętrz w Reykjavíku i okolicach.', rights: 'Wszelkie prawa zastrzeżone.', pages: 'Strona', services: 'Usługi', contact: 'Kontakt' }
 };

@@ -69,7 +69,7 @@ ${body}
     <div><h4>${L.footer.pages}</h4>${NAV_ORDER.filter(k => k !== 'services').map(k => `<a href="${urlFor(L.code, NAV_PATH[k])}">${L.nav[k]}</a>`).join('')}</div>
     <div><h4>${L.footer.contact}</h4><a href="${CONTACT.phoneHref}">${CONTACT.phone}</a><a href="mailto:${CONTACT.email}">${CONTACT.email}</a><a href="${CONTACT.facebook}" target="_blank" rel="noopener">Facebook</a><span class="foot-area">${L.contact.areaV}</span></div>
   </div>
-  <div class="wrap foot-bot"><span>© ${new Date().getFullYear()} Prime Verk. ${L.footer.rights}</span><span>${L.ui.vatLong}</span></div>
+  <div class="wrap foot-bot"><span>© ${new Date().getFullYear()} Prime Verk. ${L.footer.rights}</span><span>${L.ui.vatLong}</span><span>${L.footer.credit} <a href="https://nataliajagus.com" target="_blank" rel="noopener">nataliajagus.com</a></span></div>
 </footer>
 <a class="fab" href="${CONTACT.phoneHref}" aria-label="${L.ui.call}">${icon('phone')}<span>${L.ui.call}</span></a>
 ${pv ? `<script>window.PV=${JSON.stringify(pv)};</script>` : ''}
