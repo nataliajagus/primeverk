@@ -119,20 +119,27 @@ export function homePage(L) {
   const H = L.home, c = L.code;
   const faqs = L.generalFaq.slice(0, 4);
   const body = `
-<section class="fs-hero" id="hero">
-  <div class="fs-bg" aria-hidden="true">${SERVICES.map((s, i) => `<div class="fs-bgi${i === 0 ? " on" : ""}">${photo("hero-" + s, { label: L.svc[s].photos[0], ratio: "16x9", tone: SVC_TONE[s], ic: s, cls: "bg", prio: i === 0 })}</div>`).join("")}</div>
-  <div class="fs-shade"></div>
-  <div class="wrap fs-text">
-    <p class="eyebrow"><i></i>${H.eyebrow}</p>
-    <h1>${H.title}</h1>
-    <p class="lead">${H.lead}</p>
-    <div class="cta-row">${btn(urlFor(c, "/prices/#calculator"), L.ui.calc, "gold")}${btn(urlFor(c, "/contact/"), L.ui.quote, "line")}</div>
+<section class="fs-hero" id="hero" aria-roledescription="carousel" aria-label="${L.nav.services}">
+  <h1 class="sr-only">${stripTags(H.title)}</h1>
+  ${SERVICES.map((s, i) => {
+    const S = L.svc[s], fp = fromPrice(s), unit = fp.unit === 'm2' ? L.ui.perM2 : L.ui.perMb;
+    return `<article class="sl-slide${i === 0 ? ' on' : ''}" role="group" aria-roledescription="slide" aria-label="${i + 1} / ${SERVICES.length}"${i === 0 ? '' : ' aria-hidden="true"'}>
+    <div class="sl-bg">${photo('hero-' + s, { label: S.photos[0], ratio: '16x9', tone: SVC_TONE[s], ic: s, cls: 'bg', prio: i === 0 })}</div><div class="fs-shade"></div>
+    <div class="wrap sl-copy">
+      <p class="eyebrow"><i></i>${H.eyebrow}</p>
+      <h2>${S.hero}</h2>
+      <p class="lead">${S.lead}</p>
+      <div class="cta-row">${btn(urlFor(c, '/services/' + s + '/'), L.ui.more, 'gold')}${btn(urlFor(c, '/contact/'), L.ui.quote, 'line')}</div>
+      <p class="sl-price">${L.ui.from} ${fmtNum(fp.min)} ${unit} · ${L.ui.vat}</p>
+    </div>
+    ${priceTag(L, { label: S.name + ' · ' + L.ui.from, price: fmtNum(fp.min), unit, note: s === 'painting' ? H.tagNote : '', cls: 'tag-hero' })}
+  </article>`;
+  }).join('')}
+  <div class="sl-arrows">
+    <button class="sl-arrow prev" type="button" aria-label="Previous">${icon('arrow')}</button>
+    <button class="sl-arrow next" type="button" aria-label="Next">${icon('arrow')}</button>
   </div>
-  ${priceTag(L, { label: H.tagLabel, price: "3.000", unit: L.ui.perM2, note: H.tagNote, cls: "tag-hero" })}
-  <nav class="fs-panels" aria-label="${L.nav.services}">${SERVICES.map((s, i) => {
-    const fp = fromPrice(s);
-    return `<a class="fs-panel${i === 0 ? " active" : ""}" href="${urlFor(c, "/services/" + s + "/")}" data-i="${i}"><span class="fp-price">${L.ui.from} ${fmtNum(fp.min)} ${fp.unit === "m2" ? L.ui.perM2 : L.ui.perMb}<span class="fp-vat"> · ${L.ui.vat}</span></span><h3>${L.svc[s].name}</h3><div class="fp-more"><p>${L.svc[s].short}</p><span class="fp-go">${L.ui.more}${icon("plus")}</span></div></a>`;
-  }).join("")}</nav>
+  <div class="sl-tabs-wrap"><div class="wrap"><div class="sl-tabs" role="tablist" aria-label="${L.nav.services}">${SERVICES.map((s, i) => `<button class="sl-tab${i === 0 ? ' on' : ''}" type="button" role="tab" aria-selected="${i === 0}" data-i="${i}">${icon(s)}<span>${L.svc[s].name}</span></button>`).join('')}</div></div></div>
 </section>
 
 <section class="section" id="services">

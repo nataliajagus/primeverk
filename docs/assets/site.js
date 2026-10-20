@@ -26,26 +26,41 @@
     rev.forEach(function (el) { io.observe(el); });
   }
 
-  // ---- hero z panelami usług ----
+  // ---- przycisk Zadzwoń (mobile): po przewinięciu ----
+  var fab = $(".fab");
+  if (fab) { var onScroll = function () { fab.classList.toggle("show", window.scrollY > 420); }; window.addEventListener("scroll", onScroll, { passive: true }); onScroll(); }
+
+  // ---- hero: slider usług ----
   var hero = $(".fs-hero");
   if (hero) {
-    var panels = $$(".fs-panel", hero), bgs = $$(".fs-bgi", hero), cur = 0, timer = null;
-    var activate = function (i) {
-      cur = i;
-      panels.forEach(function (p, k) { p.classList.toggle("active", k === i); });
-      bgs.forEach(function (b, k) { b.classList.toggle("on", k === i); });
+    var slides = $$(".sl-slide", hero), tabs = $$(".sl-tab", hero), cur = 0, timer = null;
+    var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches, DUR = 7000;
+    hero.style.setProperty("--dur", DUR + "ms");
+    var restart = function () {
+      clearInterval(timer);
+      hero.classList.remove("playing"); void hero.offsetWidth;
+      if (calm) return;
+      hero.classList.add("playing");
+      timer = setInterval(function () { show(cur + 1); }, DUR);
     };
-    panels.forEach(function (p, i) {
-      p.addEventListener("mouseenter", function () { activate(i); });
-      p.addEventListener("focus", function () { activate(i); });
-    });
-    // na ekranach dotykowych (brak hover) zmieniamy panel automatycznie
-    var touch = window.matchMedia("(hover: none)").matches, calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (touch && !calm) {
-      var run = function () { timer = setInterval(function () { activate((cur + 1) % panels.length); }, 5000); };
-      run();
-      hero.addEventListener("touchstart", function () { clearInterval(timer); }, { passive: true });
-    }
+    var show = function (i) {
+      cur = (i + slides.length) % slides.length;
+      slides.forEach(function (s, k) { s.classList.toggle("on", k === cur); s.setAttribute("aria-hidden", k === cur ? "false" : "true"); });
+      tabs.forEach(function (t, k) { t.classList.toggle("on", k === cur); t.setAttribute("aria-selected", k === cur ? "true" : "false"); });
+      if (!hero.classList.contains("paused")) restart(); else { hero.classList.remove("playing"); void hero.offsetWidth; hero.classList.add("playing"); }
+    };
+    $(".sl-arrow.next", hero).addEventListener("click", function () { show(cur + 1); });
+    $(".sl-arrow.prev", hero).addEventListener("click", function () { show(cur - 1); });
+    tabs.forEach(function (t) { t.addEventListener("click", function () { show(+t.dataset.i); }); });
+    hero.addEventListener("keydown", function (e) { if (e.key === "ArrowRight") show(cur + 1); if (e.key === "ArrowLeft") show(cur - 1); });
+    var pause = function () { clearInterval(timer); hero.classList.add("paused"); };
+    var resume = function () { hero.classList.remove("paused"); if (!calm) restart(); };
+    hero.addEventListener("mouseenter", pause); hero.addEventListener("mouseleave", resume);
+    hero.addEventListener("focusin", pause); hero.addEventListener("focusout", resume);
+    var sx = null;
+    hero.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; }, { passive: true });
+    hero.addEventListener("touchend", function (e) { if (sx === null) return; var dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1)); sx = null; }, { passive: true });
+    if (!calm) restart();
   }
 
   // ---- before / after ----

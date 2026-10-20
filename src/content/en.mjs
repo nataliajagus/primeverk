@@ -82,6 +82,7 @@ export default {
   svc: {
     index: { title: 'Services', lead: 'Five finishing specialities. Choose one or combine several in a single job.' },
     painting: {
+      hero: 'Painting with clean edges.',
       name: 'Painting', short: 'Even coverage on walls and ceilings, clean edges.',
       seo: ['Interior painting Reykjavík | Prime Verk', 'Wall and ceiling painting in Reykjavík and the surrounding area. Labour from 3.000 kr/m² excl. VAT.'],
       lead: 'Wall and ceiling painting with careful protection and clean edges.',
@@ -98,6 +99,7 @@ export default {
       ]
     },
     plastering: {
+      hero: 'Smooth walls, ready for any paint.',
       name: 'Plastering and repairs', short: 'Smooth walls, plasterboard joints and renovation of old walls.',
       seo: ['Wall plastering Reykjavík | Prime Verk', 'Skim coating, plasterboard joints and renovation of old walls. Prices from 3.500 kr/m² excl. VAT.'],
       lead: 'Smooth surfaces ready for painting – from taping plasterboard joints to full renovation of old walls.',
@@ -114,6 +116,7 @@ export default {
       ]
     },
     tiling: {
+      hero: 'Tiles laid straight, with a clean grout line.',
       name: 'Tiling', short: 'Floor and wall tiles, large formats, mosaics.',
       seo: ['Tiling Reykjavík | Prime Verk', 'Floor and wall tiles, large formats and mosaics. From 7.500 kr/m² excl. VAT.'],
       lead: 'Floor tiles, wall tiles and large formats laid evenly, with a straight grout line.',
@@ -130,6 +133,7 @@ export default {
       ]
     },
     bathrooms: {
+      hero: 'A bathroom from scratch, sealed and ready.',
       name: 'Bathrooms', short: 'Tile removal, waterproofing and new tiles – a bathroom from the ground up.',
       seo: ['Bathroom renovation Reykjavík | Prime Verk', 'Tile removal, wet-area waterproofing and new tiles. Prices excl. VAT.'],
       lead: 'A bathroom from the ground up: tile removal, wet-area waterproofing and new tiles.',
@@ -146,6 +150,7 @@ export default {
       ]
     },
     flooring: {
+      hero: 'Floors on a level base.',
       name: 'Flooring', short: 'Click and vinyl panels, screed, removal of old floors.',
       seo: ['Flooring and panels Reykjavík | Prime Verk', 'Click and glue-down vinyl panels, self-levelling screed, floor removal. Prices excl. VAT.'],
       lead: 'Click and vinyl panels, self-levelling screed and removal of old floors.',

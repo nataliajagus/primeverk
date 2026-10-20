@@ -82,6 +82,7 @@ export default {
   svc: {
     index: { title: 'Þjónusta', lead: 'Fimm sérsvið í frágangi. Veldu eitt eða sameinaðu nokkur í eitt verk.' },
     painting: {
+      hero: 'Málun með hreinum köntum.',
       name: 'Málun', short: 'Jöfn þekja á veggjum og loftum, hreinar línur.',
       seo: ['Málun innanhúss Reykjavík | Prime Verk', 'Málun veggja og lofta í Reykjavík og nágrenni. Vinna frá 3.000 kr/m² án VSK.'],
       lead: 'Málun veggja og lofta með vandaðri vörn á yfirborðum og hreinum línum.',
@@ -98,6 +99,7 @@ export default {
       ]
     },
     plastering: {
+      hero: 'Sléttir veggir fyrir hvaða málningu sem er.',
       name: 'Spartl og lagfæringar', short: 'Sléttir veggir, samskeyti gipsplatna og endurbætur á gömlum veggjum.',
       seo: ['Spartl veggja Reykjavík | Prime Verk', 'Spartl, samskeyti gipsplatna og endurbætur á gömlum veggjum. Verð frá 3.500 kr/m² án VSK.'],
       lead: 'Sléttir fletir fyrir málun – allt frá spartli á samskeyti til fullrar endurnýjunar á gömlum veggjum.',
@@ -114,6 +116,7 @@ export default {
       ]
     },
     tiling: {
+      hero: 'Flísar lagðar beint með beinni fúgu.',
       name: 'Flísalögn', short: 'Gólfflísar og veggflísar, stór flísasnið, mósaík.',
       seo: ['Flísalögn Reykjavík | Prime Verk', 'Gólfflísar og veggflísar, stór flísasnið og mósaík. Frá 7.500 kr/m² án VSK.'],
       lead: 'Gólfflísar, veggflísar og stór flísasnið lögð jafnt og með beinni fúgu.',
@@ -130,6 +133,7 @@ export default {
       ]
     },
     bathrooms: {
+      hero: 'Baðherbergi frá grunni, þétt og tilbúið.',
       name: 'Baðherbergi', short: 'Brot, vatnsvörn og nýjar flísar – baðherbergi frá grunni.',
       seo: ['Baðherbergi endurnýjað Reykjavík | Prime Verk', 'Brot á flísum, vatnsvörn votrýmis og nýjar flísar. Verð án VSK.'],
       lead: 'Baðherbergi frá grunni: brot, vatnsvörn votrýmis og nýjar flísar.',
@@ -146,6 +150,7 @@ export default {
       ]
     },
     flooring: {
+      hero: 'Gólfefni á sléttu undirlagi.',
       name: 'Gólfefni', short: 'Plastparket með smellukerfi og vínylgólf, gólfjöfnun, fjarlæging gamalla gólfefna.',
       seo: ['Gólfefni og parket Reykjavík | Prime Verk', 'Plastparket með smellukerfi, vínylgólf með límingu, gólfjöfnun og fjarlæging gólfefna. Verð án VSK.'],
       lead: 'Plastparket með smellukerfi og vínylgólf, jöfnunarmassi og fjarlæging gamalla gólfefna.',

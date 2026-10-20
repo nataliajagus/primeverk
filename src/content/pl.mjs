@@ -82,6 +82,7 @@ export default {
   svc: {
     index: { title: 'Usługi', lead: 'Pięć specjalizacji wykończeniowych. Wybierz jedną albo połącz kilka w jedną realizację.' },
     painting: {
+      hero: 'Malowanie z czystymi krawędziami.',
       name: 'Malowanie', short: 'Równe krycie ścian i sufitów, czyste krawędzie.',
       seo: ['Malowanie wnętrz Reykjavík | Prime Verk', 'Malowanie ścian i sufitów w Reykjavíku i okolicach. Robocizna od 3.000 kr/m² bez VAT.'],
       lead: 'Malowanie ścian i sufitów z dokładnym zabezpieczeniem i czystymi krawędziami.',
@@ -98,6 +99,7 @@ export default {
       ]
     },
     plastering: {
+      hero: 'Gładkie ściany pod każdą farbę.',
       name: 'Szpachlowanie i naprawy', short: 'Gładkie ściany, łączenia G-K i renowacja starych murów.',
       seo: ['Szpachlowanie ścian Reykjavík | Prime Verk', 'Szpachlowanie, łączenia płyt G-K i renowacja starych ścian. Ceny od 3.500 kr/m² bez VAT.'],
       lead: 'Gładkie powierzchnie pod malowanie – od szpachlowania łączeń po pełną renowację starych ścian.',
@@ -114,6 +116,7 @@ export default {
       ]
     },
     tiling: {
+      hero: 'Płytki ułożone równo, z prostą fugą.',
       name: 'Układanie płytek', short: 'Płytki podłogowe i ścienne, wielkie formaty, mozaiki.',
       seo: ['Układanie płytek Reykjavík | Prime Verk', 'Płytki podłogowe i ścienne, wielkie formaty i mozaiki. Od 7.500 kr/m² bez VAT.'],
       lead: 'Płytki podłogowe, ścienne i wielkie formaty ułożone równo, z prostą fugą.',
@@ -130,6 +133,7 @@ export default {
       ]
     },
     bathrooms: {
+      hero: 'Łazienka od podstaw, szczelna i gotowa.',
       name: 'Łazienki', short: 'Skucie, hydroizolacja i nowe płytki – łazienka od podstaw.',
       seo: ['Remont łazienki Reykjavík | Prime Verk', 'Skucie płytek, hydroizolacja strefy mokrej i nowe płytki. Ceny bez VAT.'],
       lead: 'Łazienka od podstaw: skucie, hydroizolacja strefy mokrej i nowe płytki.',
@@ -146,6 +150,7 @@ export default {
       ]
     },
     flooring: {
+      hero: 'Podłogi na równym podłożu.',
       name: 'Podłogi', short: 'Panele klik i winylowe, wylewka, demontaż starych podłóg.',
       seo: ['Układanie podłóg i paneli Reykjavík | Prime Verk', 'Panele klik i winylowe na klej, wylewka samopoziomująca, demontaż podłóg. Ceny bez VAT.'],
       lead: 'Panele klik i winylowe, wylewka samopoziomująca i demontaż starych podłóg.',
