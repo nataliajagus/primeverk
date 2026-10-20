@@ -1,8 +1,9 @@
 import { PRICES, SERVICES, CALC_GROUPS, fromPrice, fmtNum } from './data/prices.mjs';
-import { BASE, CONTACT, esc, stripTags, icon, urlFor, asset, photo, priceTag, ruler, faqList, faqJsonLd, btn } from './ui.mjs';
+import { BASE, CONTACT, esc, stripTags, icon, flag, urlFor, asset, photo, priceTag, ruler, faqList, faqJsonLd, btn } from './ui.mjs';
 
 export const LANGS = ['is', 'en', 'pl'];
 const NAV_ORDER = ['services', 'prices', 'projects', 'faq', 'contact'];
+const NAV_ICON = { services: 'plastering', prices: 'calc', projects: 'image', faq: 'help', contact: 'mail' };
 const NAV_PATH = { services: '/services/', prices: '/prices/', projects: '/projects/', faq: '/faq/', contact: '/contact/' };
 
 // ---------- ceny ----------
@@ -19,10 +20,10 @@ const shelf = (L, rows) => `<ul class="shelf">` + rows.map(p =>
 export function layout(L, { key, path, title, desc, body, head = '', pv = null }) {
   const alt = LANGS.map(l => `<link rel="alternate" hreflang="${l}" href="${urlFor(l, path)}">`).join('') +
     `<link rel="alternate" hreflang="x-default" href="${urlFor('is', path)}">`;
-  const langs = LANGS.map(l => `<a href="${urlFor(l, path)}" lang="${l}" hreflang="${l}"${l === L.code ? ' class="active" aria-current="true"' : ''}>${l.toUpperCase()}</a>`).join('');
-  const svcLinks = SERVICES.map(s => `<a href="${urlFor(L.code, '/services/' + s + '/')}">${L.svc[s].name}</a>`).join('');
+  const langs = LANGS.map(l => `<a href="${urlFor(l, path)}" lang="${l}" hreflang="${l}" title="${l.toUpperCase()}"${l === L.code ? ' class="active" aria-current="true"' : ''}>${flag(l)}<span>${l.toUpperCase()}</span></a>`).join('');
+  const svcLinks = SERVICES.map(s => `<a href="${urlFor(L.code, '/services/' + s + '/')}">${icon(s)}<span>${L.svc[s].name}</span></a>`).join('');
   const nav = NAV_ORDER.map(k => {
-    const a = `<a href="${urlFor(L.code, NAV_PATH[k])}"${key === k || (k === 'services' && key === 'service') ? ' class="on"' : ''}>${L.nav[k]}</a>`;
+    const a = `<a href="${urlFor(L.code, NAV_PATH[k])}"${key === k || (k === 'services' && key === 'service') ? ' class="on"' : ''}>${icon(NAV_ICON[k])}<span>${L.nav[k]}</span></a>`;
     return k === 'services' ? `<div class="has-sub">${a}<div class="sub">${svcLinks}</div></div>` : a;
   }).join('');
   return `<!doctype html>

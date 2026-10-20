@@ -10,7 +10,15 @@ const SRC = path.dirname(fileURLToPath(import.meta.url));
 const OUT = path.join(SRC, '..', 'docs');
 
 fs.mkdirSync(OUT, { recursive: true });
-for (const e of fs.readdirSync(OUT)) fs.rmSync(path.join(OUT, e), { recursive: true, force: true }); // zawartość, nie sam folder (może być serwowany)
+// czyścimy pliki (nie foldery): na Windows folder serwowany przez serwer podglądu bywa zablokowany
+const clear = d => {
+  for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+    const p = path.join(d, e.name);
+    if (e.isDirectory()) { clear(p); try { fs.rmdirSync(p); } catch { /* zablokowany – zostaje pusty */ } }
+    else fs.rmSync(p, { force: true });
+  }
+};
+clear(OUT);
 const write = (rel, content) => {
   const f = path.join(OUT, rel);
   fs.mkdirSync(path.dirname(f), { recursive: true });
