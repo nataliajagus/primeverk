@@ -3,6 +3,7 @@ import { BASE, CONTACT, esc, stripTags, icon, flag, urlFor, asset, photo, priceT
 
 export const LANGS = ['is', 'en', 'pl'];
 const NAV_ORDER = ['services', 'prices', 'projects', 'faq', 'contact'];
+const LANG_NAME = { is: 'Íslenska', en: 'English', pl: 'Polski' };
 const NAV_ICON = { services: 'plastering', prices: 'calc', projects: 'image', faq: 'help', contact: 'mail' };
 const NAV_PATH = { services: '/services/', prices: '/prices/', projects: '/projects/', faq: '/faq/', contact: '/contact/' };
 
@@ -20,7 +21,7 @@ const shelf = (L, rows) => `<ul class="shelf">` + rows.map(p =>
 export function layout(L, { key, path, title, desc, body, head = '', pv = null }) {
   const alt = LANGS.map(l => `<link rel="alternate" hreflang="${l}" href="${urlFor(l, path)}">`).join('') +
     `<link rel="alternate" hreflang="x-default" href="${urlFor('is', path)}">`;
-  const langs = LANGS.map(l => `<a href="${urlFor(l, path)}" lang="${l}" hreflang="${l}" title="${l.toUpperCase()}"${l === L.code ? ' class="active" aria-current="true"' : ''}>${flag(l)}<span>${l.toUpperCase()}</span></a>`).join('');
+  const langs = LANGS.map(l => `<a role="menuitem" href="${urlFor(l, path)}" lang="${l}" hreflang="${l}"${l === L.code ? ' aria-current="true"' : ''}>${flag(l)}<span>${LANG_NAME[l]}</span></a>`).join('');
   const svcLinks = SERVICES.map(s => `<a href="${urlFor(L.code, '/services/' + s + '/')}">${icon(s)}<span>${L.svc[s].name}</span></a>`).join('');
   const nav = NAV_ORDER.map(k => {
     const a = `<a href="${urlFor(L.code, NAV_PATH[k])}"${key === k || (k === 'services' && key === 'service') ? ' class="on"' : ''}>${icon(NAV_ICON[k])}<span>${L.nav[k]}</span></a>`;
@@ -38,7 +39,7 @@ export function layout(L, { key, path, title, desc, body, head = '', pv = null }
 <link rel="icon" href="${asset('favicon.svg')}" type="image/svg+xml">
 ${alt}
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Figtree:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${asset('style.css')}?v=${Date.now()}">
 ${head}
 </head>
@@ -54,7 +55,7 @@ ${head}
     <nav class="nav" id="nav" aria-label="Main">${nav}
       <div class="nav-cta-m">${btn(urlFor(L.code, '/contact/'), L.ui.quote, 'gold')}</div>
     </nav>
-    <div class="lang" role="group" aria-label="${L.ui.langName}">${langs}</div>
+    <div class="lang" id="lang"><button class="lang-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu" aria-label="${L.ui.langName}">${flag(L.code)}<span>${L.code.toUpperCase()}</span>${icon('chev')}</button><div class="lang-menu" id="lang-menu" role="menu">${langs}</div></div>
     <a class="btn btn-gold btn-sm hdr-cta" href="${urlFor(L.code, '/contact/')}"><span>${L.ui.quote}</span></a>
     <button class="burger" id="burger" aria-expanded="false" aria-controls="nav" aria-label="${L.ui.menu}"><span></span><span></span><span></span></button>
   </div>

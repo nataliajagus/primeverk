@@ -3,6 +3,16 @@
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
+  // ---- przełącznik języka ----
+  var lang = $("#lang");
+  if (lang) {
+    var lbtn = $(".lang-btn", lang);
+    var setLang = function (open) { lang.classList.toggle("open", open); lbtn.setAttribute("aria-expanded", open ? "true" : "false"); };
+    lbtn.addEventListener("click", function (e) { e.stopPropagation(); setLang(!lang.classList.contains("open")); });
+    document.addEventListener("click", function (e) { if (!lang.contains(e.target)) setLang(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") { setLang(false); } });
+  }
+
   // ---- menu mobilne ----
   var burger = $('#burger'), nav = $('#nav');
   if (burger) {
