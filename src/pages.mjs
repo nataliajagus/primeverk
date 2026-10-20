@@ -138,7 +138,6 @@ export function homePage(L) {
   <div class="wrap">${ruler('ruler-hero')}</div>
 </section>
 
-<div class="marquee" aria-hidden="true"><div class="marquee-track">${[0, 1].map(() => `<div class="marquee-set">${H.marquee.map(m => `<span>${m}</span><i></i>`).join('').repeat(3)}</div>`).join('')}</div></div>
 
 <section class="section" id="services">
   <div class="wrap">
