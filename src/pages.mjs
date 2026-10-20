@@ -119,25 +119,21 @@ export function homePage(L) {
   const H = L.home, c = L.code;
   const faqs = L.generalFaq.slice(0, 4);
   const body = `
-<section class="hero">
-  <div class="wrap hero-in">
-    <div class="hero-text">
-      <p class="eyebrow"><i></i>${H.eyebrow}</p>
-      <h1>${H.title}</h1>
-      <p class="lead">${H.lead}</p>
-      <div class="cta-row">${btn(urlFor(c, '/prices/#calculator'), L.ui.calc, 'gold')}${btn(urlFor(c, '/contact/'), L.ui.quote, 'line')}</div>
-      <ul class="chips">${H.chips.map(x => `<li>${icon('pin')}${x}</li>`).join('')}</ul>
-    </div>
-    <div class="hero-mosaic">
-      <div class="m-a">${photo('home-hero-main', { label: H.eyebrow, ratio: '3x4', tone: 'basalt', ic: 'painting', cls: 'fill', prio: true })}</div>
-      <div class="m-b">${photo('home-hero-a', { label: L.svc.tiling.photos[0], ratio: '1x1', tone: 'concrete', ic: 'tiling', cls: 'fill', prio: true })}</div>
-      <div class="m-c">${photo('home-hero-b', { label: L.svc.painting.photos[1], ratio: '1x1', tone: 'slate', ic: 'flooring', cls: 'fill', prio: true })}</div>
-      ${priceTag(L, { label: H.tagLabel, price: '3.000', unit: L.ui.perM2, note: H.tagNote, cls: 'tag-hero' })}
-    </div>
+<section class="fs-hero" id="hero">
+  <div class="fs-bg" aria-hidden="true">${SERVICES.map((s, i) => `<div class="fs-bgi${i === 0 ? " on" : ""}">${photo("hero-" + s, { label: L.svc[s].photos[0], ratio: "16x9", tone: SVC_TONE[s], ic: s, cls: "bg", prio: i === 0 })}</div>`).join("")}</div>
+  <div class="fs-shade"></div>
+  <div class="wrap fs-text">
+    <p class="eyebrow"><i></i>${H.eyebrow}</p>
+    <h1>${H.title}</h1>
+    <p class="lead">${H.lead}</p>
+    <div class="cta-row">${btn(urlFor(c, "/prices/#calculator"), L.ui.calc, "gold")}${btn(urlFor(c, "/contact/"), L.ui.quote, "line")}</div>
   </div>
-  <div class="wrap">${ruler('ruler-hero')}</div>
+  ${priceTag(L, { label: H.tagLabel, price: "3.000", unit: L.ui.perM2, note: H.tagNote, cls: "tag-hero" })}
+  <nav class="fs-panels" aria-label="${L.nav.services}">${SERVICES.map((s, i) => {
+    const fp = fromPrice(s);
+    return `<a class="fs-panel${i === 0 ? " active" : ""}" href="${urlFor(c, "/services/" + s + "/")}" data-i="${i}"><span class="fp-price">${L.ui.from} ${fmtNum(fp.min)} ${fp.unit === "m2" ? L.ui.perM2 : L.ui.perMb}<span class="fp-vat"> · ${L.ui.vat}</span></span><h3>${L.svc[s].name}</h3><div class="fp-more"><p>${L.svc[s].short}</p><span class="fp-go">${L.ui.more}${icon("plus")}</span></div></a>`;
+  }).join("")}</nav>
 </section>
-
 
 <section class="section" id="services">
   <div class="wrap">

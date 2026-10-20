@@ -4,9 +4,11 @@ Wrzuć plik do `src/img/<slot>.jpg` (lub .webp/.png), uruchom `node src/build.mj
 
 | Slot (nazwa pliku) | Proporcje | Co ma być na zdjęciu (PL) |
 |---|---|---|
-| `home-hero-main` | 3:4 | Wykończenia wnętrz · Reykjavík i okolice |
-| `home-hero-a` | 1:1 | Płytki podłogowe w korytarzu |
-| `home-hero-b` | 1:1 | Wałek i farba na ścianie |
+| `hero-painting` | 16:9 | Pomalowany salon |
+| `hero-plastering` | 16:9 | Szpachlowana ściana |
+| `hero-tiling` | 16:9 | Płytki podłogowe w korytarzu |
+| `hero-bathrooms` | 16:9 | Nowoczesna łazienka z płytkami |
+| `hero-flooring` | 16:9 | Panele w jasnym pokoju |
 | `svc-painting-card` | 4:3 | Pomalowany salon |
 | `svc-plastering-card` | 4:3 | Szpachlowana ściana |
 | `svc-tiling-card` | 4:3 | Płytki podłogowe w korytarzu |

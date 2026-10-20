@@ -26,6 +26,28 @@
     rev.forEach(function (el) { io.observe(el); });
   }
 
+  // ---- hero z panelami usług ----
+  var hero = $(".fs-hero");
+  if (hero) {
+    var panels = $$(".fs-panel", hero), bgs = $$(".fs-bgi", hero), cur = 0, timer = null;
+    var activate = function (i) {
+      cur = i;
+      panels.forEach(function (p, k) { p.classList.toggle("active", k === i); });
+      bgs.forEach(function (b, k) { b.classList.toggle("on", k === i); });
+    };
+    panels.forEach(function (p, i) {
+      p.addEventListener("mouseenter", function () { activate(i); });
+      p.addEventListener("focus", function () { activate(i); });
+    });
+    // na ekranach dotykowych (brak hover) zmieniamy panel automatycznie
+    var touch = window.matchMedia("(hover: none)").matches, calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (touch && !calm) {
+      var run = function () { timer = setInterval(function () { activate((cur + 1) % panels.length); }, 5000); };
+      run();
+      hero.addEventListener("touchstart", function () { clearInterval(timer); }, { passive: true });
+    }
+  }
+
   // ---- before / after ----
   $$('.ba').forEach(function (ba) {
     var input = $('input', ba);
