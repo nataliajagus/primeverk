@@ -223,15 +223,16 @@ p { margin: 0; }
 .rail-head h2 { font-size: clamp(1.8rem, 3.6vw, 2.8rem); }
 .rail-line { height: 14px; color: var(--gold); border-top: 3px solid var(--gold); background: repeating-linear-gradient(90deg, currentColor 0 1px, transparent 1px 8px) left top / 100% 8px no-repeat; opacity: .9; }
 .rail-tags { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
-.rail-tags li { position: relative; padding-top: 30px; transform-origin: 50% 0; transform: rotate(var(--rot)); transition: transform .45s cubic-bezier(.3,1.4,.5,1); }
+.rail-tags li { position: relative; padding-top: 30px; transition: transform .35s cubic-bezier(.2,.7,.2,1); }
 .rail-tags li::before { content: ""; position: absolute; top: 0; left: 50%; height: 34px; width: 2px; background: var(--gold); }
 .rail-tags li::after { content: ""; position: absolute; top: 24px; left: 50%; width: 12px; height: 12px; margin-left: -5px; border-radius: 50%; background: var(--gold); }
-.rail-tags li:hover { transform: rotate(0deg) translateY(4px); }
+.rail-tags li:hover { transform: translateY(-4px); }
 .rail-tags a { text-decoration: none; display: block; }
 .rail .tag { width: 100%; padding: 22px 16px 18px 40px; box-shadow: 0 24px 40px -20px rgba(0,0,0,.8); }
 .rail .tag-hole { background: var(--ink); left: 14px; }
 .rail .tag-price strong { font-size: clamp(1.9rem, 2.6vw, 2.4rem); }
-.rail .tag-label { min-height: 2.4em; }
+.rail .tag-label { min-height: 2.4em; display: flex; align-items: flex-start; gap: 8px; }
+.rail .tag-label .ic { width: 20px; height: 20px; flex: none; color: var(--gold-ink); margin-top: -1px; }
 
 /* ===== dlaczego ===== */
 .why { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(32px, 6vw, 88px); align-items: start; }

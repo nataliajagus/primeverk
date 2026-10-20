@@ -93,7 +93,7 @@ const ctaBand = L => `<section class="cta-band"><div class="wrap cta-in">
 
 const SVC_TONE = { painting: 'gold', plastering: 'basalt', tiling: 'concrete', bathrooms: 'slate', flooring: 'gold' };
 
-const CAR_FOCUS = { painting: '72% 50%', plastering: '42% 50%', tiling: '40% 50%', bathrooms: '78% 50%', flooring: '68% 50%' };
+const CAR_FOCUS = { painting: '72% 50%', plastering: '45% 38%', tiling: '40% 50%', bathrooms: '78% 50%', flooring: '68% 50%' };
 function carCard(L, s) {
   const S = L.svc[s], fp = fromPrice(s), unit = fp.unit === 'm2' ? L.ui.perM2 : L.ui.perMb;
   return `<a class="car-card" href="${urlFor(L.code, '/services/' + s + '/')}" style="--op:${CAR_FOCUS[s]}" draggable="false">
@@ -184,7 +184,7 @@ export function homePage(L) {
   <div class="rail-line" aria-hidden="true"></div>
   <ul class="rail-tags">${SERVICES.map((s, i) => {
     const fp = fromPrice(s);
-    return `<li style="--rot:${[-2.2, 1.6, -1.2, 2.2, -1.8][i]}deg;--delay:${i * 60}ms"><a href="${urlFor(c, '/services/' + s + '/')}">${priceTag(L, { label: `${L.svc[s].name} · ${L.ui.from}`, price: fmtNum(fp.min), unit: fp.unit === 'm2' ? L.ui.perM2 : L.ui.perMb })}</a></li>`;
+    return `<li ><a href="${urlFor(c, '/services/' + s + '/')}">${priceTag(L, { label: `${icon(s)}<span>${L.svc[s].name} · ${L.ui.from}</span>`, price: fmtNum(fp.min), unit: fp.unit === 'm2' ? L.ui.perM2 : L.ui.perMb })}</a></li>`;
   }).join('')}</ul>
 </div></section>
 
