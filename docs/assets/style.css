@@ -825,3 +825,17 @@ body:has(.sheet.sticky-foot) .fab { display: none; }
 .faq-none p { font: 700 1.2rem var(--display); }
 .faq-all [hidden] { display: none !important; }
 @media (max-width: 860px) { .faq-tools { top: calc(var(--hdr) + 4px); } }
+
+/* ===== karuzela usług: trzy karty wyśrodkowane, strzałki pod środkiem ===== */
+.car { --w: min(1200px, 100vw - 40px); }
+.car-card { flex: 0 0 calc((var(--w) - 40px) / 3); height: clamp(430px, 40vw, 540px); }
+.car-foot { flex-direction: column; gap: 22px; align-items: stretch; }
+.car-progress { flex: none; width: 100%; }
+.car-nav { justify-content: center; }
+@media (max-width: 1040px) { .car-card { flex-basis: calc((var(--w) - 20px) / 2); } }
+@media (max-width: 720px) {
+  .car { --w: 100vw; }
+  .car-card { flex-basis: 84vw; height: 470px; scroll-snap-align: center; }
+  .car-track { padding-inline: 8vw; scroll-padding-inline: 8vw; }
+}
+@media (min-width: 1041px) { .car-track { width: var(--w); margin-inline: auto; padding-inline: 0; scroll-padding-inline: 0; } .car-foot { width: var(--w); padding-inline: 0; } }
