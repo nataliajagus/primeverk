@@ -634,3 +634,20 @@ body { overflow-x: clip; }
   .how-photo { position: static; } .how-photo .photo { aspect-ratio: 16/10; }
 }
 @media (max-width: 480px) { .how-steps li { grid-template-columns: 52px 1fr; gap: 16px; } .how-ic { width: 52px; height: 52px; } .how-steps li::before { left: 25px; top: 52px; } }
+
+/* ===== pasmo kontaktowe: zdjęcie od krawędzi, ukośne cięcie ===== */
+.cta-band { position: relative; overflow: hidden; padding-block: clamp(56px, 8vw, 104px); }
+.cta-in { display: block; position: static; }
+.cta-text { max-width: min(620px, 56%); position: relative; z-index: 2; }
+.cta-photo { position: absolute; z-index: 1; top: 0; bottom: 0; right: 0; width: 50%; }
+.cta-photo .photo { position: absolute; inset: 0; height: 100%; aspect-ratio: auto; border-radius: 0; box-shadow: none; clip-path: polygon(16% 0, 100% 0, 100% 100%, 0 100%); }
+.cta-photo .photo::after, .cta-photo figcaption { display: none; }
+.cta-photo::before { content: ""; position: absolute; top: 0; bottom: 0; left: -2px; width: 18%; background: var(--ink); clip-path: polygon(88% 0, 100% 0, 12% 100%, 0 100%); z-index: 2; opacity: .9; }
+.js-reveal .cta-photo.reveal-wipe { clip-path: none; }
+@media (max-width: 900px) {
+  .cta-text { max-width: none; }
+  .cta-photo { position: relative; width: auto; height: 240px; margin: 36px -20px -56px; }
+  .cta-photo .photo { clip-path: polygon(0 12%, 100% 0, 100% 100%, 0 100%); }
+  .cta-photo::before { display: none; }
+}
+.cta-photo::before { clip-path: polygon(100% 0, 86% 0, 0 100%, 14% 100%); width: 14%; left: -1px; background: var(--ink); opacity: 1; }
