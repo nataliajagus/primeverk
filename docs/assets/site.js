@@ -38,15 +38,67 @@
     });
   }
 
-  // ---- pojawianie się sekcji ----
-  var rev = $$('.reveal');
-  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  // ---- animacje wejścia ----
+  var calmMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if ('IntersectionObserver' in window && !calmMotion) {
     document.documentElement.classList.add('js-reveal');
+    // oznaczamy tylko elementy poniżej pierwszego ekranu (te widoczne od razu mają animacje w CSS, bez migotania)
+    var tag = function (sel, variant, step) {
+      $$(sel).forEach(function (el) {
+        var had = el.classList.contains('reveal');
+        if (!had && el.getBoundingClientRect().top < window.innerHeight * 0.92) return;
+        el.classList.add('reveal');
+        if (variant) el.classList.add(variant);
+        if (!had && step) el.style.transitionDelay = Math.min(Array.prototype.indexOf.call(el.parentNode.children, el) * step, 380) + 'ms';
+      });
+    };
+    tag('.sec-head > *', '', 110);
+    tag('.prose > *', '', 110);
+    tag('.includes', 'reveal-right');
+    tag('.price-group', '', 100);
+    tag('.shelf li', '', 45);
+    tag('.calc-group', '', 80);
+    tag('.contact > div:first-child', 'reveal-left');
+    tag('.form', 'reveal-right');
+    tag('.why-photo', 'reveal-wipe');
+    tag('.svc-row-photo', 'reveal-wipe');
+    tag('.contact-photo', 'reveal-wipe');
+    tag('.faq-list details', '', 70);
+    tag('.faq-wrap > div:first-child', 'reveal-left');
+    tag('.calc-promo-in > div:first-child', 'reveal-left');
+    tag('.mini', 'reveal-right');
+    tag('.car-card', 'reveal-zoom', 90);
+    tag('.car-foot', '');
+    tag('.cta-in > *', '', 120);
+    tag('.foot-grid > div', '', 90);
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    rev.forEach(function (el) { io.observe(el); });
+    $$('.reveal').forEach(function (el) { io.observe(el); });
   }
+
+  // ---- FAQ: płynne rozwijanie i zwijanie ----
+  $$('.faq-list details').forEach(function (d) {
+    var sm = $('summary', d), body = $('.faq-a', d), anim = null;
+    sm.addEventListener('click', function (e) {
+      if (calmMotion || !body.animate) return;           // bez animacji: domyślne zachowanie przeglądarki
+      e.preventDefault();
+      if (anim) { anim.cancel(); anim = null; }
+      var closing = d.open && !d.classList.contains('closing');
+      var pb = parseFloat(getComputedStyle(body).paddingBottom) || 0;
+      if (!closing) {
+        d.classList.remove('closing'); d.open = true;
+        var h = body.offsetHeight;
+        anim = body.animate([{ height: '0px', paddingBottom: '0px', opacity: 0 }, { height: h + 'px', paddingBottom: pb + 'px', opacity: 1 }], { duration: 380, easing: 'cubic-bezier(.2,.7,.2,1)' });
+        anim.onfinish = function () { anim = null; };
+      } else {
+        d.classList.add('closing');
+        var h2 = body.offsetHeight;
+        anim = body.animate([{ height: h2 + 'px', paddingBottom: pb + 'px', opacity: 1 }, { height: '0px', paddingBottom: '0px', opacity: 0 }], { duration: 300, easing: 'cubic-bezier(.4,0,.2,1)' });
+        anim.onfinish = function () { d.open = false; d.classList.remove('closing'); anim = null; };
+      }
+    });
+  });
 
   // ---- przycisk Zadzwoń (mobile): po przewinięciu ----
   var fab = $(".fab");
