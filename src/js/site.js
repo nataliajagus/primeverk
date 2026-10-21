@@ -121,13 +121,6 @@
     sync();
   }
 
-  // ---- before / after ----
-  $$('.ba').forEach(function (ba) {
-    var input = $('input', ba);
-    var set = function () { ba.style.setProperty('--pos', input.value + '%'); };
-    input.addEventListener('input', set); set();
-  });
-
   // ---- mini-kalkulator (strona główna) ----
   $$('.mini').forEach(function (m) {
     var min = +m.dataset.min, max = +m.dataset.max, input = $('input', m), out = $('.mini-sum', m);

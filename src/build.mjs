@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { LANGS, homePage, servicesPage, servicePage, pricesPage, projectsPage, faqPage, contactPage } from './pages.mjs';
+import { LANGS, homePage, servicesPage, servicePage, pricesPage, faqPage, contactPage } from './pages.mjs';
 import { SERVICES } from './data/prices.mjs';
 import { PHOTO_SLOTS } from './ui.mjs';
 
@@ -39,7 +39,7 @@ for (const code of LANGS) {
   const dir = code === 'is' ? '' : code + '/';
   const pages = [
     ['', homePage(L)], ['services/', servicesPage(L)], ['prices/', pricesPage(L)],
-    ['projects/', projectsPage(L)], ['faq/', faqPage(L)], ['contact/', contactPage(L)],
+    ['faq/', faqPage(L)], ['contact/', contactPage(L)],
     ...SERVICES.map(s => [`services/${s}/`, servicePage(L, s)])
   ];
   for (const [p, html] of pages) { write(`${dir}${p}index.html`, html); count++; }

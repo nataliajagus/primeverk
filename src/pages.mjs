@@ -2,10 +2,10 @@ import { PRICES, SERVICES, CALC_GROUPS, fromPrice, fmtNum } from './data/prices.
 import { BASE, CONTACT, esc, stripTags, icon, flag, urlFor, asset, photo, priceTag, ruler, faqList, faqJsonLd, btn } from './ui.mjs';
 
 export const LANGS = ['is', 'en', 'pl'];
-const NAV_ORDER = ['services', 'prices', 'projects', 'faq', 'contact'];
+const NAV_ORDER = ['services', 'prices', 'faq', 'contact'];
 const LANG_NAME = { is: 'Íslenska', en: 'English', pl: 'Polski' };
-const NAV_ICON = { services: 'plastering', prices: 'calc', projects: 'image', faq: 'help', contact: 'mail' };
-const NAV_PATH = { services: '/services/', prices: '/prices/', projects: '/projects/', faq: '/faq/', contact: '/contact/' };
+const NAV_ICON = { services: 'plastering', prices: 'calc', faq: 'help', contact: 'mail' };
+const NAV_PATH = { services: '/services/', prices: '/prices/', faq: '/faq/', contact: '/contact/' };
 
 // ---------- ceny ----------
 export function priceText(L, p, { short = false } = {}) {
@@ -118,14 +118,6 @@ function svcCard(L, s, big = false) {
     <div class="svc-foot"><span class="mono">${L.ui.from} ${fmtNum(fp.min)} ${fp.unit === 'm2' ? L.ui.perM2 : L.ui.perMb} · ${L.ui.vat}</span><span class="svc-go">${icon('arrow')}</span></div></div></a>`;
 }
 
-const beforeAfter = L => `<div class="ba" style="--pos:50%">
-  <div class="ba-layer">${photo('ba-after', { label: L.ui.after, ratio: '21x9', tone: 'gold', ic: 'painting', cls: 'fill' })}</div>
-  <div class="ba-layer ba-top">${photo('ba-before', { label: L.ui.before, ratio: '21x9', tone: 'concrete', ic: 'plastering', cls: 'fill' })}</div>
-  <span class="ba-tag ba-l">${L.ui.before}</span><span class="ba-tag ba-r">${L.ui.after}</span>
-  <div class="ba-handle" aria-hidden="true"><span>${icon('arrow')}</span></div>
-  <input type="range" min="0" max="100" value="50" aria-label="${esc(L.ui.dragHint)}">
-</div>`;
-
 const miniCalc = L => {
   const p = PRICES.find(x => x.id === 'paint');
   return `<div class="mini" data-min="${p.min}" data-max="${p.max}">
@@ -190,13 +182,7 @@ export function homePage(L) {
   </div>
 </section>
 
-<section class="section section-dark ba-sec">
-  <div class="wrap">
-    ${secHead(L.ui.gallery, H.baTitle, H.baLead, 'on-dark')}
-    ${beforeAfter(L)}
-    <p class="ba-hint mono">${icon('arrow')} ${L.ui.dragHint}</p>
-  </div>
-</section>
+
 
 <section class="section calc-promo">
   <div class="wrap calc-promo-in">
@@ -215,24 +201,16 @@ export function homePage(L) {
   </div>
 </section>
 
-<section class="section">
-  <div class="wrap">
-    ${secHead(L.nav.projects, H.projectsTitle, H.projectsLead)}
-    <div class="proj-grid">
-      ${[0, 1, 2].map(i => `<div class="reveal">${photo('proj-' + (i + 1), { label: L.projects.labels[i], ratio: i === 1 ? '4x5' : '4x3', ic: ['painting', 'bathrooms', 'flooring'][i], cls: 'fill' })}</div>`).join('')}
-    </div>
-    <div class="cta-row">${btn(urlFor(c, '/projects/'), L.nav.projects, 'dark')}<a class="btn btn-line" href="${CONTACT.facebook}" target="_blank" rel="noopener"><span>Facebook</span>${icon('fb')}</a></div>
-  </div>
-</section>
 
-<section class="section section-sand">
+
+<section class="section">
   <div class="wrap">
     ${secHead('', H.revTitle)}
     <div class="rev-grid">${[0, 1, 2].map(() => `<figure class="rev reveal"><span class="stars" aria-hidden="true">★★★★★</span><blockquote>${H.revSoon}</blockquote><figcaption>${H.revWho}</figcaption></figure>`).join('')}</div>
   </div>
 </section>
 
-<section class="section">
+<section class="section section-sand">
   <div class="wrap faq-wrap">
     <div>${secHead(L.ui.faq, H.faqTitle)}<div class="cta-row">${btn(urlFor(c, '/faq/'), L.nav.faq, 'line')}</div></div>
     ${faqList(faqs)}
@@ -308,12 +286,7 @@ export function servicePage(L, s) {
   </div>
 </section>
 
-<section class="section section-sand">
-  <div class="wrap">
-    ${secHead(L.ui.gallery, L.nav.projects)}
-    <div class="proj-grid">${S.photos.map((l, i) => `<div class="reveal">${photo(`svc-${s}-${i + 1}`, { label: l, ratio: i === 1 ? '4x5' : '4x3', ic: s, cls: 'fill' })}</div>`).join('')}</div>
-  </div>
-</section>
+
 
 <section class="section">
   <div class="wrap faq-wrap">
@@ -367,19 +340,6 @@ ${ctaBand(L)}`;
 }
 
 // ---------- REALIZACJE ----------
-export function projectsPage(L) {
-  const ics = ['painting', 'bathrooms', 'flooring', 'plastering', 'tiling', 'painting'];
-  const ratios = ['4x3', '4x5', '4x3', '4x3', '4x5', '4x3'];
-  const body = `
-<section class="page-hero"><div class="wrap">${crumbs(L, [[null, L.nav.projects]])}<h1>${L.projects.title}</h1><p class="lead">${L.projects.lead}</p>
-  <div class="cta-row"><a class="btn btn-dark" href="${CONTACT.facebook}" target="_blank" rel="noopener"><span>${L.projects.fb}</span>${icon('fb')}</a></div></div><div class="wrap">${ruler('ruler-hero')}</div></section>
-<section class="section"><div class="wrap"><div class="masonry">
-  ${L.projects.labels.map((l, i) => `<div class="reveal">${photo('proj-' + (i + 1), { label: l, ratio: ratios[i], ic: ics[i], cls: 'fill' })}</div>`).join('')}
-</div></div></section>
-${ctaBand(L)}`;
-  return layout(L, { key: 'projects', path: '/projects/', title: L.seo.projects[0], desc: L.seo.projects[1], body });
-}
-
 // ---------- FAQ ----------
 export function faqPage(L) {
   const blocks = [[L.faqPage.general, L.generalFaq, 'general'], ...SERVICES.map(s => [L.svc[s].name, L.svc[s].faq, s])];

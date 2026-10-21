@@ -227,22 +227,6 @@ p { margin: 0; }
 .why-ic { width: 52px; height: 52px; background: var(--ink); color: var(--gold); display: grid; place-items: center; }
 .why-ic .ic { width: 26px; height: 26px; }
 
-/* ===== przed / po ===== */
-.ba { position: relative; aspect-ratio: 21/9; border-radius: var(--r); overflow: hidden; user-select: none; touch-action: pan-y; background: var(--ink-2); }
-.ba-layer { position: absolute; inset: 0; }
-.ba-layer .photo { height: 100%; aspect-ratio: auto; border-radius: 0; }
-.ba .photo-ic, .ba figcaption, .ba .photo::after { display: none; }
-.ba-top { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
-.ba-handle { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; background: var(--gold); transform: translateX(-1px); pointer-events: none; }
-.ba-handle span { position: absolute; top: 50%; left: 50%; width: 52px; height: 52px; transform: translate(-50%, -50%); background: var(--gold); color: var(--ink); display: grid; place-items: center; border-radius: 50%; box-shadow: 0 8px 24px rgba(0,0,0,.4); }
-.ba-handle .ic { transform: scaleX(1); }
-.ba-tag { position: absolute; top: 16px; font: 600 0.821rem/1 var(--label); letter-spacing: .1em; text-transform: uppercase; background: var(--ink); color: var(--paper); padding: 8px 11px; z-index: 2; border-radius: 2px; }
-.ba-l { left: 16px; } .ba-r { right: 16px; background: var(--gold); color: var(--ink); }
-.ba input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; z-index: 3; }
-.ba:focus-within { outline: 3px solid var(--gold); outline-offset: 4px; }
-.ba-hint { margin-top: 16px; font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: rgba(246,245,242,.6); display: flex; align-items: center; gap: 8px; }
-.ba-hint .ic { width: 16px; height: 16px; }
-
 /* ===== mini-kalkulator ===== */
 .calc-promo-in { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 88px); align-items: center; }
 .calc-promo .sec-lead { margin-top: 18px; }
@@ -446,7 +430,6 @@ p { margin: 0; }
   .sec-head { flex-direction: column; align-items: flex-start; gap: 16px; }
   .steps { grid-template-columns: 1fr; row-gap: 24px; } .steps li::after { display: none; } .steps li { padding-top: 64px; } .steps li::before { font-size: 2.8rem; }
   .masonry { columns: 1; }
-  .ba { aspect-ratio: 4/3; }
   .tag-float { position: relative; left: 0; bottom: 0; margin: -26px 0 0 10px; }
   .calc-row { flex-direction: column; align-items: stretch; gap: 10px; } .cr-qty input { flex: 1; width: 100%; }
   .faq-a { padding-right: 0; } .cta-in h2 { max-width: none; }
