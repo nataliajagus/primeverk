@@ -8,7 +8,7 @@ if (BASE && !/^\/[\w.-]+(\/[\w.-]+)*$/.test(BASE)) throw new Error(`Zły BASE "$
 export const CONTACT = {
   phone: '+354 769 6246',
   phoneHref: 'tel:+3547696246',
-  email: 'adriannowicki3226@gmail.com', // TODO: docelowo adres na domenie firmy
+  email: 'contact@primeverk.is',
   facebook: '',     // TODO: link do profilu FB (puste = link się nie wyświetla)
   whatsapp: '',     // numer bez plusa, np. '3547696246' (puste = przycisk się nie wyświetla)
   formEndpoint: '', // np. 'https://formspree.io/f/xxxx' (puste = formularz otwiera program pocztowy)
