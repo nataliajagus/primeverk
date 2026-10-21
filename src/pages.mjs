@@ -30,9 +30,9 @@ const priceCards = (L, rows) => `<div class="pcards">` + rows.map(r => {
   return `<article class="pcard reveal"><span class="pc-ic">${icon(ic)}</span><h3>${it.n}</h3>${it.s ? `<p class="pc-sub">${it.s}</p>` : ''}${it.m ? `<span class="pc-note">${it.m}</span>` : ''}<div class="pc-price">${amount}<em>${unit}</em><b class="tag-vat">${L.ui.vat}</b></div></article>`;
 }).join('') + `</div>`;
 
-const sheet = (L, rows) => {
+const sheet = (L, rows, groups) => {
   const P = L.prices;
-  const body = rows.map(r => {
+  const rowHtml = r => {
     const it = L.items[r.id];
     const unit = r.unit === 'm2' ? L.ui.perM2 : L.ui.perMb, u = r.unit === 'm2' ? L.ui.m2 : L.ui.mb;
     const rate = r.max === null ? `${L.ui.from} ${fmtNum(r.min)}` : r.min === r.max ? fmtNum(r.min) : `${fmtNum(r.min)}–${fmtNum(r.max)}`;
@@ -42,8 +42,11 @@ const sheet = (L, rows) => {
       <label class="sr-qty" data-label="${esc(P.colQty)}" title="${esc(P.enter)} ${esc(L.itemHints[r.id])}"><input type="number" inputmode="decimal" min="0" step="any" placeholder="0" data-id="${r.id}" aria-label="${esc(it.n)}: ${esc(P.enter)} ${esc(L.itemHints[r.id])}"><em>${u}</em></label>
       <div class="sr-sum" data-label="${esc(P.colCost)}"><span class="row-sum" data-empty="—">—</span></div>
     </div>`;
-  }).join('');
-  return `<div class="sheet">
+  };
+  const body = groups
+    ? groups.map(([id, t, rs]) => `<div class="sheet-group" id="g-${id}">${t}</div>` + rs.map(rowHtml).join('')).join('')
+    : rows.map(rowHtml).join('');
+  return `<div class="sheet${groups ? ' sticky-foot' : ''}">
     <div class="sheet-head"><span>${P.colWork}</span><span>${P.colRate} <b>(${L.ui.vat})</b></span><span>${P.colQty}</span><span>${P.colCost}</span></div>
     <div id="calc-fields" data-static="1">${body}</div>
     <div class="sheet-foot">
@@ -392,10 +395,7 @@ ${faqJsonLd(S.faq)}`;
 
 // ---------- CENNIK + KALKULATOR ----------
 export function pricesPage(L) {
-  const groups = CALC_GROUPS.map(g => {
-    const rows = PRICES.filter(p => p.calc === g);
-    return `<div class="price-group-block"><h3 class="pg-title">${L.calcGroups[g]}</h3>${priceCards(L, rows)}</div>`;
-  }).join('');
+  const groups = CALC_GROUPS.map(g => [g, L.calcGroups[g], PRICES.filter(x => x.calc === g)]);
   const pv = {
     lang: L.code,
     prices: PRICES.map(({ id, calc, unit, min, max }) => ({ id, calc, unit, min, max })),
@@ -408,16 +408,11 @@ export function pricesPage(L) {
     contactUrl: urlFor(L.code, '/contact/')
   };
   const body = `
-<section class="page-hero"><div class="wrap">${crumbs(L, [[null, L.nav.prices]])}<h1>${L.prices.title}</h1><p class="lead">${L.prices.lead}</p><span class="vat-badge">${L.ui.vatLong}</span></div><div class="wrap">${ruler('ruler-hero')}</div></section>
-<section class="section" id="cennik"><div class="wrap">
-  ${secHead('', L.prices.listTitle)}
-  <div class="price-groups-v">${groups}</div>
-  <p class="fine">${L.prices.materials}</p>
+<section class="page-hero"><div class="wrap">${crumbs(L, [[null, L.nav.prices]])}<h1>${L.prices.title}</h1><p class="lead">${L.prices.lead}</p>
+  <ul class="chips chips-link">${groups.map(([id, t]) => `<li><a href="#g-${id}">${t}</a></li>`).join('')}</ul></div><div class="wrap">${ruler('ruler-hero')}</div></section>
+<section class="section prices-sec" id="cennik"><div class="wrap" id="calculator">
+  ${sheet(L, null, groups)}
   <p class="fine">${L.prices.note}</p>
-</div></section>
-<section class="section section-dark" id="calculator"><div class="wrap">
-  ${secHead(L.nav.prices, L.prices.calcTitle, L.prices.calcLead, 'on-dark')}
-  ${calcBlock(L)}
 </div></section>
 ${ctaBand(L)}`;
   return layout(L, { key: 'prices', path: '/prices/', title: L.seo.prices[0], desc: L.seo.prices[1], body, pv });
