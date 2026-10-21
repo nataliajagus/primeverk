@@ -166,7 +166,7 @@ export default {
       steps: [['Measuring', 'We check how level the floor is.'], ['Removal', 'We take up the old floor.'], ['Levelling', 'We apply the self-levelling compound.'], ['Laying', 'We lay the panels.']],
       photos: ['Panels in a bright room', 'Vinyl floor in a kitchen', 'Preparing the surface'],
       faq: [
-        ['Do I need self-levelling compound?', 'Only if the floor is uneven, because panels need an even base. It costs 4.000 kr/m², labour only.'],
+        ['Do I need self-levelling compound?', 'Only if the floor is uneven, because panels need an even base. It costs 3.000 kr/m², labour only.'],
         ['What is the difference between click and glued panels?', 'Click panels go down without adhesive (1.800–2.300 kr/m²). Vinyl panels are glued to the floor beneath (4.000 kr/m²).'],
         ['Will you take up the old floor?', 'Yes. We remove parquet, tiles or carpet and prepare the surface. It costs 2.000 kr/m².'],
         ['Does the shape of the room affect the price?', 'Yes. Narrow hallways, columns and cutting around radiator pipes take more time, so labour costs more.'],

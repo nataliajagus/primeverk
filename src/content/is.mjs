@@ -166,7 +166,7 @@ export default {
       steps: [['Mæling', 'Við athugum hvort undirlagið er jafnt.'], ['Fjarlæging', 'Við tökum upp gamla gólfefnið.'], ['Jöfnun', 'Við leggjum jöfnunarmassa.'], ['Lagning', 'Við leggjum nýja gólfefnið.']],
       photos: ['Parket í björtu herbergi', 'Vínylgólf í eldhúsi', 'Undirbúningur undirlags'],
       faq: [
-        ['Þarf ég jöfnunarmassa?', 'Aðeins ef gólfið er ójafnt, því parket þarf jafnt undirlag. Jöfnunarmassi kostar 4.000 kr/m², vinna eingöngu.'],
+        ['Þarf ég jöfnunarmassa?', 'Aðeins ef gólfið er ójafnt, því parket þarf jafnt undirlag. Jöfnunarmassi kostar 3.000 kr/m², vinna eingöngu.'],
         ['Hver er munurinn á smellukerfi og límdu vínylgólfi?', 'Plastparket með smellukerfi leggjum við án líms (1.800–2.300 kr/m²). Vínylgólf límum við við undirlagið (4.000 kr/m²).'],
         ['Fjarlægið þið gamla gólfefnið?', 'Já. Við fjarlægjum parket, flísar eða teppi og undirbúum undirlagið. Það kostar 2.000 kr/m².'],
         ['Hefur lögun rýmisins áhrif á verðið?', 'Já. Þröngir gangar, súlur og vinna í kringum ofnarör lengja sögunartímann og hækka kostnað við vinnuna.'],

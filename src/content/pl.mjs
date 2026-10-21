@@ -166,7 +166,7 @@ export default {
       steps: [['Pomiar', 'Sprawdzamy równość podłoża.'], ['Demontaż', 'Zrywamy starą podłogę.'], ['Wyrównanie', 'Wykonujemy masę samopoziomującą.'], ['Układanie', 'Układamy panele.']],
       photos: ['Panele w jasnym pokoju', 'Winylowa podłoga w kuchni', 'Przygotowanie podłoża'],
       faq: [
-        ['Czy muszę wykonywać masę samopoziomującą?', 'Tylko gdy podłoga jest nierówna. Panele wymagają równego podłoża. Masa samopoziomująca kosztuje 4.000 kr/m² (sama robocizna).'],
+        ['Czy muszę wykonywać masę samopoziomującą?', 'Tylko gdy podłoga jest nierówna. Panele wymagają równego podłoża. Masa samopoziomująca kosztuje 3.000 kr/m² (sama robocizna).'],
         ['Czym różni się system klik od paneli na klej?', 'Panele klik układamy bez kleju (1.800–2.300 kr/m²). Panele winylowe przyklejamy do podłoża (4.000 kr/m²).'],
         ['Czy zerwiecie starą podłogę?', 'Tak. Zrywamy parkiet, płytki lub wykładzinę i przygotowujemy podłoże. To 2.000 kr/m².'],
         ['Czy kształt pomieszczenia wpływa na cenę?', 'Tak. Wąskie korytarze, filary i obróbka wokół rur grzejnikowych wydłużają docinanie, więc rośnie koszt robocizny.'],
