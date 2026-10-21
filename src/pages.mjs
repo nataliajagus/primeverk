@@ -1,8 +1,9 @@
-import { PRICES, SERVICES, CALC_GROUPS, fromPrice, fmtNum } from './data/prices.mjs';
+import { PRICES, SERVICES, CALC_GROUPS, fromPrice, rowsFor, fmtNum } from './data/prices.mjs';
 import { BASE, CONTACT, esc, stripTags, icon, flag, urlFor, asset, photo, priceTag, ruler, faqList, faqJsonLd, btn } from './ui.mjs';
 
 export const LANGS = ['is', 'en', 'pl'];
-const NAV_ORDER = ['services', 'prices', 'faq', 'contact'];
+const NAV_ORDER = ['services', 'prices', 'contact'];
+const FOOT_PAGES = ['prices', 'faq', 'contact'];
 const LANG_NAME = { is: 'Íslenska', en: 'English', pl: 'Polski' };
 const NAV_ICON = { services: 'plastering', prices: 'calc', faq: 'help', contact: 'mail' };
 const NAV_PATH = { services: '/services/', prices: '/prices/', faq: '/faq/', contact: '/contact/' };
@@ -14,8 +15,10 @@ export function priceText(L, p, { short = false } = {}) {
   if (p.min === p.max) return `${fmtNum(p.min)} ${unit}`;
   return `${fmtNum(p.min)}–${fmtNum(p.max)} ${unit}`;
 }
-const shelf = (L, rows) => `<ul class="shelf">` + rows.map(p =>
-  `<li><span class="shelf-name">${L.items[p.id]}</span><span class="shelf-price">${priceText(L, p)}</span></li>`).join('') + `</ul>`;
+const shelf = (L, rows) => `<ul class="shelf">` + rows.map(p => {
+  const it = L.items[p.id];
+  return `<li><div class="shelf-info"><span class="shelf-name">${it.n}</span>${it.s ? `<span class="shelf-sub">${it.s}</span>` : ''}${it.m ? `<span class="shelf-note">${it.m}</span>` : ''}</div><span class="shelf-price">${priceText(L, p)}</span></li>`;
+}).join('') + `</ul>`;
 
 // ---------- layout ----------
 export function layout(L, { key, path, title, desc, body, head = '', pv = null }) {
@@ -47,8 +50,8 @@ ${head}
 <body>
 <a class="skip" href="#main">${L.ui.skip}</a>
 <div class="strip"><div class="wrap strip-in">
-  <span>${L.ui.vatLong}</span>
-  <span class="strip-r"><a href="${CONTACT.phoneHref}">${icon('phone')}${CONTACT.phone}</a><span class="strip-loc">${icon('pin')}Reykjavík · Keflavík · Selfoss</span></span>
+  <span class="strip-loc">${icon('pin')}Reykjavík · Keflavík · Selfoss</span>
+  <span class="strip-r"><a href="${CONTACT.phoneHref}">${icon('phone')}${CONTACT.phone}</a><a class="strip-mail" href="mailto:${CONTACT.email}">${icon('mail')}${CONTACT.email}</a></span>
 </div>${ruler('ruler-strip')}</div>
 <header class="site-header" id="top">
   <div class="wrap hdr">
@@ -66,13 +69,12 @@ ${body}
 </main>
 <footer class="foot">
   <div class="wrap foot-grid">
-    <div class="foot-brand"><img src="${asset('logo-light.svg')}" alt="Prime Verk" width="120" height="54"><p>${L.footer.tag}</p>
-      <span class="tag-vat">${L.ui.vatLong}</span></div>
+    <div class="foot-brand"><img src="${asset('logo-light.svg')}" alt="Prime Verk" width="120" height="54"><p>${L.footer.tag}</p></div>
     <div><h4>${L.footer.services}</h4>${svcLinks}</div>
-    <div><h4>${L.footer.pages}</h4>${NAV_ORDER.filter(k => k !== 'services').map(k => `<a href="${urlFor(L.code, NAV_PATH[k])}">${L.nav[k]}</a>`).join('')}</div>
+    <div><h4>${L.footer.pages}</h4>${FOOT_PAGES.map(k => `<a href="${urlFor(L.code, NAV_PATH[k])}">${L.nav[k]}</a>`).join('')}</div>
     <div><h4>${L.footer.contact}</h4><a href="${CONTACT.phoneHref}">${CONTACT.phone}</a><a href="mailto:${CONTACT.email}">${CONTACT.email}</a>${CONTACT.whatsapp ? `<a href="https://wa.me/${CONTACT.whatsapp}" target="_blank" rel="noopener">WhatsApp</a>` : ''}${CONTACT.facebook ? `<a href="${CONTACT.facebook}" target="_blank" rel="noopener">Facebook</a>` : ''}<span class="foot-area">${L.contact.areaV}</span></div>
   </div>
-  <div class="wrap foot-bot"><span>© ${new Date().getFullYear()} Prime Verk. ${L.footer.rights}</span><span>${L.ui.vatLong}</span><span>${L.footer.credit} <a href="https://nataliajagus.com" target="_blank" rel="noopener">nataliajagus.com</a></span></div>
+  <div class="wrap foot-bot"><span>© ${new Date().getFullYear()} Prime Verk. ${L.footer.rights}</span><span>${L.footer.credit} <a href="https://nataliajagus.com" target="_blank" rel="noopener">nataliajagus.com</a></span></div>
 </footer>
 <a class="fab" href="${CONTACT.phoneHref}" aria-label="${L.ui.call}">${icon('phone')}<span>${L.ui.call}</span></a>
 ${pv ? `<script>window.PV=${JSON.stringify(pv)};</script>` : ''}
@@ -89,14 +91,17 @@ const crumbs = (L, items) => `<nav class="crumbs" aria-label="Breadcrumb"><a hre
 
 const ctaBand = L => `<section class="cta-band"><div class="wrap cta-in">
   <div><h2>${L.home.ctaTitle}</h2><p>${L.home.ctaLead}</p></div>
-  <div class="cta-btns">${btn(urlFor(L.code, '/contact/'), L.ui.quote, 'dark')}<a class="btn btn-line" href="${CONTACT.phoneHref}"><span>${CONTACT.phone}</span>${icon('phone')}</a></div>
+  <div class="cta-btns">${btn(urlFor(L.code, '/contact/'), L.ui.quote, 'dark')}<a class="btn btn-line" href="${CONTACT.phoneHref}"><span>${CONTACT.phone}</span>${icon('phone')}</a><a class="cta-mail" href="mailto:${CONTACT.email}">${CONTACT.email}</a></div>
 </div></section>`;
 
 const SVC_TONE = { painting: 'gold', plastering: 'basalt', tiling: 'concrete', bathrooms: 'slate', flooring: 'gold' };
 
 const CAR_FOCUS = { painting: '72% 50%', plastering: '45% 38%', tiling: '40% 50%', bathrooms: '78% 50%', flooring: '68% 50%' };
 function carCard(L, s) {
-  const S = L.svc[s], fp = fromPrice(s), unit = fp.unit === 'm2' ? L.ui.perM2 : L.ui.perMb;
+  const S = L.svc[s], fp = fromPrice(s);
+  const price = fp
+    ? `<span class="car-price"><em>${L.ui.from}</em><strong>${fmtNum(fp.min)}</strong><i>${fp.unit === 'm2' ? L.ui.perM2 : L.ui.perMb}</i><b class="tag-vat">${L.ui.vat}</b></span>`
+    : `<span class="car-price scope"><strong>${L.ui.byScope}</strong></span>`;
   return `<a class="car-card" href="${urlFor(L.code, '/services/' + s + '/')}" style="--op:${CAR_FOCUS[s]}" draggable="false">
     ${photo('svc-' + s + '-card', { label: S.photos[0], ratio: '4x3', ic: s, tone: SVC_TONE[s] })}
     <span class="car-ic">${icon(s)}</span>
@@ -104,7 +109,7 @@ function carCard(L, s) {
       <h3>${S.name}</h3>
       <p>${S.short}</p>
       <div class="car-foot-row">
-        <span class="car-price"><em>${L.ui.from}</em><strong>${fmtNum(fp.min)}</strong><i>${unit}</i><b class="tag-vat">${L.ui.vat}</b></span>
+        ${price}
         <span class="car-go">${icon('arrow')}</span>
       </div>
     </div>
@@ -113,16 +118,20 @@ function carCard(L, s) {
 
 function svcCard(L, s, big = false) {
   const fp = fromPrice(s);
+  const priceTxt = fp ? `${L.ui.from} ${fmtNum(fp.min)} ${fp.unit === 'm2' ? L.ui.perM2 : L.ui.perMb} · ${L.ui.vat}` : L.ui.byScope;
   return `<a class="svc-card${big ? ' big' : ''} reveal" href="${urlFor(L.code, '/services/' + s + '/')}">
     ${photo('svc-' + s + '-card', { label: L.svc[s].photos[0], ratio: big ? '16x10' : '4x3', ic: s, tone: SVC_TONE[s] })}
     <div class="svc-body"><span class="svc-ic">${icon(s)}</span><h3>${L.svc[s].name}</h3><p>${L.svc[s].short}</p>
-    <div class="svc-foot"><span class="mono">${L.ui.from} ${fmtNum(fp.min)} ${fp.unit === 'm2' ? L.ui.perM2 : L.ui.perMb} · ${L.ui.vat}</span><span class="svc-go">${icon('arrow')}</span></div></div></a>`;
+    <div class="svc-foot"><span class="mono">${priceTxt}</span><span class="svc-go">${icon('arrow')}</span></div></div></a>`;
 }
+
+const scopeTag = L => `<div class="tag tag-float tag-scope"><span class="tag-hole"></span><span class="tag-label">${L.ui.price}</span><span class="tag-text">${L.ui.byScope}</span></div>`;
 
 const miniCalc = L => {
   const p = PRICES.find(x => x.id === 'paint');
   return `<div class="mini" data-min="${p.min}" data-max="${p.max}">
-    <label class="mini-in"><span>${L.svc.painting.name}</span><div><input type="number" inputmode="decimal" min="0" step="any" placeholder="0" aria-label="${L.svc.painting.name} (${L.ui.m2})"><em>${L.ui.m2}</em></div></label>
+    <label class="mini-in"><span>${L.home.miniLabel}</span><div><input type="number" inputmode="decimal" min="0" step="any" placeholder="0" aria-label="${esc(L.home.miniLabel)} (${L.ui.m2})"><em>${L.ui.m2}</em></div></label>
+    <p class="mini-note">${L.home.miniNote}</p>
     <div class="mini-out"><span class="mini-sum" data-kr="${L.ui.kr}">0 ${L.ui.kr}</span><span class="tag-vat">${L.ui.vat}</span></div></div>`;
 };
 
@@ -131,31 +140,17 @@ export function homePage(L) {
   const H = L.home, c = L.code;
   const faqs = L.generalFaq.slice(0, 4);
   const body = `
-<section class="fs-hero" id="hero" aria-roledescription="carousel" aria-label="${L.nav.services}">
+<section class="fs-hero" id="hero">
   ${SERVICES.map((s, i) => `<div class="sl-slide${i === 0 ? ' on' : ''}" aria-hidden="true"><div class="sl-bg">${photo('hero-' + s, { label: L.svc[s].photos[0], ratio: '16x9', tone: SVC_TONE[s], ic: s, cls: 'bg', prio: i === 0 })}</div><div class="fs-shade"></div></div>`).join('')}
   <div class="fs-grid">
     <div class="fs-copy">
       <p class="eyebrow"><i></i>${H.eyebrow}</p>
       <h1>${H.title}</h1>
       <p class="lead">${H.lead}</p>
-      <div class="cta-row">${btn(urlFor(c, '/prices/#calculator'), L.ui.calc, 'gold')}${btn(urlFor(c, '/contact/'), L.ui.quote, 'line')}</div>
+      <p class="hero-help">${H.help}</p>
+      <div class="cta-row">${btn(urlFor(c, '/contact/'), L.ui.quote, 'gold')}${btn(urlFor(c, '/prices/#calculator'), L.ui.calc, 'line')}</div>
+      <p class="hero-area">${icon('pin')}<span>${H.areaLabel}</span> ${H.area}</p>
     </div>
-    <aside class="offer" aria-live="polite">
-      <div class="offer-head"><span>${L.nav.services}</span><span class="offer-dots" role="tablist" aria-label="${L.nav.services}">${SERVICES.map((s, i) => `<button class="offer-dot${i === 0 ? ' on' : ''}" type="button" role="tab" aria-selected="${i === 0}" aria-label="${L.svc[s].name}" data-i="${i}"></button>`).join('')}</span></div>
-      <div class="offer-stack">${SERVICES.map((s, i) => {
-        const S = L.svc[s], fp = fromPrice(s), unit = fp.unit === 'm2' ? L.ui.perM2 : L.ui.perMb;
-        return `<div class="offer-item${i === 0 ? ' on' : ''}" role="group" aria-roledescription="slide" aria-label="${i + 1} / ${SERVICES.length}">
-          <span class="svc-ic">${icon(s)}</span>
-          <h3>${S.name}</h3>
-          <p>${S.short}</p>
-          <div class="offer-price"><span class="offer-from">${L.ui.from}</span><strong>${fmtNum(fp.min)}</strong><em>${unit}</em><span class="tag-vat">${L.ui.vat}</span></div>
-        </div>`;
-      }).join('')}</div>
-      <div class="offer-foot">
-        <a class="btn btn-dark btn-sm offer-link" href="${urlFor(c, '/services/' + SERVICES[0] + '/')}" data-base="${urlFor(c, '/services/')}" data-slugs="${SERVICES.join(',')}"><span>${L.ui.more}</span>${icon('arrow')}</a>
-        <div class="offer-nav"><button class="sl-arrow prev" type="button" aria-label="Previous">${icon('arrow')}</button><button class="sl-arrow next" type="button" aria-label="Next">${icon('arrow')}</button></div>
-      </div>
-    </aside>
   </div>
 </section>
 
@@ -189,7 +184,7 @@ export function homePage(L) {
   <div class="wrap calc-promo-in">
     <div>
       <p class="eyebrow">${L.nav.prices}</p><h2>${H.calcTitle}</h2><p class="sec-lead">${H.calcLead}</p>
-      <div class="cta-row">${btn(urlFor(c, '/prices/#calculator'), L.ui.calc, 'gold')}${btn(urlFor(c, '/prices/'), L.prices.listTitle, 'line')}</div>
+      <div class="cta-row">${btn(urlFor(c, '/prices/#calculator'), H.calcBtn, 'gold')}${btn(urlFor(c, '/prices/#cennik'), L.prices.listTitle, 'line')}</div>
     </div>
     ${miniCalc(L)}
   </div>
@@ -208,7 +203,7 @@ export function homePage(L) {
 
 <section class="section">
   <div class="wrap faq-wrap">
-    <div>${secHead(L.ui.faq, H.faqTitle)}<div class="cta-row">${btn(urlFor(c, '/faq/'), L.nav.faq, 'line')}</div></div>
+    <div>${secHead(L.ui.faq, H.faqTitle)}<div class="cta-row">${btn(urlFor(c, '/faq/'), H.faqAll, 'line')}</div></div>
     ${faqList(faqs)}
   </div>
 </section>
@@ -227,7 +222,7 @@ export function servicesPage(L) {
   const c = L.code;
   const rows = SERVICES.map((s, i) => {
     const S = L.svc[s];
-    const items = PRICES.filter(p => p.svc.includes(s)).slice(0, 3);
+    const items = rowsFor(s).slice(0, 3);
     return `<article class="svc-row reveal${i % 2 ? ' flip' : ''}">
       <div class="svc-row-photo">${photo('svc-' + s + '-card', { label: S.photos[0], ratio: '4x3', ic: s, tone: SVC_TONE[s] })}</div>
       <div class="svc-row-text"><span class="svc-ic">${icon(s)}</span><h2>${S.name}</h2><p>${S.lead}</p>
@@ -245,7 +240,7 @@ ${ctaBand(L)}`;
 // ---------- USŁUGA: podstrona ----------
 export function servicePage(L, s) {
   const S = L.svc[s], c = L.code, fp = fromPrice(s);
-  const rows = PRICES.filter(p => p.svc.includes(s));
+  const rows = rowsFor(s);
   const others = SERVICES.filter(x => x !== s).slice(0, 3);
   const body = `
 <section class="svc-hero"><div class="wrap svc-hero-in">
@@ -256,7 +251,7 @@ export function servicePage(L, s) {
     <div class="cta-row">${btn(urlFor(c, '/contact/'), L.ui.quote, 'gold')}${btn(urlFor(c, '/prices/#calculator'), L.ui.calc, 'line')}</div>
   </div>
   <div class="svc-hero-photo">${photo('svc-' + s + '-hero', { label: S.photos[0], ratio: '4x3', ic: s, tone: SVC_TONE[s] === 'basalt' ? 'concrete' : SVC_TONE[s], prio: true })}
-    ${priceTag(L, { label: L.ui.from, price: fmtNum(fp.min), unit: fp.unit === 'm2' ? L.ui.perM2 : L.ui.perMb, cls: 'tag-float' })}</div>
+    ${fp ? priceTag(L, { label: L.ui.from, price: fmtNum(fp.min), unit: fp.unit === 'm2' ? L.ui.perM2 : L.ui.perMb, cls: 'tag-float' }) : scopeTag(L)}</div>
 </div><div class="wrap">${ruler('ruler-hero')}</div></section>
 
 <section class="section">
@@ -268,7 +263,7 @@ export function servicePage(L, s) {
 
 <section class="section section-dark">
   <div class="wrap">
-    ${secHead(L.ui.process, S.name, '', 'on-dark')}
+    ${secHead(L.ui.process, S.stepsTitle, '', 'on-dark')}
     <ol class="steps on-dark">${S.steps.map(([t, d]) => `<li class="reveal"><h3>${t}</h3><p>${d}</p></li>`).join('')}</ol>
   </div>
 </section>
@@ -286,7 +281,7 @@ export function servicePage(L, s) {
 
 <section class="section">
   <div class="wrap faq-wrap">
-    <div>${secHead(L.ui.faq, S.name)}</div>
+    <div>${secHead(L.ui.faq, S.faqTitle)}</div>
     ${faqList(S.faq)}
   </div>
 </section>
@@ -311,7 +306,11 @@ export function pricesPage(L) {
   const pv = {
     lang: L.code,
     prices: PRICES.map(({ id, calc, unit, min, max }) => ({ id, calc, unit, min, max })),
-    groups: CALC_GROUPS, groupNames: L.calcGroups, names: L.items,
+    groups: CALC_GROUPS, groupNames: L.calcGroups,
+    names: Object.fromEntries(PRICES.map(x => [x.id, L.items[x.id].n])),
+    scopes: Object.fromEntries(PRICES.map(x => [x.id, L.items[x.id].s || ''])),
+    notes: Object.fromEntries(PRICES.map(x => [x.id, L.items[x.id].m || ''])),
+    hints: L.itemHints,
     ui: { m2: L.ui.m2, mb: L.ui.mb, kr: L.ui.kr, vat: L.ui.vat, perM2: L.ui.perM2, perMb: L.ui.perMb, from: L.ui.from, ...L.prices },
     contactUrl: urlFor(L.code, '/contact/')
   };
@@ -320,6 +319,7 @@ export function pricesPage(L) {
 <section class="section" id="cennik"><div class="wrap">
   ${secHead('', L.prices.listTitle)}
   <div class="price-groups">${groups}</div>
+  <p class="fine">${L.prices.materials}</p>
   <p class="fine">${L.prices.note}</p>
 </div></section>
 <section class="section section-dark" id="calculator"><div class="wrap">
@@ -364,20 +364,18 @@ export function contactPage(L) {
       ${CONTACT.whatsapp ? `<div><dt>${icon('phone')}WhatsApp</dt><dd><a href="https://wa.me/${CONTACT.whatsapp}" target="_blank" rel="noopener">${CONTACT.phone}</a></dd></div>` : ''}
       <div><dt>${icon('pin')}${C.area}</dt><dd>${C.areaV}</dd></div>
     </dl>
-    <span class="vat-badge">${L.ui.vatLong}</span>
     <div class="contact-photo">${photo('contact-photo', { label: L.home.eyebrow, ratio: '4x3', tone: 'slate', ic: 'painting', cls: 'fill' })}</div>
   </div>
-  <form id="contact-form" class="form" data-subject="${esc(C.subject)}" data-lbl-name="${esc(C.name)}" data-lbl-phone="${esc(C.fphone)}" data-lbl-email="${esc(C.femail)}" data-from-calc="${esc(C.fromCalc)}" data-endpoint="${CONTACT.formEndpoint}" data-sending="${esc(C.sending)}" data-sent="${esc(C.sent)}" data-error="${esc(C.error)}" data-phone="${CONTACT.phone}">
+  <form id="contact-form" class="form" data-subject="${esc(C.subject)}" data-lbl-name="${esc(C.name)}" data-lbl-phone="${esc(C.fphone)}" data-lbl-email="${esc(C.femail)}">
+    <p class="form-intro">${C.formIntro}</p>
     <label><span>${C.name}</span><input id="f-name" type="text" required autocomplete="name"></label>
     <div class="row2"><label><span>${C.fphone}</span><input id="f-phone" type="tel" autocomplete="tel"></label>
     <label><span>${C.femail}</span><input id="f-email" type="email" autocomplete="email"></label></div>
     <label><span>${C.msg}</span><textarea id="f-msg" rows="7" required placeholder="${esc(C.ph)}"></textarea></label>
-    <p class="field-hint">${C.hint}</p>
     <p class="form-info" id="f-info" hidden></p>
-    <p class="form-status" id="f-status" role="status" aria-live="polite" hidden></p>
-    <button class="btn btn-gold" type="submit"><span>${C.send}</span>${icon('arrow')}</button>
-    ${CONTACT.formEndpoint ? '' : `<p class="fine">${C.note}</p>`}
-    <p class="fine">${C.privacy}</p>
+    <button class="btn btn-gold" type="submit"><span>${C.send}</span>${icon('mail')}</button>
+    <p class="form-note">${C.note}</p>
+    <p class="form-alt">${C.alt} <a href="${CONTACT.phoneHref}">${CONTACT.phone}</a> · <a href="mailto:${CONTACT.email}">${CONTACT.email}</a></p>
   </form>
 </div></section>`;
   return layout(L, { key: 'contact', path: '/contact/', title: L.seo.contact[0], desc: L.seo.contact[1], body });

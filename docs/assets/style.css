@@ -423,7 +423,7 @@ p { margin: 0; }
 }
 @media (max-width: 720px) { .offer { padding: 22px 22px 20px; } }
 @media (max-width: 720px) {
-  .strip-loc { display: none; }
+  .strip-mail { display: none; }
   .svc-grid, .why-grid, .stats-in, .price-groups, .rev-grid, .proj-grid, .svc-row, .row2, .foot-grid { grid-template-columns: 1fr; }
   .svc-grid .svc-card:last-child:nth-child(odd) { grid-column: span 1; }
   .svc-row.flip .svc-row-photo { order: 0; }
@@ -565,3 +565,41 @@ p { margin: 0; }
   .offer, .svc-hero-photo { animation-name: rise; }
 }
 body { overflow-x: clip; }
+
+/* ===== pierwszy ekran bez boxu oferty ===== */
+.fs-hero { min-height: clamp(560px, calc(100svh - 112px), 760px); }
+.fs-grid { grid-template-columns: minmax(0, 760px); padding: 72px 0; }
+.fs-copy h1 { max-width: 16ch; }
+.fs-copy .lead { max-width: 52ch; }
+.hero-help { margin-top: 14px; max-width: 52ch; color: rgba(246,245,242,.72); font-size: .98rem; }
+.hero-area { margin-top: 26px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; color: rgba(246,245,242,.85); font-size: .98rem; }
+.hero-area .ic { width: 18px; height: 18px; color: var(--gold); }
+.hero-area span { font: 600 .9rem var(--label); letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
+.strip-mail { display: inline-flex; }
+@media (max-width: 720px) { .strip-mail { display: none; } .strip-loc { display: inline-flex; } }
+@media (max-width: 900px) { .fs-grid { padding: 44px 0 40px; } }
+
+/* ===== cennik: nazwa, zakres, informacja o materiale ===== */
+.shelf-info { display: grid; gap: 2px; min-width: 0; }
+.shelf-name { font-weight: 600; }
+.shelf-sub { font-size: .88rem; color: var(--muted); }
+.shelf-note { font: 600 .82rem var(--label); letter-spacing: .08em; text-transform: uppercase; color: var(--gold-ink); }
+.section-dark .shelf-sub { color: rgba(246,245,242,.68); }
+.cr-sub { font-size: .86rem; color: rgba(246,245,242,.68); }
+.cr-sub.note { font: 600 .8rem var(--label); letter-spacing: .08em; text-transform: uppercase; color: var(--gold); }
+.cr-hint { font-size: .86rem; color: rgba(246,245,242,.85); margin-top: 4px; }
+.cr-hint::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 8px; background: var(--gold); vertical-align: middle; }
+.mini-note { font-size: .9rem; color: rgba(246,245,242,.72); margin-top: -10px; }
+.tag-scope { max-width: 280px; padding-right: 22px; }
+.tag-scope .tag-text { font: 800 1.35rem/1.15 var(--display); font-stretch: 108%; letter-spacing: -.02em; }
+.car-price.scope strong { font: 700 1.3rem/1.15 var(--display); max-width: 14ch; letter-spacing: -.01em; }
+
+/* ===== kontakt ===== */
+.cta-mail { align-self: center; font-weight: 600; text-underline-offset: 3px; }
+.form-intro { font-weight: 600; font-size: 1.02rem; padding: 12px 14px; background: rgba(179,142,85,.16); border-left: 3px solid var(--gold); }
+.form-note { font-size: .92rem; color: var(--fg); }
+.form-alt { font-size: .92rem; color: var(--muted); }
+.form-alt a { font-weight: 600; color: var(--fg); }
+.strip a, .strip-loc { white-space: nowrap; }
+@media (max-width: 720px) { .strip .strip-mail { display: none; } .strip-in { gap: 10px; } }
+@media (max-width: 380px) { .strip-loc { font-size: .68rem; } }

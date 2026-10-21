@@ -11,7 +11,6 @@ export const CONTACT = {
   email: 'contact@primeverk.is',
   facebook: '',     // TODO: link do profilu FB (puste = link się nie wyświetla)
   whatsapp: '',     // numer bez plusa, np. '3547696246' (puste = przycisk się nie wyświetla)
-  formEndpoint: '', // np. 'https://formspree.io/f/xxxx' (puste = formularz otwiera program pocztowy)
   analytics: { src: '', domain: '' } // np. Plausible: src 'https://plausible.io/js/script.tagged-events.js'
 };
 

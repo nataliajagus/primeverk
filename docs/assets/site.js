@@ -104,40 +104,13 @@
   var fab = $(".fab");
   if (fab) { var onScroll = function () { fab.classList.toggle("show", window.scrollY > 420); }; window.addEventListener("scroll", onScroll, { passive: true }); onScroll(); }
 
-  // ---- hero: tło + box oferty zmieniają się razem ----
-  var hero = $(".fs-hero");
+  // ---- hero: tło zmienia się powoli (bez sterowania) ----
+  var hero = $('.fs-hero');
   if (hero) {
-    var slides = $$(".sl-slide", hero), items = $$(".offer-item", hero), tabs = $$(".offer-dot", hero);
-    var link = $(".offer-link", hero), slugs = link.dataset.slugs.split(","), cur = 0, timer = null;
-    var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches, DUR = 7000;
-    hero.style.setProperty("--dur", DUR + "ms");
-    var restart = function () {
-      clearInterval(timer);
-      hero.classList.remove("playing"); void hero.offsetWidth;
-      if (calm) return;
-      hero.classList.add("playing");
-      timer = setInterval(function () { show(cur + 1); }, DUR);
-    };
-    var show = function (i) {
-      cur = (i + slides.length) % slides.length;
-      slides.forEach(function (s, k) { s.classList.toggle("on", k === cur); });
-      items.forEach(function (s, k) { s.classList.toggle("on", k === cur); s.setAttribute("aria-hidden", k === cur ? "false" : "true"); });
-      tabs.forEach(function (t, k) { t.classList.toggle("on", k === cur); t.setAttribute("aria-selected", k === cur ? "true" : "false"); });
-      link.href = link.dataset.base + slugs[cur] + "/";
-      if (!hero.classList.contains("paused")) restart(); else { hero.classList.remove("playing"); void hero.offsetWidth; hero.classList.add("playing"); }
-    };
-    $(".sl-arrow.next", hero).addEventListener("click", function () { show(cur + 1); });
-    $(".sl-arrow.prev", hero).addEventListener("click", function () { show(cur - 1); });
-    tabs.forEach(function (t) { t.addEventListener("click", function () { show(+t.dataset.i); }); });
-    hero.addEventListener("keydown", function (e) { if (e.key === "ArrowRight") show(cur + 1); if (e.key === "ArrowLeft") show(cur - 1); });
-    var pause = function () { clearInterval(timer); hero.classList.add("paused"); };
-    var resume = function () { hero.classList.remove("paused"); if (!calm) restart(); };
-    hero.addEventListener("mouseenter", pause); hero.addEventListener("mouseleave", resume);
-    hero.addEventListener("focusin", pause); hero.addEventListener("focusout", resume);
-    var sx = null;
-    hero.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; }, { passive: true });
-    hero.addEventListener("touchend", function (e) { if (sx === null) return; var dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1)); sx = null; }, { passive: true });
-    show(0);
+    var slides = $$('.sl-slide', hero), cur = 0;
+    if (slides.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setInterval(function () { slides[cur].classList.remove('on'); cur = (cur + 1) % slides.length; slides[cur].classList.add('on'); }, 7000);
+    }
   }
 
   // ---- karuzela usług ----
@@ -213,10 +186,13 @@
     PV.groups.forEach(function (g) {
       html += '<fieldset class="calc-group"><legend>' + PV.groupNames[g] + '</legend>';
       PV.prices.filter(function (p) { return p.calc === g; }).forEach(function (p) {
-        html += '<div class="calc-row" data-id="' + p.id + '"><div class="cr-info"><span class="cr-name">' + PV.names[p.id] +
-          '</span><span class="cr-price">' + priceTxt(p) + '</span></div>' +
+        html += '<div class="calc-row" data-id="' + p.id + '"><div class="cr-info"><span class="cr-name">' + PV.names[p.id] + '</span>' +
+          (PV.scopes[p.id] ? '<span class="cr-sub">' + PV.scopes[p.id] + '</span>' : '') +
+          (PV.notes[p.id] ? '<span class="cr-sub note">' + PV.notes[p.id] + '</span>' : '') +
+          '<span class="cr-price">' + priceTxt(p) + '</span>' +
+          '<span class="cr-hint">' + ui.enter + ' ' + PV.hints[p.id] + '</span></div>' +
           '<label class="cr-qty"><span class="sr-only">' + ui.qty + '</span><input type="number" inputmode="decimal" min="0" step="any" placeholder="0" data-id="' + p.id +
-          '" aria-label="' + PV.names[p.id].replace(/"/g, '') + '"><em>' + unitLbl(p.unit) + '</em></label></div>';
+          '" aria-label="' + (PV.names[p.id] + ': ' + ui.enter + ' ' + PV.hints[p.id]).replace(/"/g, '') + '"><em>' + unitLbl(p.unit) + '</em></label></div>';
       });
       html += '</fieldset>';
     });
@@ -272,27 +248,11 @@
       msg.value = saved + '\n\n';
       var info = $('#f-info'); info.hidden = false; info.textContent = form.dataset.fromCalc;
     }
-    var status = $('#f-status');
-    var say = function (txt, ok) { status.hidden = false; status.textContent = txt; status.className = 'form-status ' + (ok ? 'ok' : 'err'); };
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       track('Quote request');
-      var name = $('#f-name').value, phone = $('#f-phone').value, email = $('#f-email').value;
-      var ep = form.dataset.endpoint;
-      if (ep) {
-        var sendBtn = $('button[type=submit]', form); sendBtn.disabled = true; say(form.dataset.sending, true);
-        var fd = new FormData();
-        fd.append('name', name); fd.append('phone', phone); fd.append('email', email); fd.append('message', msg.value);
-        fd.append('_subject', form.dataset.subject);
-        fetch(ep, { method: 'POST', body: fd, headers: { Accept: 'application/json' } }).then(function (r) {
-          if (!r.ok) throw new Error('http ' + r.status);
-          say(form.dataset.sent, true); form.reset(); try { sessionStorage.removeItem('pv-calc'); } catch (x) {}
-          $('#f-info').hidden = true;
-        }).catch(function () { say(form.dataset.error + form.dataset.phone, false); }).then(function () { sendBtn.disabled = false; });
-        return;
-      }
-      var body = form.dataset.lblName + ': ' + name + '\n' + form.dataset.lblPhone + ': ' + phone + '\n' +
-        form.dataset.lblEmail + ': ' + email + '\n\n' + msg.value;
+      var body = form.dataset.lblName + ': ' + $('#f-name').value + '\n' + form.dataset.lblPhone + ': ' + $('#f-phone').value + '\n' +
+        form.dataset.lblEmail + ': ' + $('#f-email').value + '\n\n' + msg.value;
       var to = $('a[href^="mailto:"]').getAttribute('href').replace('mailto:', '');
       location.href = 'mailto:' + to + '?subject=' + encodeURIComponent(form.dataset.subject) + '&body=' + encodeURIComponent(body);
     });

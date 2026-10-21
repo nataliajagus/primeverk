@@ -20,8 +20,15 @@ export const CALC_GROUPS = ['paint', 'plaster', 'tiles', 'floor'];
 export const SERVICES = ['painting', 'plastering', 'tiling', 'bathrooms', 'flooring'];
 // najniższa cena "od" dla usługi (do kafelków)
 // pozycja reprezentatywna dla usługi (nie "najtańsza", bo np. hydroizolacja nie jest ceną płytek)
-const HEADLINE = { painting: 'paint', plastering: 'spackle', tiling: 'floorTile', bathrooms: 'waterproof', flooring: 'panelClick' };
+// łazienki nie mają ceny „od”: 2.800 kr/m² to stawka za samą hydroizolację, a nie za całą łazienkę
+const HEADLINE = { painting: 'paint', plastering: 'spackle', tiling: 'floorTile', bathrooms: null, flooring: 'panelClick' };
+const ORDER = { bathrooms: ['removeTile', 'waterproof', 'floorTile', 'wallTile', 'largeTile'] };
+export function rowsFor(svc) {
+  const rows = PRICES.filter(p => p.svc.includes(svc));
+  const o = ORDER[svc];
+  return o ? o.map(id => rows.find(r => r.id === id)).filter(Boolean) : rows;
+}
 export function fromPrice(svc) {
-  return PRICES.find(p => p.id === HEADLINE[svc]);
+  return PRICES.find(p => p.id === HEADLINE[svc]) || null;
 }
 export const fmtNum = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
