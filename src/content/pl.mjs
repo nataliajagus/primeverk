@@ -197,5 +197,5 @@ export default {
     subject: 'Zapytanie ze strony Prime Verk',
     fromCalc: 'Wyliczenie z kalkulatora zostało dodane do treści wiadomości.'
   },
-  footer: { credit: 'Realizacja strony:', tag: 'Malowanie, płytki, wykończenie łazienek i podłogi w Reykjavíku i okolicach.', rights: 'Wszelkie prawa zastrzeżone.', pages: 'Strona', services: 'Usługi', contact: 'Kontakt' }
+  footer: { company: ['Dane firmy', 'Nazwa firmy', 'Numer firmy (kennitala)', 'Numer VSK', 'do uzupełnienia'], credit: 'Realizacja strony:', tag: 'Malowanie, płytki, wykończenie łazienek i podłogi w Reykjavíku i okolicach.', rights: 'Wszelkie prawa zastrzeżone.', pages: 'Strona', services: 'Usługi', contact: 'Kontakt' }
 };

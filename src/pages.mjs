@@ -74,6 +74,7 @@ ${body}
     <div><h4>${L.footer.pages}</h4>${FOOT_PAGES.map(k => `<a href="${urlFor(L.code, NAV_PATH[k])}">${L.nav[k]}</a>`).join('')}</div>
     <div><h4>${L.footer.contact}</h4><a href="${CONTACT.phoneHref}">${CONTACT.phone}</a><a href="mailto:${CONTACT.email}">${CONTACT.email}</a>${CONTACT.whatsapp ? `<a href="https://wa.me/${CONTACT.whatsapp}" target="_blank" rel="noopener">WhatsApp</a>` : ''}${CONTACT.facebook ? `<a href="${CONTACT.facebook}" target="_blank" rel="noopener">Facebook</a>` : ''}<span class="foot-area">${L.contact.areaV}</span></div>
   </div>
+  <div class="wrap foot-company"><h4>${L.footer.company[0]}</h4><ul>${[1, 2, 3].map(i => `<li><span>${L.footer.company[i]}</span><em>${L.footer.company[4]}</em></li>`).join('')}</ul></div>
   <div class="wrap foot-bot"><span>© ${new Date().getFullYear()} Prime Verk. ${L.footer.rights}</span><span>${L.footer.credit} <a href="https://nataliajagus.com" target="_blank" rel="noopener">nataliajagus.com</a></span></div>
 </footer>
 <a class="fab" href="${CONTACT.phoneHref}" aria-label="${L.ui.call}">${icon('phone')}<span>${L.ui.call}</span></a>

@@ -197,5 +197,5 @@ export default {
     subject: 'Enquiry from the Prime Verk website',
     fromCalc: 'The estimate from the calculator has been added to the message.'
   },
-  footer: { credit: 'Website by', tag: 'Painting, tiling, bathroom finishing and flooring in Reykjavík and surroundings.', rights: 'All rights reserved.', pages: 'Pages', services: 'Services', contact: 'Contact' }
+  footer: { company: ['Company details', 'Company name', 'Company ID (kennitala)', 'VAT number', 'to be completed'], credit: 'Website by', tag: 'Painting, tiling, bathroom finishing and flooring in Reykjavík and surroundings.', rights: 'All rights reserved.', pages: 'Pages', services: 'Services', contact: 'Contact' }
 };
