@@ -187,6 +187,7 @@ export default {
     materials: 'Málun: verðið er fyrir vinnu eingöngu. Jöfnunarmassi: verðið innifelur efni. Hvað varðar önnur verk staðfestum við efnið í tilboðinu.',
     listTitle: 'Verðskrá', calcTitle: 'Kostnaðarreiknivél', calcLead: 'Veldu verk og sláðu inn flatarmál. Þar sem verðbil er gefið er niðurstaðan líka verðbil.',
     colWork: 'Verk', colRate: 'Taxti', colQty: 'Flatarmál', colCost: 'Kostnaður',
+    shortNote: 'Niðurstaðan er áætlun. Endanlegt tilboð fer eftir flatarmáli, ástandi undirlags og umfangi verks.',
     qty: 'Flatarmál', enter: 'Sláðu inn', total: 'Áætlaður kostnaður', empty: 'Veldu verk og sláðu inn flatarmál til að sjá áætlaðan kostnað.',
     disclaimer: 'Þetta er áætlun byggð á verðum úr verðskránni. Endanlegt verð ákveðum við út frá fermetrafjölda, ástandi undirlags og umfangi verksins.',
     send: 'Bæta útreikningnum við fyrirspurnina', openFrom: 'frá', reset: 'Hreinsa'

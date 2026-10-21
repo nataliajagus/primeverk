@@ -187,6 +187,7 @@ export default {
     materials: 'Painting: the price covers labour only. Self-levelling compound: the price includes material. For other items, we confirm which materials are covered in the quote.',
     listTitle: 'Price list', calcTitle: 'Cost calculator', calcLead: 'Choose the work and enter the area. For items with a range of rates, the result is also a range.',
     colWork: 'Work', colRate: 'Rate', colQty: 'Area', colCost: 'Cost',
+    shortNote: 'The result is an estimate. The final quote depends on the area, the condition of the surface and the scope of work.',
     qty: 'Area', enter: 'Enter', total: 'Estimated cost', empty: 'Choose the work and enter the area to see the estimated cost.',
     disclaimer: 'This is an estimate based on the rates in the price list. We set the final quote from the area, the condition of the substrate and the scope of work.',
     send: 'Attach the estimate to your enquiry', openFrom: 'from', reset: 'Clear'

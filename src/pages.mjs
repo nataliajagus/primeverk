@@ -39,7 +39,7 @@ const sheet = (L, rows) => {
     return `<div class="calc-row sheet-row" data-id="${r.id}">
       <div class="sr-name"><h3>${it.n}</h3>${it.s ? `<p>${it.s}</p>` : ''}${it.m ? `<span class="sr-note">${it.m}</span>` : ''}</div>
       <div class="sr-rate" data-label="${esc(P.colRate)}"><strong>${rate}</strong><em>${unit}</em></div>
-      <label class="sr-qty" data-label="${esc(P.colQty)}"><input type="number" inputmode="decimal" min="0" step="any" placeholder="0" data-id="${r.id}" aria-label="${esc(it.n)}: ${esc(P.enter)} ${esc(L.itemHints[r.id])}"><em>${u}</em><span class="sr-hint">${esc(P.enter)} ${esc(L.itemHints[r.id])}</span></label>
+      <label class="sr-qty" data-label="${esc(P.colQty)}" title="${esc(P.enter)} ${esc(L.itemHints[r.id])}"><input type="number" inputmode="decimal" min="0" step="any" placeholder="0" data-id="${r.id}" aria-label="${esc(it.n)}: ${esc(P.enter)} ${esc(L.itemHints[r.id])}"><em>${u}</em></label>
       <div class="sr-sum" data-label="${esc(P.colCost)}"><span class="row-sum" data-empty="—">—</span></div>
     </div>`;
   }).join('');
@@ -47,7 +47,7 @@ const sheet = (L, rows) => {
     <div class="sheet-head"><span>${P.colWork}</span><span>${P.colRate} <b>(${L.ui.vat})</b></span><span>${P.colQty}</span><span>${P.colCost}</span></div>
     <div id="calc-fields" data-static="1">${body}</div>
     <div class="sheet-foot">
-      <div class="sf-note"><p>${P.disclaimer}</p></div>
+      <div class="sf-note"><p>${P.shortNote}</p></div>
       <div class="sf-total"><div id="calc-result" class="calc-result" aria-live="polite"></div>
         <div class="sf-btns"><button id="calc-send" class="btn btn-gold" type="button" disabled><span>${P.send}</span>${icon('arrow')}</button>
         <button id="calc-reset" class="btn btn-line" type="button"><span>${P.reset}</span></button></div></div>
@@ -369,8 +369,6 @@ export function servicePage(L, s) {
   <div class="wrap">
     ${secHead(L.ui.pricing, S.priceTitle, S.priceLead)}
     ${sheet(L, rows)}
-    <p class="fine">${L.prices.materials}</p>
-    <p class="fine">${L.prices.note}</p>
   </div>
 </section>
 

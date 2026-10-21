@@ -744,3 +744,8 @@ body { overflow-x: clip; }
   .sheet-foot { grid-template-columns: 1fr; padding: 20px 18px; }
 }
 @media (max-width: 480px) { .sheet-row { grid-template-columns: 1fr 1fr; } .sr-sum { grid-column: 1 / -1; } }
+
+.sheet .calc-empty { display: none; }
+.sheet .sf-note p { font-size: .9rem; max-width: 46ch; }
+.sheet-foot { padding-block: 20px; }
+.sheet-row { padding-block: 18px; }

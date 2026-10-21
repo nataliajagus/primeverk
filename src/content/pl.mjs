@@ -187,6 +187,7 @@ export default {
     materials: 'Malowanie: cena dotyczy samej robocizny. Masa samopoziomująca: cena obejmuje materiał. Przy pozostałych pozycjach zakres materiałów potwierdzamy w wycenie.',
     listTitle: 'Cennik', calcTitle: 'Kalkulator kosztów', calcLead: 'Wybierz prace i podaj powierzchnię. Dla pozycji z przedziałem stawek wynik też jest przedziałem.',
     colWork: 'Praca', colRate: 'Stawka', colQty: 'Powierzchnia', colCost: 'Koszt',
+    shortNote: 'Wynik jest orientacyjny. Ostateczną wycenę ustalamy po poznaniu metrażu, stanu podłoża i zakresu prac.',
     qty: 'Powierzchnia', enter: 'Podaj', total: 'Orientacyjny koszt', empty: 'Wybierz prace i podaj powierzchnię, aby zobaczyć orientacyjny koszt.',
     disclaimer: 'To wyliczenie orientacyjne, oparte na stawkach z cennika. Ostateczną wycenę ustalamy na podstawie metrażu, stanu podłoża i zakresu prac.',
     send: 'Dołącz wyliczenie do zapytania', openFrom: 'od', reset: 'Wyczyść'
