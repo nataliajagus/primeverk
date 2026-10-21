@@ -780,3 +780,33 @@ body:has(.sheet.sticky-foot) .fab { display: none; }
   .cta-photo .photo { clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%); }
   .cta-photo .photo img { object-position: 55% 55%; }
 }
+
+/* ===== kartka wyceny na telefonie: zwarty wiersz ===== */
+@media (max-width: 860px) {
+  .sheet-row { grid-template-columns: 1fr auto; gap: 10px 14px; padding: 16px 16px; align-items: center; }
+  .sr-name { grid-column: 1 / -1; }
+  .sr-name h3 { font-size: 1.05rem; }
+  .sr-rate::before, .sr-qty::before, .sr-sum::before { display: none; }
+  .sr-rate { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 6px; }
+  .sr-rate strong { font-size: 1.15rem; }
+  .sr-rate em { display: inline; margin: 0; }
+  .sr-qty { grid-template-columns: 112px auto; gap: 8px; justify-self: end; }
+  .sr-qty::before { grid-column: auto; }
+  .sr-qty input { padding: 10px 12px; font-size: 1.1rem; }
+  .sr-sum { display: none; grid-column: 1 / -1; justify-content: space-between; align-items: baseline; padding-top: 10px; border-top: 1px dashed var(--line); }
+  .sheet-row.on .sr-sum { display: flex; }
+  .sr-sum::before { display: inline !important; content: attr(data-label); font: 600 .78rem var(--label); letter-spacing: .1em; text-transform: uppercase; color: var(--gold-ink); margin: 0; }
+  .row-sum { font-size: 1.15rem; }
+  /* przypięty pasek: tylko gdy coś wpisano */
+  .sheet.sticky-foot .sheet-foot:has(#calc-send:disabled) { display: none; }
+  .sheet.sticky-foot .sheet-foot { padding: 12px 16px; }
+  .sheet.sticky-foot .sf-total { flex-direction: column; align-items: stretch; gap: 10px; }
+  .sheet.sticky-foot .sf-total .calc-result { justify-content: space-between; align-items: center; flex-wrap: nowrap; }
+  .sheet.sticky-foot .calc-label { font-size: .72rem; }
+  .sheet.sticky-foot .calc-sum { font-size: 1.3rem; margin: 0; }
+  .sheet.sticky-foot .sf-btns { width: 100%; }
+  .sheet.sticky-foot .sf-btns .btn-gold { width: 100%; justify-content: center; }
+  .sheet .sheet-foot .calc-empty { display: none; }
+}
+@media (max-width: 480px) { .sheet-row { grid-template-columns: 1fr auto; } .sr-sum { grid-column: 1 / -1; } }
+.sheet .tag-vat { white-space: nowrap; }
