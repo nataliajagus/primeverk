@@ -86,6 +86,7 @@ export default {
     painting: {
       name: 'Painting', short: 'Painting and refreshing walls and ceilings.',
       stepsTitle: 'How painting works', faqTitle: 'Questions about painting',
+      priceTitle: 'Painting rate', calcTitle: 'Calculate the cost of painting',
       seo: ['Interior painting Reykjavík from 3.000 kr/m² | Prime Verk', 'Painting walls and ceilings in Reykjavík and surroundings. Labour from 3.000 kr/m² (excl. VAT).'],
       lead: 'We paint walls and ceilings. The base rate covers refreshing walls that are already primed.',
       intro: ['The rate of 3.000 kr/m² covers labour only. It applies to walls that are already primed and need a refresh, with minor preparation.', 'If the walls need repair, we level them first. The quote describes the scope of that work.'],
@@ -103,6 +104,7 @@ export default {
     plastering: {
       name: 'Plastering and repairs', short: 'Smooth walls, plasterboard joints and renovation of old walls.',
       stepsTitle: 'How plastering works', faqTitle: 'Questions about plastering and repairs',
+      priceTitle: 'Plastering and repair rates', calcTitle: 'Calculate the cost of plastering',
       seo: ['Wall plastering Reykjavík from 3.500 kr/m² | Prime Verk', 'Wall plastering, plasterboard joints and renovation of old walls in Reykjavík. From 3.500 kr/m² (excl. VAT).'],
       lead: 'We prepare walls for painting, from plastering plasterboard joints to renovating old walls.',
       intro: ['A good paint job starts with a good wall. We plaster whole surfaces or only the plasterboard joints. We also repair cracks and uneven areas.', 'On old walls we scrape, remove cracks and level the surface.'],
@@ -120,6 +122,7 @@ export default {
     tiling: {
       name: 'Tiling', short: 'Floor and wall tiles, large formats and mosaics.',
       stepsTitle: 'How tiling works', faqTitle: 'Questions about tiling',
+      priceTitle: 'Tiling rates', calcTitle: 'Calculate the cost of tiling',
       seo: ['Tiling Reykjavík from 7.500 kr/m² | Prime Verk', 'Floor and wall tiles, large formats and mosaics in Reykjavík. From 7.500 kr/m² (excl. VAT).'],
       lead: 'We lay floor and wall tiles, including large formats and mosaics.',
       intro: ['Accurate levelling and cutting decide how the result looks.', 'Large formats and mosaics take longer to cut and level precisely, so they have their own rate.'],
@@ -137,6 +140,7 @@ export default {
     bathrooms: {
       name: 'Bathroom finishing', short: 'Removing tiles, preparing the substrate, waterproofing and new surfaces.',
       stepsTitle: 'How bathroom finishing works', faqTitle: 'Questions about bathroom finishing',
+      priceTitle: 'Rates for bathroom work', calcTitle: 'Calculate the cost of bathroom work',
       seo: ['Bathroom finishing Reykjavík | Prime Verk', 'Removing tiles, wet-area waterproofing and laying new tiles in a bathroom. Reykjavík and surroundings.'],
       lead: 'We finish bathrooms: we remove the old tiles, prepare the substrate, waterproof the wet area and lay new surfaces.',
       intro: ['The price depends on the scope of work and the area. You can find the rates for each type of work in the price list below.', 'We waterproof the wet area with a liquid membrane and sealing tapes. The rate of 2.800–4.000 kr/m² applies to waterproofing only, not to the whole bathroom.'],
@@ -154,6 +158,7 @@ export default {
     flooring: {
       name: 'Flooring', short: 'Click and vinyl panels, self-levelling compound, removing old floors.',
       stepsTitle: 'How we lay floors', faqTitle: 'Questions about flooring',
+      priceTitle: 'Flooring rates', calcTitle: 'Calculate the cost of flooring',
       seo: ['Laying panels and floors Reykjavík | Prime Verk', 'Click panels, glued vinyl panels, self-levelling compound and floor removal in Reykjavík. From 1.800 kr/m² (excl. VAT).'],
       lead: 'We lay click panels and glued vinyl panels. We also prepare the substrate: self-levelling compound and removing old floors.',
       intro: ['Panels need an even substrate. If your floor is uneven, we apply self-levelling compound. We take up the old floor and prepare the surface.', 'We lay click-system panels and glued vinyl panels.'],

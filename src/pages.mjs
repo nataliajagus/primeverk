@@ -20,6 +20,35 @@ const shelf = (L, rows) => `<ul class="shelf">` + rows.map(p => {
   return `<li><div class="shelf-info"><span class="shelf-name">${it.n}</span>${it.s ? `<span class="shelf-sub">${it.s}</span>` : ''}${it.m ? `<span class="shelf-note">${it.m}</span>` : ''}</div><span class="shelf-price">${priceText(L, p)}</span></li>`;
 }).join('') + `</ul>`;
 
+const ITEM_ICON = { paint: 'painting', plaster: 'plastering', tiles: 'tiling', floor: 'flooring' };
+const priceCards = (L, rows) => `<div class="pcards">` + rows.map(r => {
+  const it = L.items[r.id];
+  const ic = r.id === 'waterproof' ? 'bathrooms' : ITEM_ICON[r.calc];
+  const unit = r.unit === 'm2' ? L.ui.perM2 : L.ui.perMb;
+  const amount = r.max === null ? `<span class="pc-from">${L.ui.from}</span><strong>${fmtNum(r.min)}</strong>`
+    : r.min === r.max ? `<strong>${fmtNum(r.min)}</strong>` : `<strong>${fmtNum(r.min)}–${fmtNum(r.max)}</strong>`;
+  return `<article class="pcard reveal"><span class="pc-ic">${icon(ic)}</span><h3>${it.n}</h3>${it.s ? `<p class="pc-sub">${it.s}</p>` : ''}${it.m ? `<span class="pc-note">${it.m}</span>` : ''}<div class="pc-price">${amount}<em>${unit}</em><b class="tag-vat">${L.ui.vat}</b></div></article>`;
+}).join('') + `</div>`;
+
+const calcBlock = L => `<div class="calc"><div id="calc-fields" class="calc-fields"></div>
+    <aside class="calc-side"><div id="calc-result" class="calc-result" aria-live="polite"></div>
+      <p class="fine">${L.prices.disclaimer}</p>
+      <button id="calc-send" class="btn btn-gold" type="button" disabled><span>${L.prices.send}</span>${icon('arrow')}</button>
+      <button id="calc-reset" class="btn btn-line" type="button"><span>${L.prices.reset}</span></button>
+    </aside></div>`;
+
+const pvFor = (L, rows, groupName) => ({
+  lang: L.code,
+  prices: rows.map(({ id, unit, min, max }) => ({ id, calc: 'svc', unit, min, max })),
+  groups: ['svc'], groupNames: { svc: groupName },
+  names: Object.fromEntries(rows.map(x => [x.id, L.items[x.id].n])),
+  scopes: Object.fromEntries(rows.map(x => [x.id, L.items[x.id].s || ''])),
+  notes: Object.fromEntries(rows.map(x => [x.id, L.items[x.id].m || ''])),
+  hints: L.itemHints,
+  ui: { m2: L.ui.m2, mb: L.ui.mb, kr: L.ui.kr, vat: L.ui.vat, perM2: L.ui.perM2, perMb: L.ui.perMb, from: L.ui.from, ...L.prices },
+  contactUrl: urlFor(L.code, '/contact/')
+});
+
 // ---------- layout ----------
 export function layout(L, { key, path, title, desc, body, head = '', pv = null }) {
   const alt = LANGS.map(l => `<link rel="alternate" hreflang="${l}" href="${urlFor(l, path)}">`).join('') +
@@ -291,23 +320,31 @@ export function servicePage(L, s) {
   </div>
 </section>
 
-<section class="section section-dark">
-  <div class="wrap">
-    ${secHead(L.ui.process, S.stepsTitle, '', 'on-dark')}
-    <ol class="steps on-dark">${S.steps.map(([t, d]) => `<li class="reveal"><h3>${t}</h3><p>${d}</p></li>`).join('')}</ol>
+<section class="section section-sand how">
+  <div class="wrap how-in">
+    <div class="how-text">
+      ${secHead(L.ui.process, S.stepsTitle)}
+      <ol class="how-steps">${S.steps.map(([t, d], i) => `<li class="reveal"><span class="how-ic">${icon(['ruler', 'level', s, 'check'][i] || 'check')}</span><div><span class="how-n">${L.ui.step} ${i + 1}</span><h3>${t}</h3><p>${d}</p></div></li>`).join('')}</ol>
+    </div>
+    <div class="how-photo reveal">${photo('svc-' + s + '-card', { label: S.photos[0], ratio: '4x5', ic: s, tone: SVC_TONE[s] })}</div>
   </div>
 </section>
 
-<section class="section">
+<section class="section" id="cennik">
   <div class="wrap">
-    ${secHead(L.ui.pricing, L.prices.listTitle, L.prices.lead)}
-    ${shelf(L, rows)}
+    ${secHead(L.ui.pricing, S.priceTitle, L.prices.lead)}
+    ${priceCards(L, rows)}
+    <p class="fine">${L.prices.materials}</p>
     <p class="fine">${L.prices.note}</p>
-    <div class="cta-row">${btn(urlFor(c, '/prices/#calculator'), L.ui.calc, 'gold')}</div>
   </div>
 </section>
 
-
+<section class="section section-dark" id="calculator">
+  <div class="wrap">
+    ${secHead(L.nav.prices, S.calcTitle, L.prices.calcLead, 'on-dark')}
+    ${calcBlock(L)}
+  </div>
+</section>
 
 <section class="section">
   <div class="wrap faq-wrap">
@@ -324,14 +361,14 @@ export function servicePage(L, s) {
 </section>
 ${ctaBand(L)}
 ${faqJsonLd(S.faq)}`;
-  return layout(L, { key: 'service', path: '/services/' + s + '/', title: S.seo[0], desc: S.seo[1], body });
+  return layout(L, { key: 'service', path: '/services/' + s + '/', title: S.seo[0], desc: S.seo[1], body, pv: pvFor(L, rows, S.name) });
 }
 
 // ---------- CENNIK + KALKULATOR ----------
 export function pricesPage(L) {
   const groups = CALC_GROUPS.map(g => {
     const rows = PRICES.filter(p => p.calc === g);
-    return `<div class="price-group"><h3>${L.calcGroups[g]}</h3>${shelf(L, rows)}</div>`;
+    return `<div class="price-group-block"><h3 class="pg-title">${L.calcGroups[g]}</h3>${priceCards(L, rows)}</div>`;
   }).join('');
   const pv = {
     lang: L.code,
@@ -348,18 +385,13 @@ export function pricesPage(L) {
 <section class="page-hero"><div class="wrap">${crumbs(L, [[null, L.nav.prices]])}<h1>${L.prices.title}</h1><p class="lead">${L.prices.lead}</p><span class="vat-badge">${L.ui.vatLong}</span></div><div class="wrap">${ruler('ruler-hero')}</div></section>
 <section class="section" id="cennik"><div class="wrap">
   ${secHead('', L.prices.listTitle)}
-  <div class="price-groups">${groups}</div>
+  <div class="price-groups-v">${groups}</div>
   <p class="fine">${L.prices.materials}</p>
   <p class="fine">${L.prices.note}</p>
 </div></section>
 <section class="section section-dark" id="calculator"><div class="wrap">
   ${secHead(L.nav.prices, L.prices.calcTitle, L.prices.calcLead, 'on-dark')}
-  <div class="calc"><div id="calc-fields" class="calc-fields"></div>
-    <aside class="calc-side"><div id="calc-result" class="calc-result" aria-live="polite"></div>
-      <p class="fine">${L.prices.disclaimer}</p>
-      <button id="calc-send" class="btn btn-gold" type="button" disabled><span>${L.prices.send}</span>${icon('arrow')}</button>
-      <button id="calc-reset" class="btn btn-line" type="button"><span>${L.prices.reset}</span></button>
-    </aside></div>
+  ${calcBlock(L)}
 </div></section>
 ${ctaBand(L)}`;
   return layout(L, { key: 'prices', path: '/prices/', title: L.seo.prices[0], desc: L.seo.prices[1], body, pv });

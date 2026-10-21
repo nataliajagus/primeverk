@@ -658,3 +658,24 @@ body { overflow-x: clip; }
 .foot-company ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 32px; font-size: .95rem; }
 .foot-company li { display: flex; gap: 10px; align-items: baseline; }
 .foot-company em { font: 600 .8rem var(--label); letter-spacing: .08em; text-transform: uppercase; font-style: normal; color: var(--ink); background: var(--gold); padding: 3px 8px; }
+
+/* ===== karty cennika ===== */
+.pcards { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px; }
+.pcard { position: relative; background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--gold); padding: 26px 26px 24px; display: grid; gap: 8px; align-content: start; transition: transform .3s, box-shadow .3s; }
+.pcard:hover { transform: translateY(-4px); box-shadow: 0 26px 46px -28px rgba(0,0,0,.45); }
+.pc-ic { width: 48px; height: 48px; background: var(--ink); color: var(--gold); display: grid; place-items: center; margin-bottom: 6px; }
+.pc-ic .ic { width: 24px; height: 24px; }
+.pcard h3 { font-size: 1.2rem; }
+.pc-sub { color: var(--muted); font-size: .95rem; }
+.pc-note { width: max-content; font: 600 .82rem var(--label); letter-spacing: .08em; text-transform: uppercase; color: var(--gold-ink); border: 1px solid var(--gold); padding: 3px 8px; }
+.pc-price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 2px 8px; margin-top: 14px; padding-top: 16px; border-top: 1px dashed var(--line); }
+.pc-price strong { font: 800 clamp(2rem, 3.4vw, 2.6rem)/1 var(--display); font-stretch: 112%; letter-spacing: -.035em; }
+.pc-price em { font: 500 .95rem var(--label); font-style: normal; color: var(--muted); }
+.pc-from { font: 500 .85rem var(--label); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.pc-price .tag-vat { margin-left: auto; align-self: center; }
+.price-groups-v { display: grid; gap: 52px; }
+.pg-title { font-size: 1.5rem; margin-bottom: 18px; display: flex; align-items: center; gap: 14px; }
+.pg-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+#cennik .fine, .section .pcards + .fine { margin-top: 22px; }
+.page-hero .vat-badge { display: none; }
+.how-photo .photo img { object-position: 78% 50%; }
