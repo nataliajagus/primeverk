@@ -8,11 +8,13 @@ Wrzuć plik do `src/img/<slot>.jpg` (lub .webp/.png), uruchom `node src/build.mj
 | `hero-plastering` | 16:9 | Szpachlowana ściana |
 | `hero-tiling` | 16:9 | Płytki podłogowe w korytarzu |
 | `hero-bathrooms` | 16:9 | Nowoczesna łazienka z płytkami |
+| `hero-sanitary` | 16:9 | Umywalka i bateria w łazience |
 | `hero-flooring` | 16:9 | Panele w jasnym pokoju |
 | `svc-painting-card` | 4:3 | Pomalowany salon |
 | `svc-plastering-card` | 4:3 | Szpachlowana ściana |
 | `svc-tiling-card` | 4:3 | Płytki podłogowe w korytarzu |
 | `svc-bathrooms-card` | 4:3 | Nowoczesna łazienka z płytkami |
+| `svc-sanitary-card` | 4:3 | Umywalka i bateria w łazience |
 | `svc-flooring-card` | 4:3 | Panele w jasnym pokoju |
 | `why-photo` | 4:5 | Szpachlowana ściana |
 | `steps-photo` | 4:5 | Jak przebiega współpraca |
@@ -25,5 +27,7 @@ Wrzuć plik do `src/img/<slot>.jpg` (lub .webp/.png), uruchom `node src/build.mj
 | `svc-tiling-steps` | 4:5 | Płytki podłogowe w korytarzu |
 | `svc-bathrooms-hero` | 4:3 | Nowoczesna łazienka z płytkami |
 | `svc-bathrooms-steps` | 4:5 | Nowoczesna łazienka z płytkami |
+| `svc-sanitary-hero` | 4:3 | Umywalka i bateria w łazience |
+| `svc-sanitary-steps` | 4:5 | Umywalka i bateria w łazience |
 | `svc-flooring-hero` | 4:3 | Panele w jasnym pokoju |
 | `svc-flooring-steps` | 4:5 | Panele w jasnym pokoju |

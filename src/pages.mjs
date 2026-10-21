@@ -9,9 +9,14 @@ const LANG_NAME = { is: 'Íslenska', en: 'English', pl: 'Polski' };
 const NAV_ICON = { services: 'plastering', prices: 'calc', faq: 'help', contact: 'mail' };
 const NAV_PATH = { services: '/services/', prices: '/prices/', faq: '/faq/', contact: '/contact/' };
 
+// ---------- jednostki: m², mb, szt (element) ----------
+const perOf = (L, u) => u === 'm2' ? L.ui.perM2 : u === 'mb' ? L.ui.perMb : L.ui.perEl;
+const shortOf = (L, u) => u === 'm2' ? L.ui.m2 : u === 'mb' ? L.ui.mb : L.ui.el;
+const ldUnit = u => u === 'm2' ? 'm²' : u === 'mb' ? 'm' : 'C62';
+
 // ---------- ceny ----------
 export function priceText(L, p, { short = false } = {}) {
-  const unit = p.unit === 'm2' ? L.ui.perM2 : L.ui.perMb;
+  const unit = perOf(L, p.unit);
   if (p.max === null) return `${L.ui.from} ${fmtNum(p.min)} ${unit}`;
   if (p.min === p.max) return `${fmtNum(p.min)} ${unit}`;
   return `${fmtNum(p.min)}–${fmtNum(p.max)} ${unit}`;
@@ -21,11 +26,11 @@ const shelf = (L, rows) => `<ul class="shelf">` + rows.map(p => {
   return `<li><div class="shelf-info"><span class="shelf-name">${it.n}</span>${it.s ? `<span class="shelf-sub">${it.s}</span>` : ''}${it.m ? `<span class="shelf-note">${it.m}</span>` : ''}</div><span class="shelf-price">${priceText(L, p)}</span></li>`;
 }).join('') + `</ul>`;
 
-const ITEM_ICON = { paint: 'painting', plaster: 'plastering', tiles: 'tiling', floor: 'flooring' };
+const ITEM_ICON = { paint: 'painting', plaster: 'plastering', tiles: 'tiling', sanitary: 'sanitary', floor: 'flooring' };
 const priceCards = (L, rows) => `<div class="pcards">` + rows.map(r => {
   const it = L.items[r.id];
   const ic = r.id === 'waterproof' ? 'bathrooms' : ITEM_ICON[r.calc];
-  const unit = r.unit === 'm2' ? L.ui.perM2 : L.ui.perMb;
+  const unit = perOf(L, r.unit);
   const amount = r.max === null ? `<span class="pc-from">${L.ui.from}</span><strong>${fmtNum(r.min)}</strong>`
     : r.min === r.max ? `<strong>${fmtNum(r.min)}</strong>` : `<strong>${fmtNum(r.min)}–${fmtNum(r.max)}</strong>`;
   return `<article class="pcard reveal"><span class="pc-ic">${icon(ic)}</span><h3>${it.n}</h3>${it.s ? `<p class="pc-sub">${it.s}</p>` : ''}${it.m ? `<span class="pc-note">${it.m}</span>` : ''}<div class="pc-price">${amount}<em>${unit}</em><b class="tag-vat">${L.ui.vat}</b></div></article>`;
@@ -35,7 +40,7 @@ const sheet = (L, rows, groups) => {
   const P = L.prices;
   const rowHtml = r => {
     const it = L.items[r.id];
-    const unit = r.unit === 'm2' ? L.ui.perM2 : L.ui.perMb, u = r.unit === 'm2' ? L.ui.m2 : L.ui.mb;
+    const unit = perOf(L, r.unit), u = shortOf(L, r.unit);
     const rate = r.max === null ? `${L.ui.from} ${fmtNum(r.min)}` : r.min === r.max ? fmtNum(r.min) : `${fmtNum(r.min)}–${fmtNum(r.max)}`;
     return `<div class="calc-row sheet-row" data-id="${r.id}">
       <div class="sr-name"><h3>${it.n}</h3>${it.s ? `<p>${it.s}</p>` : ''}${it.m ? `<span class="sr-note">${it.m}</span>` : ''}</div>
@@ -62,7 +67,7 @@ const sheet = (L, rows, groups) => {
 const priceCardsCalc = (L, rows) => `<div class="pcards pcards-calc" id="calc-fields" data-static="1">` + rows.map(r => {
   const it = L.items[r.id];
   const ic = r.id === 'waterproof' ? 'bathrooms' : ITEM_ICON[r.calc];
-  const unit = r.unit === 'm2' ? L.ui.perM2 : L.ui.perMb, u = r.unit === 'm2' ? L.ui.m2 : L.ui.mb;
+  const unit = perOf(L, r.unit), u = shortOf(L, r.unit);
   const amount = r.max === null ? `<span class="pc-from">${L.ui.from}</span><strong>${fmtNum(r.min)}</strong>`
     : r.min === r.max ? `<strong>${fmtNum(r.min)}</strong>` : `<strong>${fmtNum(r.min)}–${fmtNum(r.max)}</strong>`;
   return `<article class="pcard calc-row" data-id="${r.id}"><span class="pc-ic">${icon(ic)}</span><h3>${it.n}</h3>${it.s ? `<p class="pc-sub">${it.s}</p>` : ''}${it.m ? `<span class="pc-note">${it.m}</span>` : ''}
@@ -92,7 +97,7 @@ const pvFor = (L, rows, groupName) => ({
   scopes: Object.fromEntries(rows.map(x => [x.id, L.items[x.id].s || ''])),
   notes: Object.fromEntries(rows.map(x => [x.id, L.items[x.id].m || ''])),
   hints: L.itemHints,
-  ui: { m2: L.ui.m2, mb: L.ui.mb, kr: L.ui.kr, vat: L.ui.vat, perM2: L.ui.perM2, perMb: L.ui.perMb, from: L.ui.from, ...L.prices },
+  ui: { m2: L.ui.m2, mb: L.ui.mb, kr: L.ui.kr, vat: L.ui.vat, perM2: L.ui.perM2, perMb: L.ui.perMb, perEl: L.ui.perEl, el: L.ui.el, from: L.ui.from, ...L.prices },
   contactUrl: urlFor(L.code, '/contact/')
 });
 
@@ -122,8 +127,8 @@ const serviceLd = (L, s) => {
   const offers = rowsFor(s).map(r => ({
     '@type': 'Offer', name: stripTags(L.items[r.id].n), priceCurrency: 'ISK', availability: 'https://schema.org/InStock',
     priceSpecification: r.max === null || r.min === r.max
-      ? { '@type': 'UnitPriceSpecification', price: r.min, priceCurrency: 'ISK', unitText: r.unit === 'm2' ? 'm²' : 'm', valueAddedTaxIncluded: false }
-      : { '@type': 'UnitPriceSpecification', minPrice: r.min, maxPrice: r.max, priceCurrency: 'ISK', unitText: r.unit === 'm2' ? 'm²' : 'm', valueAddedTaxIncluded: false }
+      ? { '@type': 'UnitPriceSpecification', price: r.min, priceCurrency: 'ISK', unitText: ldUnit(r.unit), valueAddedTaxIncluded: false }
+      : { '@type': 'UnitPriceSpecification', minPrice: r.min, maxPrice: r.max, priceCurrency: 'ISK', unitText: ldUnit(r.unit), valueAddedTaxIncluded: false }
   }));
   return { '@context': 'https://schema.org', '@type': 'Service', name: S.name, description: stripTags(S.lead), serviceType: S.name, url: abs(urlFor(L.code, '/services/' + s + '/')), inLanguage: L.htmlLang, provider: { '@id': BIZ_ID() }, areaServed: AREAS.map(n => ({ '@type': 'City', name: n })), offers };
 };
@@ -232,13 +237,13 @@ const ctaBand = L => `<section class="cta-band"><div class="wrap cta-in">
   <div class="cta-photo">${photo('cta-photo', { label: stripTags(L.home.ctaTitle), ratio: '4x3', tone: 'slate', ic: 'painting' })}</div>
 </div></section>`;
 
-const SVC_TONE = { painting: 'gold', plastering: 'basalt', tiling: 'concrete', bathrooms: 'slate', flooring: 'gold' };
+const SVC_TONE = { painting: 'gold', plastering: 'basalt', tiling: 'concrete', bathrooms: 'slate', sanitary: 'slate', flooring: 'gold' };
 
-const CAR_FOCUS = { painting: '72% 50%', plastering: '45% 38%', tiling: '40% 50%', bathrooms: '78% 50%', flooring: '68% 50%' };
+const CAR_FOCUS = { painting: '72% 50%', plastering: '45% 38%', tiling: '40% 50%', bathrooms: '78% 50%', sanitary: '55% 40%', flooring: '68% 50%' };
 function carCard(L, s) {
   const S = L.svc[s], fp = fromPrice(s);
   const price = fp
-    ? `<span class="car-price"><em>${L.ui.from}</em><strong>${fmtNum(fp.min)}</strong><i>${fp.unit === 'm2' ? L.ui.perM2 : L.ui.perMb}</i><b class="tag-vat">${L.ui.vat}</b></span>`
+    ? `<span class="car-price"><em>${L.ui.from}</em><strong>${fmtNum(fp.min)}</strong><i>${perOf(L, fp.unit)}</i><b class="tag-vat">${L.ui.vat}</b></span>`
     : `<span class="car-price scope"><strong>${L.ui.byScope}</strong></span>`;
   return `<a class="car-card" href="${urlFor(L.code, '/services/' + s + '/')}" style="--op:${CAR_FOCUS[s]}" draggable="false">
     ${photo('svc-' + s + '-card', { label: S.photos[0], ratio: '4x3', ic: s, tone: SVC_TONE[s] })}
@@ -256,7 +261,7 @@ function carCard(L, s) {
 
 function svcCard(L, s, big = false) {
   const fp = fromPrice(s);
-  const priceTxt = fp ? `${L.ui.from} ${fmtNum(fp.min)} ${fp.unit === 'm2' ? L.ui.perM2 : L.ui.perMb} · ${L.ui.vat}` : L.ui.byScope;
+  const priceTxt = fp ? `${L.ui.from} ${fmtNum(fp.min)} ${perOf(L, fp.unit)} · ${L.ui.vat}` : L.ui.byScope;
   return `<a class="svc-card${big ? ' big' : ''} reveal" href="${urlFor(L.code, '/services/' + s + '/')}">
     ${photo('svc-' + s + '-card', { label: L.svc[s].photos[0], ratio: big ? '16x10' : '4x3', ic: s, tone: SVC_TONE[s] })}
     <div class="svc-body"><span class="svc-ic">${icon(s)}</span><h3>${L.svc[s].name}</h3><p>${L.svc[s].short}</p>
@@ -292,7 +297,7 @@ export function homePage(L) {
       <div class="offer-stack">${SERVICES.map((s, i) => {
         const S = L.svc[s], fp = fromPrice(s);
         const price = fp
-          ? `<div class="offer-price"><span class="offer-from">${L.ui.from}</span><strong>${fmtNum(fp.min)}</strong><em>${fp.unit === 'm2' ? L.ui.perM2 : L.ui.perMb}</em><span class="tag-vat">${L.ui.vat}</span></div>`
+          ? `<div class="offer-price"><span class="offer-from">${L.ui.from}</span><strong>${fmtNum(fp.min)}</strong><em>${perOf(L, fp.unit)}</em><span class="tag-vat">${L.ui.vat}</span></div>`
           : `<div class="offer-price scope"><strong>${L.ui.byScope}</strong></div>`;
         return `<div class="offer-item${i === 0 ? ' on' : ''}" role="group" aria-roledescription="slide" aria-label="${i + 1} / ${SERVICES.length}">
           <span class="svc-ic">${icon(s)}</span>
@@ -396,7 +401,7 @@ export function servicePage(L, s) {
     <div class="cta-row">${btn(urlFor(c, '/contact/'), L.ui.quote, 'gold')}${btn('#cennik', L.ui.calc, 'line')}</div>
   </div>
   <div class="svc-hero-photo">${photo('svc-' + s + '-hero', { label: S.photos[0], ratio: '4x3', ic: s, tone: SVC_TONE[s] === 'basalt' ? 'concrete' : SVC_TONE[s], prio: true })}
-    ${fp ? priceTag(L, { label: L.ui.from, price: fmtNum(fp.min), unit: fp.unit === 'm2' ? L.ui.perM2 : L.ui.perMb, cls: 'tag-float' }) : scopeTag(L)}</div>
+    ${fp ? priceTag(L, { label: L.ui.from, price: fmtNum(fp.min), unit: perOf(L, fp.unit), cls: 'tag-float' }) : scopeTag(L)}</div>
 </div><div class="wrap">${ruler('ruler-hero')}</div></section>
 
 <section class="section">
@@ -452,7 +457,7 @@ export function pricesPage(L) {
     scopes: Object.fromEntries(PRICES.map(x => [x.id, L.items[x.id].s || ''])),
     notes: Object.fromEntries(PRICES.map(x => [x.id, L.items[x.id].m || ''])),
     hints: L.itemHints,
-    ui: { m2: L.ui.m2, mb: L.ui.mb, kr: L.ui.kr, vat: L.ui.vat, perM2: L.ui.perM2, perMb: L.ui.perMb, from: L.ui.from, ...L.prices },
+    ui: { m2: L.ui.m2, mb: L.ui.mb, kr: L.ui.kr, vat: L.ui.vat, perM2: L.ui.perM2, perMb: L.ui.perMb, perEl: L.ui.perEl, el: L.ui.el, from: L.ui.from, ...L.prices },
     contactUrl: urlFor(L.code, '/contact/')
   };
   const body = `

@@ -3,7 +3,7 @@ export default {
   ui: {
     step: 'Skref',
     vat: 'án VSK', vatLong: 'Öll verð eru án VSK', from: 'frá', m2: 'm²', mb: 'm',
-    perM2: 'kr / m²', perMb: 'kr / m', kr: 'kr', price: 'Verð', byScope: 'Tilboð eftir umfangi verks',
+    perEl: 'kr / stk.', el: 'stk.', perM2: 'kr / m²', perMb: 'kr / m', kr: 'kr', price: 'Verð', byScope: 'Tilboð eftir umfangi verks',
     call: 'Hringdu', menu: 'Valmynd', quote: 'Fá tilboð', calc: 'Reikna kostnað', more: 'Skoða þjónustu',
     home: 'Forsíða', related: 'Sjá einnig', faq: 'Algengar spurningar',
     includes: 'Verkin sem við vinnum', process: 'Svona vinnum við', pricing: 'Verðskrá',
@@ -24,7 +24,7 @@ export default {
     lead: 'Allt frá því að fríska upp á veggina til þess að klára baðherbergið. Við undirbúum undirlagið, vinnum verkið eins og um var samið og förum yfir útkomuna með þér við afhendingu.',
     areaLabel: 'Starfssvæði:',
     area: 'Reykjavík, Keflavík, Selfoss og nágrenni',
-    servicesTitle: 'Fimm tegundir frágangsverka',
+    servicesTitle: 'Sex tegundir frágangsverka',
     servicesLead: 'Veldu þjónustu og sjáðu hvað verkið felur í sér og hvað það kostar um það bil.',
     whyTitle: 'Af hverju Prime Verk',
     why: [
@@ -64,7 +64,8 @@ export default {
     panelGlue: { n: 'Lagning vínylgólfs', s: 'límt við undirlag' },
     leveling: { n: 'Jöfnunarmassi', s: 'gólfjöfnun' },
     removeFloor: { n: 'Fjarlæging gamals parkets', s: 'undirbúningur undirlags' },
-    skirting: { n: 'Uppsetning gólflista', s: 'verð fer eftir gerð: plast (PVC) ódýrara, MDF eða tré dýrara vegna 45° geirskurðar og límingar' }
+    skirting: { n: 'Uppsetning gólflista', s: 'verð fer eftir gerð: plast (PVC) ódýrara, MDF eða tré dýrara vegna 45° geirskurðar og límingar' },
+    sanitary: { n: 'Uppsetning hreinlætistækja', s: 'salerni, handlaug, blöndunartæki, sturtuklefi; verð fyrir hvert tæki, að meðaltali' }
   },
   itemHints: {
     paint: 'flatarmál veggja og lofta sem á að mála',
@@ -80,11 +81,12 @@ export default {
     panelGlue: 'flatarmál gólfsins',
     leveling: 'flatarmál gólfsins',
     removeFloor: 'flatarmál gólfsins',
-    skirting: 'heildarlengd gólflista'
+    skirting: 'heildarlengd gólflista',
+    sanitary: 'fjölda tækja sem á að setja upp'
   },
-  calcGroups: { paint: 'Málun', plaster: 'Spartl og lagfæringar', tiles: 'Flísar, upprif og vatnsvörn', floor: 'Gólfefni' },
+  calcGroups: { paint: 'Málun', plaster: 'Spartl og lagfæringar', tiles: 'Flísar, upprif og vatnsvörn', floor: 'Gólfefni', sanitary: 'Uppsetning hreinlætistækja' },
   svc: {
-    index: { title: 'Þjónusta', lead: 'Fimm tegundir frágangsverka. Veldu þjónustu og sjáðu hvað verkið felur í sér og hvað það kostar um það bil.' },
+    index: { title: 'Þjónusta', lead: 'Sex tegundir frágangsverka. Veldu þjónustu og sjáðu hvað verkið felur í sér og hvað það kostar um það bil.' },
     painting: {
       name: 'Málun', short: 'Málun og upplyfting á veggjum og loftum.',
       stepsTitle: 'Svona gengur málunin fyrir sig', faqTitle: 'Spurningar um málun',
@@ -155,6 +157,24 @@ export default {
         ['Hvað kosta veggflísar og gólfflísar?', 'Gólfflísar kosta 7.500 kr/m², veggflísar 9.500 kr/m² og stórar flísar eða mósaík 14.000 kr/m².'],
         ['Rífið þið upp gamlar flísar?', 'Já. Upprif á gömlum flísum er sérstakur liður: 6.000 kr/m².'],
         ['Get ég fengið tilboð út frá myndum?', 'Sendu myndir og mál og við gerum bráðabirgðatilboð. Endanlegt tilboð staðfestum við eftir skoðun.']
+      ]
+    },
+    sanitary: {
+      name: 'Uppsetning hreinlætistækja', short: 'Uppsetning á salerni, handlaug, blöndunartæki og sturtuklefa.',
+      stepsTitle: 'Svona setjum við upp hreinlætistæki', faqTitle: 'Spurningar um uppsetningu hreinlætistækja',
+      priceTitle: 'Verð fyrir uppsetningu', priceLead: 'Sláðu inn fjölda tækja sem á að setja upp. Kostnaður hvers liðar og heildin birtast strax.',
+      seo: ['Uppsetning hreinlætistækja Reykjavík | Prime Verk', 'Uppsetning á tilbúnu salerni, handlaug, blöndunartæki og sturtuklefa í Reykjavík og nágrenni. Að meðaltali 15.000–30.000 kr á tæki (án VSK).'],
+      lead: 'Við setjum upp tilbúið salerni, handlaug, blöndunartæki og sturtuklefa.',
+      intro: ['Uppsetning hreinlætistækja er uppsetning á tilbúnum tækjum á baðherbergi. Verðið er að meðaltali 15.000–30.000 kr fyrir hvert tæki.', 'Nákvæma upphæð gefum við upp í tilboðinu, því hún fer eftir gerð tækisins og aðstæðum á staðnum.'],
+      includes: ['Uppsetning á salerni', 'Uppsetning á handlaug', 'Uppsetning á blöndunartæki', 'Uppsetning á sturtuklefa'],
+      steps: [['Skoðun', 'Við ákveðum hvaða tæki þarf að setja upp.'], ['Undirbúningur', 'Við förum yfir uppsetningarstaðinn og tilbúin tæki.'], ['Uppsetning', 'Við setjum upp þau tæki sem samið var um.'], ['Afhending', 'Við förum yfir uppsett tæki saman.']],
+      photos: ['Handlaug og blöndunartæki á baðherbergi', 'Sturtuklefi', 'Uppsett salerni'],
+      faq: [
+        ['Hvað felst í uppsetningu hreinlætistækja?', 'Uppsetning á tilbúnum tækjum: salerni, handlaug, blöndunartæki og sturtuklefa.'],
+        ['Hvað kostar uppsetningin?', 'Að meðaltali 15.000–30.000 kr fyrir hvert tæki (án VSK). Það er verð fyrir vinnuna eina og nákvæma upphæð gefum við upp í tilboðinu.'],
+        ['Hvað ræður verðinu?', 'Gerð tækisins og aðstæður á staðnum. Þess vegna sýnir verðskráin bil og endanlegt verð ákveðum við þegar við þekkjum umfangið.'],
+        ['Eru tækin sjálf innifalin í verðinu?', 'Nei. Verðið er fyrir vinnu eingöngu, án efnis. Við setjum upp tilbúin tæki og ákveðum í tilboðinu hvernig þau eru útveguð.'],
+        ['Má sameina uppsetninguna frágangi baðherbergis?', 'Já. Uppsetninguna má verðleggja ásamt upprifi á flísum, vatnsvörn og lagningu nýrra flísa í einu tilboði.']
       ]
     },
     flooring: {

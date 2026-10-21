@@ -282,8 +282,8 @@
   var PV = window.PV;
   if (PV && $('#calc-fields')) {
     var qty = {}, ui = PV.ui, usedCalc = false;
-    var unitLbl = function (u) { return u === 'm2' ? ui.m2 : ui.mb; };
-    var perLbl = function (u) { return u === 'm2' ? ui.perM2 : ui.perMb; };
+    var unitLbl = function (u) { return u === 'm2' ? ui.m2 : u === 'mb' ? ui.mb : ui.el; };
+    var perLbl = function (u) { return u === 'm2' ? ui.perM2 : u === 'mb' ? ui.perMb : ui.perEl; };
     var priceTxt = function (p) {
       if (p.max === null) return ui.from + ' ' + fmt(p.min) + ' ' + perLbl(p.unit);
       if (p.min === p.max) return fmt(p.min) + ' ' + perLbl(p.unit);

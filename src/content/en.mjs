@@ -3,7 +3,7 @@ export default {
   ui: {
     step: 'Step',
     vat: 'excl. VAT', vatLong: 'All prices exclude VAT', from: 'from', m2: 'm²', mb: 'm',
-    perM2: 'kr / m²', perMb: 'kr / m', kr: 'kr', price: 'Price', byScope: 'Priced to the job',
+    perEl: 'ISK / item', el: 'pcs', perM2: 'kr / m²', perMb: 'kr / m', kr: 'kr', price: 'Price', byScope: 'Priced to the job',
     call: 'Call', menu: 'Menu', quote: 'Get a quote', calc: 'Estimate the cost', more: 'See the service',
     home: 'Home', related: 'See also', faq: 'Common questions',
     includes: 'What we do', process: 'How we work', pricing: 'Pricing',
@@ -24,7 +24,7 @@ export default {
     lead: 'From freshening up walls to finishing a bathroom. We prepare the surface, do the agreed work and go through the result with you at handover.',
     areaLabel: 'Based in',
     area: 'Reykjavík, Keflavík, Selfoss and nearby',
-    servicesTitle: 'Five kinds of finishing work',
+    servicesTitle: 'Six kinds of finishing work',
     servicesLead: 'Pick a service to see what the job involves and what it roughly costs.',
     whyTitle: 'Why Prime Verk',
     why: [
@@ -64,7 +64,8 @@ export default {
     panelGlue: { n: 'Vinyl panels', s: 'glued down' },
     leveling: { n: 'Self-levelling compound', s: 'screed' },
     removeFloor: { n: 'Removing old panels', s: 'with surface preparation' },
-    skirting: { n: 'Skirting board fitting', s: 'the price depends on the type: PVC (cheaper), MDF or wood (more, because of 45° mitre cuts and gluing)' }
+    skirting: { n: 'Skirting board fitting', s: 'the price depends on the type: PVC (cheaper), MDF or wood (more, because of 45° mitre cuts and gluing)' },
+    sanitary: { n: 'Fitting sanitaryware', s: 'toilet, washbasin, tap, shower cabin; price per item, on average' }
   },
   itemHints: {
     paint: 'the area of walls and ceilings to be painted',
@@ -80,11 +81,12 @@ export default {
     panelGlue: 'the floor area',
     leveling: 'the floor area',
     removeFloor: 'the floor area',
-    skirting: 'the total length of skirting'
+    skirting: 'the total length of skirting',
+    sanitary: 'the number of items to be fitted'
   },
-  calcGroups: { paint: 'Painting', plaster: 'Plastering and repairs', tiles: 'Tiles, removal and waterproofing', floor: 'Flooring' },
+  calcGroups: { paint: 'Painting', plaster: 'Plastering and repairs', tiles: 'Tiles, removal and waterproofing', floor: 'Flooring', sanitary: 'Sanitaryware installation' },
   svc: {
-    index: { title: 'Services', lead: 'Five kinds of finishing work. Pick one to see what the job involves and what it roughly costs.' },
+    index: { title: 'Services', lead: 'Six kinds of finishing work. Pick one to see what the job involves and what it roughly costs.' },
     painting: {
       name: 'Painting', short: 'Painting and freshening up walls and ceilings.',
       stepsTitle: 'How a painting job goes', faqTitle: 'Painting questions',
@@ -155,6 +157,24 @@ export default {
         ['How much do wall and floor tiles cost?', 'Floor tiles cost 7.500 kr/m², wall tiles 9.500 kr/m², and large formats or mosaics 14.000 kr/m².'],
         ['Do you remove old tiles?', 'Yes. Removal is a separate line at 6.000 kr/m².'],
         ['Can I get a quote from photos?', 'Send photos and measurements and we will prepare a first quote. We confirm the final one after a site visit.']
+      ]
+    },
+    sanitary: {
+      name: 'Sanitaryware installation', short: 'Fitting the toilet, washbasin, tap and shower cabin.',
+      stepsTitle: 'How sanitaryware installation works', faqTitle: 'Questions about sanitaryware installation',
+      priceTitle: 'Installation rate', priceLead: 'Enter the number of items to fit. You see the cost of each line and the total straight away.',
+      seo: ['Sanitaryware installation Reykjavík | Prime Verk', 'Fitting ready-made toilets, washbasins, taps and shower cabins in Reykjavík and nearby. On average 15.000–30.000 kr per item (excl. VAT).'],
+      lead: 'We fit the ready-made toilet, washbasin, tap and shower cabin.',
+      intro: ['Sanitaryware installation means fitting ready-made fixtures in a bathroom. The rate is on average 15.000–30.000 kr per item.', 'We give the exact amount in the quote, because it depends on the type of item and the conditions on site.'],
+      includes: ['Fitting the toilet', 'Fitting the washbasin', 'Fitting the tap', 'Fitting the shower cabin'],
+      steps: [['Site visit', 'We agree which items need to be fitted.'], ['Preparation', 'We check the place of installation and the ready-made items.'], ['Installation', 'We fit the agreed items.'], ['Handover', 'We check the installed items together.']],
+      photos: ['Washbasin and tap in a bathroom', 'Shower cabin', 'A fitted toilet'],
+      faq: [
+        ['What does sanitaryware installation cover?', 'Fitting ready-made fixtures: the toilet, washbasin, tap and shower cabin.'],
+        ['How much does it cost?', 'On average 15.000–30.000 kr per item (excl. VAT). That is the price for labour only, and we give the exact amount in the quote.'],
+        ['What does the price depend on?', 'On the type of item and the conditions on site. That is why the price list shows a range and the final price is set once we know the scope.'],
+        ['Does the price include the fixtures themselves?', 'No. The price is for labour only, without materials. We fit ready-made items, and we settle how they are supplied in the quote.'],
+        ['Can I combine it with a bathroom finish?', 'Yes. The installation can be quoted together with removing old tiles, waterproofing and laying new tiles in one offer.']
       ]
     },
     flooring: {

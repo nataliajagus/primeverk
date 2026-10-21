@@ -39,6 +39,7 @@ const P = {
   fb: '<path d="M14 8.5h2.5V5H14a3.5 3.5 0 0 0-3.5 3.5V11H8v3.5h2.5V21H14v-6.5h2.5L17 11h-3V8.5a.5.5 0 0 1 .5-.5z"/>',
   calc: '<rect x="5" y="3" width="14" height="18" rx="1.5"/><rect x="8" y="6" width="8" height="3.5" rx=".6"/><path d="M8.5 13h.01M12 13h.01M15.5 13h.01M8.5 16.5h.01M12 16.5h.01M15.5 16.5h.01" stroke-width="2.2"/>',
   image: '<rect x="3" y="4.5" width="18" height="15" rx="1.5"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="m3.5 17 5-4.5 3.5 3 3-2.5 5.5 4.5"/>',
+  sanitary: '<rect x="7" y="3" width="10" height="5" rx="1"/><path d="M5 11h14c0 4-2.5 7-7 7s-7-3-7-7z"/><path d="m9 18-1 3h8l-1-3"/>',
   search: '<circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/>',
   chev: '<path d="m6 9 6 6 6-6"/>',
   help: '<circle cx="12" cy="12" r="9"/><path d="M9.4 9.6a2.7 2.7 0 0 1 5.2 1c0 1.8-2.6 2.2-2.6 3.9"/><path d="M12 17.4h.01" stroke-width="2.2"/>'

@@ -3,7 +3,7 @@ export default {
   ui: {
     step: 'Krok',
     vat: 'bez VAT', vatLong: 'Wszystkie ceny bez VAT', from: 'od', m2: 'm²', mb: 'mb',
-    perM2: 'kr / m²', perMb: 'kr / mb', kr: 'kr', price: 'Cena', byScope: 'Wycena według zakresu prac',
+    perEl: 'kr / element', el: 'szt.', perM2: 'kr / m²', perMb: 'kr / mb', kr: 'kr', price: 'Cena', byScope: 'Wycena według zakresu prac',
     call: 'Zadzwoń', menu: 'Menu', quote: 'Poproś o wycenę', calc: 'Oszacuj koszt', more: 'Zobacz usługę',
     home: 'Strona główna', related: 'Zobacz też', faq: 'Najczęstsze pytania',
     includes: 'Jakie prace wykonujemy', process: 'Jak pracujemy', pricing: 'Cennik',
@@ -24,7 +24,7 @@ export default {
     lead: 'Od odświeżenia ścian po wykończenie łazienki. Przygotowujemy podłoże, wykonujemy uzgodnione prace i wspólnie sprawdzamy efekt przy odbiorze.',
     areaLabel: 'Obszar działania:',
     area: 'Reykjavík, Keflavík, Selfoss i okolice',
-    servicesTitle: 'Pięć rodzajów prac wykończeniowych',
+    servicesTitle: 'Sześć rodzajów prac wykończeniowych',
     servicesLead: 'Wybierz usługę, aby sprawdzić zakres prac i orientacyjne ceny.',
     whyTitle: 'Dlaczego Prime Verk',
     why: [
@@ -64,7 +64,8 @@ export default {
     panelGlue: { n: 'Układanie paneli winylowych', s: 'na klej' },
     leveling: { n: 'Masa samopoziomująca', s: 'wylewka' },
     removeFloor: { n: 'Zrywanie starych paneli', s: 'przygotowanie podłoża' },
-    skirting: { n: 'Montaż listew przypodłogowych', s: 'cena zależy od rodzaju listwy: PCV (tańsze), MDF lub drewno (droższe, bo wymagają docinania kątów 45° i klejenia)' }
+    skirting: { n: 'Montaż listew przypodłogowych', s: 'cena zależy od rodzaju listwy: PCV (tańsze), MDF lub drewno (droższe, bo wymagają docinania kątów 45° i klejenia)' },
+    sanitary: { n: 'Montaż urządzeń sanitarnych', s: 'miska WC, umywalka, bateria, kabina prysznicowa; cena za jeden element, średnio' }
   },
   itemHints: {
     paint: 'powierzchnię malowanych ścian i sufitów',
@@ -80,11 +81,12 @@ export default {
     panelGlue: 'powierzchnię podłogi',
     leveling: 'powierzchnię podłogi',
     removeFloor: 'powierzchnię podłogi',
-    skirting: 'łączną długość listew'
+    skirting: 'łączną długość listew',
+    sanitary: 'liczbę montowanych elementów'
   },
-  calcGroups: { paint: 'Malowanie', plaster: 'Szpachlowanie i naprawy', tiles: 'Płytki, skuwanie i hydroizolacja', floor: 'Podłogi' },
+  calcGroups: { paint: 'Malowanie', plaster: 'Szpachlowanie i naprawy', tiles: 'Płytki, skuwanie i hydroizolacja', floor: 'Podłogi', sanitary: 'Biały montaż' },
   svc: {
-    index: { title: 'Usługi', lead: 'Pięć rodzajów prac wykończeniowych. Wybierz usługę, aby sprawdzić zakres prac i orientacyjne ceny.' },
+    index: { title: 'Usługi', lead: 'Sześć rodzajów prac wykończeniowych. Wybierz usługę, aby sprawdzić zakres prac i orientacyjne ceny.' },
     painting: {
       name: 'Malowanie', short: 'Malowanie i odświeżanie ścian oraz sufitów.',
       stepsTitle: 'Jak wygląda malowanie', faqTitle: 'Pytania o malowanie',
@@ -155,6 +157,24 @@ export default {
         ['Ile kosztują płytki ścienne i podłogowe?', 'Płytki podłogowe kosztują 7.500 kr/m², ścienne 9.500 kr/m², a wielki format lub mozaiki 14.000 kr/m².'],
         ['Czy zajmujecie się skuwaniem starych płytek?', 'Tak. Skuwanie to osobna pozycja: 6.000 kr/m².'],
         ['Czy mogę dostać wycenę na podstawie zdjęć?', 'Prześlij zdjęcia i wymiary, a przygotujemy wstępną wycenę. Ostateczną ustalamy po oględzinach.']
+      ]
+    },
+    sanitary: {
+      name: 'Biały montaż', short: 'Montaż miski WC, umywalki, baterii i kabiny prysznicowej.',
+      stepsTitle: 'Jak wygląda biały montaż', faqTitle: 'Pytania o biały montaż',
+      priceTitle: 'Stawka za biały montaż', priceLead: 'Podaj liczbę elementów do montażu. Koszt pozycji i sumę zobaczysz od razu.',
+      seo: ['Biały montaż Reykjavík, miska WC, umywalka, bateria | Prime Verk', 'Montaż gotowej miski WC, umywalki, baterii i kabiny prysznicowej w Reykjavíku i okolicach. Średnio 15.000–30.000 kr za element (bez VAT).'],
+      lead: 'Montujemy gotową miskę WC, umywalkę, baterię i kabinę prysznicową.',
+      intro: ['Biały montaż to instalacja gotowych urządzeń sanitarnych w łazience. Stawka wynosi średnio 15.000–30.000 kr za jeden element.', 'Dokładną kwotę ustalamy w wycenie, bo zależy od rodzaju elementu i warunków na miejscu.'],
+      includes: ['Montaż miski WC', 'Montaż umywalki', 'Montaż baterii', 'Montaż kabiny prysznicowej'],
+      steps: [['Oględziny', 'Ustalamy, które elementy trzeba zamontować.'], ['Przygotowanie', 'Sprawdzamy miejsce montażu i gotowe elementy.'], ['Montaż', 'Montujemy uzgodnione elementy.'], ['Odbiór', 'Razem sprawdzamy zamontowane elementy.']],
+      photos: ['Umywalka i bateria w łazience', 'Kabina prysznicowa', 'Zamontowana miska WC'],
+      faq: [
+        ['Co obejmuje biały montaż?', 'Instalację gotowych urządzeń sanitarnych: miski WC, umywalki, baterii i kabiny prysznicowej.'],
+        ['Ile kosztuje biały montaż?', 'Średnio 15.000–30.000 kr za jeden element (bez VAT). To cena za samą robociznę, a dokładną kwotę podajemy w wycenie.'],
+        ['Od czego zależy cena montażu?', 'Od rodzaju elementu i warunków na miejscu. Dlatego w cenniku podajemy przedział, a ostateczną cenę ustalamy po poznaniu zakresu prac.'],
+        ['Czy cena obejmuje same urządzenia?', 'Nie. Cena dotyczy samej robocizny, bez materiałów. Montujemy gotowe elementy, a ich zakup ustalamy w wycenie.'],
+        ['Czy można połączyć biały montaż z wykończeniem łazienki?', 'Tak. Montaż można wycenić razem ze skuwaniem płytek, hydroizolacją i układaniem nowych płytek w jednej ofercie.']
       ]
     },
     flooring: {
