@@ -314,7 +314,7 @@ p { margin: 0; }
 .svc-hero h1 { font-size: clamp(2.4rem, 5.4vw, 4.4rem); }
 .svc-hero .lead { color: rgba(246,245,242,.8); margin-top: 22px; }
 .svc-hero-photo { position: relative; }
-.tag-float { position: absolute; left: -26px; bottom: -26px; transform: rotate(-2.5deg); z-index: 2; }
+.tag-float { position: absolute; left: -26px; bottom: -26px; z-index: 2; }
 .svc-hero .ruler-hero { margin-top: 70px; }
 .two { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(32px, 6vw, 88px); align-items: start; }
 .prose { display: grid; gap: 20px; font-size: 1.15rem; max-width: 62ch; }
