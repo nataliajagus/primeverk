@@ -63,7 +63,7 @@ export default {
     panelClick: { n: 'Lagning plastparkets', s: 'smellukerfi' },
     panelGlue: { n: 'Lagning vínylgólfs', s: 'límt við undirlag' },
     leveling: { n: 'Jöfnunarmassi', s: 'gólfjöfnun' },
-    removeFloor: { n: 'Fjarlæging gamals gólfefnis', s: 'parket, flísar eða teppi, undirbúningur undirlags' }
+    removeFloor: { n: 'Fjarlæging gamals parkets', s: 'undirbúningur undirlags' }
   },
   itemHints: {
     paint: 'flatarmál veggja og lofta sem á að mála',
@@ -162,15 +162,15 @@ export default {
       seo: ['Gólfefni og parket Reykjavík | Prime Verk', 'Plastparket, vínylgólf, jöfnunarmassi og fjarlæging gamalla gólfefna í Reykjavík. Frá 1.800 kr/m² (án VSK).'],
       lead: 'Við leggjum plastparket með smellukerfi og vínylgólf með límingu. Við sjáum líka um undirlagið: jöfnunarmassa og fjarlægingu gamalla gólfefna.',
       intro: ['Parket þarf jafnt undirlag. Sé gólfið ójafnt leggjum við jöfnunarmassa. Gamla gólfefnið tökum við upp og undirbúum yfirborðið.', 'Plastparket leggjum við með smellukerfi og vínylgólf með límingu.'],
-      includes: ['Lagning plastparkets með smellukerfi', 'Lagning vínylgólfs með límingu', 'Jöfnunarmassi', 'Fjarlæging gamals parkets, flísa eða teppis', 'Slípun á gömlu lími'],
+      includes: ['Lagning plastparkets með smellukerfi', 'Lagning vínylgólfs með límingu', 'Jöfnunarmassi', 'Fjarlæging gamals parkets', 'Slípun á gömlu lími'],
       steps: [['Mæling', 'Við athugum hvort undirlagið er jafnt.'], ['Fjarlæging', 'Við tökum upp gamla gólfefnið.'], ['Jöfnun', 'Við leggjum jöfnunarmassa.'], ['Lagning', 'Við leggjum nýja gólfefnið.']],
       photos: ['Parket í björtu herbergi', 'Vínylgólf í eldhúsi', 'Undirbúningur undirlags'],
       faq: [
         ['Þarf ég jöfnunarmassa?', 'Aðeins ef gólfið er ójafnt, því parket þarf jafnt undirlag. Jöfnunarmassi kostar 3.000 kr/m², vinna eingöngu.'],
         ['Hver er munurinn á smellukerfi og límdu vínylgólfi?', 'Plastparket með smellukerfi leggjum við án líms (1.800–2.300 kr/m²). Vínylgólf límum við við undirlagið (4.000 kr/m²).'],
-        ['Fjarlægið þið gamla gólfefnið?', 'Já. Við fjarlægjum parket, flísar eða teppi og undirbúum undirlagið. Það kostar 2.000 kr/m².'],
+        ['Fjarlægið þið gamla parketið?', 'Já. Við fjarlægjum gamla parketið og undirbúum undirlagið. Það kostar 2.000 kr/m².'],
         ['Hefur lögun rýmisins áhrif á verðið?', 'Já. Þröngir gangar, súlur og vinna í kringum ofnarör lengja sögunartímann og hækka kostnað við vinnuna.'],
-        ['Er parketið innifalið í verðinu?', 'Nei. Verðskráin er fyrir vinnu eingöngu, án efnis. Efni, þar með talið parketið, ákveðum við í tilboðinu.']
+        ['Hvernig á að undirbúa gólfið fyrir parket?', 'Gólfið þarf að vera slétt og hreint. Sé það ójafnt leggjum við jöfnunarmassa og tökum upp gamla gólfefnið.']
       ]
     }
   },

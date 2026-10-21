@@ -63,7 +63,7 @@ export default {
     panelClick: { n: 'Click panels', s: 'click-lock system' },
     panelGlue: { n: 'Vinyl panels', s: 'glued down' },
     leveling: { n: 'Self-levelling compound', s: 'screed' },
-    removeFloor: { n: 'Removing the old floor', s: 'parquet, tiles or carpet, with surface preparation' }
+    removeFloor: { n: 'Removing old panels', s: 'with surface preparation' }
   },
   itemHints: {
     paint: 'the area of walls and ceilings to be painted',
@@ -162,15 +162,15 @@ export default {
       seo: ['Laying panels and floors Reykjavík | Prime Verk', 'Click panels, glued vinyl, self-levelling compound and floor removal in Reykjavík. From 1.800 kr/m² (excl. VAT).'],
       lead: 'We lay click panels and glued vinyl panels, and prepare the floor beneath: self-levelling compound and removing the old surface.',
       intro: ['Panels need an even base. If your floor is uneven, we apply self-levelling compound. Where there is an old floor, we take it up and prepare the surface.', 'We lay click-lock panels and glued vinyl panels.'],
-      includes: ['Laying click-lock panels', 'Laying glued vinyl panels', 'Self-levelling compound', 'Removing old parquet, tiles or carpet', 'Grinding off old adhesive'],
+      includes: ['Laying click-lock panels', 'Laying glued vinyl panels', 'Self-levelling compound', 'Removing old panels', 'Grinding off old adhesive'],
       steps: [['Measuring', 'We check how level the floor is.'], ['Removal', 'We take up the old floor.'], ['Levelling', 'We apply the self-levelling compound.'], ['Laying', 'We lay the panels.']],
       photos: ['Panels in a bright room', 'Vinyl floor in a kitchen', 'Preparing the surface'],
       faq: [
         ['Do I need self-levelling compound?', 'Only if the floor is uneven, because panels need an even base. It costs 3.000 kr/m², labour only.'],
         ['What is the difference between click and glued panels?', 'Click panels go down without adhesive (1.800–2.300 kr/m²). Vinyl panels are glued to the floor beneath (4.000 kr/m²).'],
-        ['Will you take up the old floor?', 'Yes. We remove parquet, tiles or carpet and prepare the surface. It costs 2.000 kr/m².'],
+        ['Will you take up the old panels?', 'Yes. We remove the old panels and prepare the surface. It costs 2.000 kr/m².'],
         ['Does the shape of the room affect the price?', 'Yes. Narrow hallways, columns and cutting around radiator pipes take more time, so labour costs more.'],
-        ['Are the panels included in the price?', 'No. The price list covers labour only, without materials. Materials, including the panels, are settled in the quote.']
+        ['How should the floor be prepared for panels?', 'The floor must be level and clean. If it is uneven we apply self-levelling compound, and we take up the old floor.']
       ]
     }
   },
