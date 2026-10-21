@@ -104,13 +104,40 @@
   var fab = $(".fab");
   if (fab) { var onScroll = function () { fab.classList.toggle("show", window.scrollY > 420); }; window.addEventListener("scroll", onScroll, { passive: true }); onScroll(); }
 
-  // ---- hero: tło zmienia się powoli (bez sterowania) ----
-  var hero = $('.fs-hero');
+  // ---- hero: tło + box oferty zmieniają się razem ----
+  var hero = $(".fs-hero");
   if (hero) {
-    var slides = $$('.sl-slide', hero), cur = 0;
-    if (slides.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setInterval(function () { slides[cur].classList.remove('on'); cur = (cur + 1) % slides.length; slides[cur].classList.add('on'); }, 7000);
-    }
+    var slides = $$(".sl-slide", hero), items = $$(".offer-item", hero), tabs = $$(".offer-dot", hero);
+    var link = $(".offer-link", hero), slugs = link.dataset.slugs.split(","), cur = 0, timer = null;
+    var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches, DUR = 7000;
+    hero.style.setProperty("--dur", DUR + "ms");
+    var restart = function () {
+      clearInterval(timer);
+      hero.classList.remove("playing"); void hero.offsetWidth;
+      if (calm) return;
+      hero.classList.add("playing");
+      timer = setInterval(function () { show(cur + 1); }, DUR);
+    };
+    var show = function (i) {
+      cur = (i + slides.length) % slides.length;
+      slides.forEach(function (s, k) { s.classList.toggle("on", k === cur); });
+      items.forEach(function (s, k) { s.classList.toggle("on", k === cur); s.setAttribute("aria-hidden", k === cur ? "false" : "true"); });
+      tabs.forEach(function (t, k) { t.classList.toggle("on", k === cur); t.setAttribute("aria-selected", k === cur ? "true" : "false"); });
+      link.href = link.dataset.base + slugs[cur] + "/";
+      if (!hero.classList.contains("paused")) restart(); else { hero.classList.remove("playing"); void hero.offsetWidth; hero.classList.add("playing"); }
+    };
+    $(".sl-arrow.next", hero).addEventListener("click", function () { show(cur + 1); });
+    $(".sl-arrow.prev", hero).addEventListener("click", function () { show(cur - 1); });
+    tabs.forEach(function (t) { t.addEventListener("click", function () { show(+t.dataset.i); }); });
+    hero.addEventListener("keydown", function (e) { if (e.key === "ArrowRight") show(cur + 1); if (e.key === "ArrowLeft") show(cur - 1); });
+    var pause = function () { clearInterval(timer); hero.classList.add("paused"); };
+    var resume = function () { hero.classList.remove("paused"); if (!calm) restart(); };
+    hero.addEventListener("mouseenter", pause); hero.addEventListener("mouseleave", resume);
+    hero.addEventListener("focusin", pause); hero.addEventListener("focusout", resume);
+    var sx = null;
+    hero.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; }, { passive: true });
+    hero.addEventListener("touchend", function (e) { if (sx === null) return; var dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1)); sx = null; }, { passive: true });
+    show(0);
   }
 
   // ---- karuzela usług ----

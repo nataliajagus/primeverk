@@ -140,7 +140,7 @@ export function homePage(L) {
   const H = L.home, c = L.code;
   const faqs = L.generalFaq.slice(0, 4);
   const body = `
-<section class="fs-hero" id="hero">
+<section class="fs-hero" id="hero" aria-roledescription="carousel" aria-label="${L.nav.services}">
   ${SERVICES.map((s, i) => `<div class="sl-slide${i === 0 ? ' on' : ''}" aria-hidden="true"><div class="sl-bg">${photo('hero-' + s, { label: L.svc[s].photos[0], ratio: '16x9', tone: SVC_TONE[s], ic: s, cls: 'bg', prio: i === 0 })}</div><div class="fs-shade"></div></div>`).join('')}
   <div class="fs-grid">
     <div class="fs-copy">
@@ -151,6 +151,25 @@ export function homePage(L) {
       <div class="cta-row">${btn(urlFor(c, '/contact/'), L.ui.quote, 'gold')}${btn(urlFor(c, '/prices/#calculator'), L.ui.calc, 'line')}</div>
       <p class="hero-area">${icon('pin')}<span>${H.areaLabel}</span> ${H.area}</p>
     </div>
+    <aside class="offer" aria-live="polite">
+      <div class="offer-head"><span>${L.nav.services}</span><span class="offer-dots" role="tablist" aria-label="${L.nav.services}">${SERVICES.map((s, i) => `<button class="offer-dot${i === 0 ? ' on' : ''}" type="button" role="tab" aria-selected="${i === 0}" aria-label="${L.svc[s].name}" data-i="${i}"></button>`).join('')}</span></div>
+      <div class="offer-stack">${SERVICES.map((s, i) => {
+        const S = L.svc[s], fp = fromPrice(s);
+        const price = fp
+          ? `<div class="offer-price"><span class="offer-from">${L.ui.from}</span><strong>${fmtNum(fp.min)}</strong><em>${fp.unit === 'm2' ? L.ui.perM2 : L.ui.perMb}</em><span class="tag-vat">${L.ui.vat}</span></div>`
+          : `<div class="offer-price scope"><strong>${L.ui.byScope}</strong></div>`;
+        return `<div class="offer-item${i === 0 ? ' on' : ''}" role="group" aria-roledescription="slide" aria-label="${i + 1} / ${SERVICES.length}">
+          <span class="svc-ic">${icon(s)}</span>
+          <h3>${S.name}</h3>
+          <p>${S.short}</p>
+          ${price}
+        </div>`;
+      }).join('')}</div>
+      <div class="offer-foot">
+        <a class="btn btn-dark btn-sm offer-link" href="${urlFor(c, '/services/' + SERVICES[0] + '/')}" data-base="${urlFor(c, '/services/')}" data-slugs="${SERVICES.join(',')}"><span>${L.ui.more}</span>${icon('arrow')}</a>
+        <div class="offer-nav"><button class="sl-arrow prev" type="button" aria-label="Previous">${icon('arrow')}</button><button class="sl-arrow next" type="button" aria-label="Next">${icon('arrow')}</button></div>
+      </div>
+    </aside>
   </div>
 </section>
 
