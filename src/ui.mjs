@@ -10,7 +10,7 @@ export const CONTACT = {
   phone: '+354 769 6246',
   phoneHref: 'tel:+3547696246',
   email: 'contact@primeverk.is',
-  facebook: '',     // TODO: link do profilu FB (puste = link się nie wyświetla)
+  facebook: 'https://www.facebook.com/profile.php?id=61593305395591',     // TODO: link do profilu FB (puste = link się nie wyświetla)
   whatsapp: '',     // numer bez plusa, np. '3547696246' (puste = przycisk się nie wyświetla)
   analytics: { src: '', domain: '' } // np. Plausible: src 'https://plausible.io/js/script.tagged-events.js'
 };

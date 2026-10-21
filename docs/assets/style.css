@@ -869,3 +869,8 @@ body:has(.sheet.sticky-foot) .fab { display: none; }
 .cookie-btns { flex-wrap: nowrap; }
 .cookie .btn-sm { padding: 8px 11px; font-size: .8rem; white-space: nowrap; }
 @media (max-width: 480px) { .cookie-btns { flex-wrap: wrap; } }
+
+.strip-fb { display: inline-flex; align-items: center; }
+.strip-fb .ic { width: 16px; height: 16px; }
+@media (max-width: 720px) { .strip .strip-fb { display: inline-flex; } }
+@media (max-width: 720px) { .strip .strip-fb { display: none; } }

@@ -176,7 +176,7 @@ ${schemaHtml}
 <a class="skip" href="#main">${L.ui.skip}</a>
 <div class="strip"><div class="wrap strip-in">
   <span class="strip-loc">${icon('pin')}Reykjavík · Keflavík · Selfoss</span>
-  <span class="strip-r"><a href="${CONTACT.phoneHref}">${icon('phone')}${CONTACT.phone}</a><a class="strip-mail" href="mailto:${CONTACT.email}">${icon('mail')}${CONTACT.email}</a></span>
+  <span class="strip-r"><a href="${CONTACT.phoneHref}">${icon('phone')}${CONTACT.phone}</a><a class="strip-mail" href="mailto:${CONTACT.email}">${icon('mail')}${CONTACT.email}</a>${CONTACT.facebook ? `<a class="strip-fb" href="${CONTACT.facebook}" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">${icon('fb')}</a>` : ''}</span>
 </div>${ruler('ruler-strip')}</div>
 <header class="site-header" id="top">
   <div class="wrap hdr">
@@ -197,7 +197,7 @@ ${body}
     <div class="foot-brand"><img src="${asset('logo-light.svg')}" alt="Prime Verk" width="120" height="54"><p>${L.footer.tag}</p></div>
     <div><h4>${L.footer.services}</h4>${svcLinks}</div>
     <div><h4>${L.footer.pages}</h4>${FOOT_PAGES.map(k => `<a href="${urlFor(L.code, NAV_PATH[k])}">${L.nav[k]}</a>`).join('')}</div>
-    <div><h4>${L.footer.contact}</h4><a href="${CONTACT.phoneHref}">${CONTACT.phone}</a><a href="mailto:${CONTACT.email}">${CONTACT.email}</a>${CONTACT.whatsapp ? `<a href="https://wa.me/${CONTACT.whatsapp}" target="_blank" rel="noopener">WhatsApp</a>` : ''}${CONTACT.facebook ? `<a href="${CONTACT.facebook}" target="_blank" rel="noopener">Facebook</a>` : ''}<span class="foot-area">${L.contact.areaV}</span></div>
+    <div><h4>${L.footer.contact}</h4><a href="${CONTACT.phoneHref}">${CONTACT.phone}</a><a href="mailto:${CONTACT.email}">${CONTACT.email}</a>${CONTACT.whatsapp ? `<a href="https://wa.me/${CONTACT.whatsapp}" target="_blank" rel="noopener">WhatsApp</a>` : ''}${CONTACT.facebook ? `<a href="${CONTACT.facebook}" target="_blank" rel="noopener" aria-label="Facebook">${icon('fb')}Facebook</a>` : ''}<span class="foot-area">${L.contact.areaV}</span></div>
   </div>
   <div class="wrap foot-bot"><span>© ${new Date().getFullYear()} Prime Verk. ${L.footer.rights}</span><span class="foot-legal"><a href="${urlFor(L.code, '/privacy/')}">${LEGAL[L.code].footer.privacy}</a> <button type="button" class="cookie-open">${LEGAL[L.code].footer.settings}</button></span><span>${L.footer.credit} <a href="https://nataliajagus.com" target="_blank" rel="noopener">nataliajagus.com</a></span></div>
 </footer>
@@ -224,6 +224,7 @@ const ctaBand = L => `<section class="cta-band"><div class="wrap cta-in">
     <ul class="cta-contacts">
       <li><span class="cta-ic">${icon('phone')}</span><a href="${CONTACT.phoneHref}">${CONTACT.phone}</a></li>
       <li><span class="cta-ic">${icon('mail')}</span><a href="mailto:${CONTACT.email}">${CONTACT.email}</a></li>
+      ${CONTACT.facebook ? `<li><span class="cta-ic">${icon('fb')}</span><a href="${CONTACT.facebook}" target="_blank" rel="noopener">Facebook</a></li>` : ''}
       <li><span class="cta-ic">${icon('pin')}</span><span>${L.contact.areaV}</span></li>
     </ul>
     <div class="cta-btns">${btn(urlFor(L.code, '/contact/'), L.ui.quote, 'dark')}</div>
@@ -510,6 +511,7 @@ export function contactPage(L) {
       <div><dt>${icon('phone')}${C.phone}</dt><dd><a href="${CONTACT.phoneHref}">${CONTACT.phone}</a></dd></div>
       <div><dt>${icon('mail')}${C.email}</dt><dd><a href="mailto:${CONTACT.email}">${CONTACT.email}</a></dd></div>
       ${CONTACT.whatsapp ? `<div><dt>${icon('phone')}WhatsApp</dt><dd><a href="https://wa.me/${CONTACT.whatsapp}" target="_blank" rel="noopener">${CONTACT.phone}</a></dd></div>` : ''}
+      ${CONTACT.facebook ? `<div><dt>${icon('fb')}Facebook</dt><dd><a href="${CONTACT.facebook}" target="_blank" rel="noopener">Prime Verk</a></dd></div>` : ''}
       <div><dt>${icon('pin')}${C.area}</dt><dd>${C.areaV}</dd></div>
     </dl>
     <div class="contact-photo">${photo('contact-photo', { label: L.nav.contact, ratio: '4x3', tone: 'slate', ic: 'painting', cls: 'fill' })}</div>
