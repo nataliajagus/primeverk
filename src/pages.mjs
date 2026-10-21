@@ -179,14 +179,6 @@ export function homePage(L) {
   </div>
 </section>
 
-<section class="rail"><div class="wrap">
-  <div class="rail-head"><p class="eyebrow">${L.nav.prices}</p><h2>${H.railTitle}</h2><span class="tag-vat">${L.ui.vatLong}</span></div>
-  <div class="rail-line" aria-hidden="true"></div>
-  <ul class="rail-tags">${SERVICES.map((s, i) => {
-    const fp = fromPrice(s);
-    return `<li ><a href="${urlFor(c, '/services/' + s + '/')}">${priceTag(L, { label: `${icon(s)}<span>${L.svc[s].name} · ${L.ui.from}</span>`, price: fmtNum(fp.min), unit: fp.unit === 'm2' ? L.ui.perM2 : L.ui.perMb })}</a></li>`;
-  }).join('')}</ul>
-</div></section>
 
 <section class="section">
   <div class="wrap why">
