@@ -749,3 +749,4 @@ body { overflow-x: clip; }
 .sheet .sf-note p { font-size: .9rem; max-width: 46ch; }
 .sheet-foot { padding-block: 20px; }
 .sheet-row { padding-block: 18px; }
+.how-photo .photo img { object-position: 45% 40%; }

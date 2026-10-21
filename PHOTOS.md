@@ -22,5 +22,6 @@ Wrzuć plik do `src/img/<slot>.jpg` (lub .webp/.png), uruchom `node src/build.mj
 | `svc-painting-steps` | 4:5 | Pomalowany salon |
 | `svc-plastering-hero` | 4:3 | Szpachlowana ściana |
 | `svc-tiling-hero` | 4:3 | Płytki podłogowe w korytarzu |
+| `svc-tiling-steps` | 4:5 | Płytki podłogowe w korytarzu |
 | `svc-bathrooms-hero` | 4:3 | Nowoczesna łazienka z płytkami |
 | `svc-flooring-hero` | 4:3 | Panele w jasnym pokoju |
