@@ -775,3 +775,8 @@ body:has(.sheet.sticky-foot) .fab { display: none; }
 }
 .cta-photo::before { display: none !important; }
 .cta-photo .photo { clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%); }
+@media (max-width: 900px) {
+  .cta-photo { width: auto; position: relative; height: 260px; margin: 32px -20px -56px; }
+  .cta-photo .photo { clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%); }
+  .cta-photo .photo img { object-position: 55% 55%; }
+}
