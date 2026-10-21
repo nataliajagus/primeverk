@@ -233,7 +233,6 @@ export function homePage(L) {
   ${SERVICES.map((s, i) => `<div class="sl-slide${i === 0 ? ' on' : ''}" aria-hidden="true"><div class="sl-bg">${photo('hero-' + s, { label: L.svc[s].photos[0], ratio: '16x9', tone: SVC_TONE[s], ic: s, cls: 'bg', prio: i === 0 })}</div><div class="fs-shade"></div></div>`).join('')}
   <div class="fs-grid">
     <div class="fs-copy">
-      <p class="eyebrow"><i></i>${H.eyebrow}</p>
       <h1>${H.title}</h1>
       <p class="lead">${H.lead}</p>
       <div class="cta-row">${btn(urlFor(c, '/contact/'), L.ui.quote, 'gold')}${btn(urlFor(c, '/prices/#calculator'), L.ui.calc, 'line')}</div>
@@ -470,7 +469,7 @@ export function contactPage(L) {
       ${CONTACT.whatsapp ? `<div><dt>${icon('phone')}WhatsApp</dt><dd><a href="https://wa.me/${CONTACT.whatsapp}" target="_blank" rel="noopener">${CONTACT.phone}</a></dd></div>` : ''}
       <div><dt>${icon('pin')}${C.area}</dt><dd>${C.areaV}</dd></div>
     </dl>
-    <div class="contact-photo">${photo('contact-photo', { label: L.home.eyebrow, ratio: '4x3', tone: 'slate', ic: 'painting', cls: 'fill' })}</div>
+    <div class="contact-photo">${photo('contact-photo', { label: L.nav.contact, ratio: '4x3', tone: 'slate', ic: 'painting', cls: 'fill' })}</div>
   </div>
   <form id="contact-form" class="form" data-subject="${esc(C.subject)}" data-lbl-name="${esc(C.name)}" data-lbl-phone="${esc(C.fphone)}" data-lbl-email="${esc(C.femail)}">
     <p class="form-intro">${C.formIntro}</p>
