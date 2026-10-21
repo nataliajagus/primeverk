@@ -651,3 +651,4 @@ body { overflow-x: clip; }
   .cta-photo::before { display: none; }
 }
 .cta-photo::before { clip-path: polygon(100% 0, 86% 0, 0 100%, 14% 100%); width: 14%; left: -1px; background: var(--ink); opacity: 1; }
+.cta-photo .photo img { object-position: 60% 55%; }
