@@ -514,3 +514,7 @@ p { margin: 0; }
 }
 @media (prefers-reduced-motion: reduce) { .car-card .photo, .car-go { transition: none; } .car-card:hover .photo { transform: none; } }
 .car-card img { -webkit-user-drag: none; user-select: none; pointer-events: none; }
+.foot-grid a { display: flex; align-items: center; gap: 10px; }
+.foot-grid a .ic { width: 18px; height: 18px; color: var(--gold); opacity: .9; }
+.foot-grid a:hover .ic { opacity: 1; }
+.foot-bot a { display: inline; }
