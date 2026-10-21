@@ -225,7 +225,7 @@
       });
       html += '</fieldset>';
     });
-    $('#calc-fields').innerHTML = html;
+    if (!$('#calc-fields').hasAttribute('data-static')) $('#calc-fields').innerHTML = html;
 
     var selected = function () {
       return PV.prices.map(function (p) { return { p: p, q: parseFloat(qty[p.id]) }; }).filter(function (s) { return s.q > 0; });
@@ -251,7 +251,7 @@
       var id = e.target.getAttribute('data-id'); if (!id) return;
       if (!usedCalc) { usedCalc = true; track('Calculator used'); }
       qty[id] = e.target.value;
-      e.target.closest('.calc-row').classList.toggle('on', parseFloat(e.target.value) > 0);
+      var rowEl = e.target.closest('.calc-row'); if (rowEl) rowEl.classList.toggle('on', parseFloat(e.target.value) > 0);
       render();
     });
     $('#calc-reset').addEventListener('click', function () {

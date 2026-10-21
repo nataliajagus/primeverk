@@ -30,6 +30,24 @@ const priceCards = (L, rows) => `<div class="pcards">` + rows.map(r => {
   return `<article class="pcard reveal"><span class="pc-ic">${icon(ic)}</span><h3>${it.n}</h3>${it.s ? `<p class="pc-sub">${it.s}</p>` : ''}${it.m ? `<span class="pc-note">${it.m}</span>` : ''}<div class="pc-price">${amount}<em>${unit}</em><b class="tag-vat">${L.ui.vat}</b></div></article>`;
 }).join('') + `</div>`;
 
+const priceCardsCalc = (L, rows) => `<div class="pcards pcards-calc" id="calc-fields" data-static="1">` + rows.map(r => {
+  const it = L.items[r.id];
+  const ic = r.id === 'waterproof' ? 'bathrooms' : ITEM_ICON[r.calc];
+  const unit = r.unit === 'm2' ? L.ui.perM2 : L.ui.perMb, u = r.unit === 'm2' ? L.ui.m2 : L.ui.mb;
+  const amount = r.max === null ? `<span class="pc-from">${L.ui.from}</span><strong>${fmtNum(r.min)}</strong>`
+    : r.min === r.max ? `<strong>${fmtNum(r.min)}</strong>` : `<strong>${fmtNum(r.min)}–${fmtNum(r.max)}</strong>`;
+  return `<article class="pcard calc-row" data-id="${r.id}"><span class="pc-ic">${icon(ic)}</span><h3>${it.n}</h3>${it.s ? `<p class="pc-sub">${it.s}</p>` : ''}${it.m ? `<span class="pc-note">${it.m}</span>` : ''}
+    <div class="pc-price">${amount}<em>${unit}</em><b class="tag-vat">${L.ui.vat}</b></div>
+    <label class="pc-qty"><span>${L.prices.enter} ${L.itemHints[r.id]}</span><div><input type="number" inputmode="decimal" min="0" step="any" placeholder="0" data-id="${r.id}" aria-label="${esc(it.n)}: ${esc(L.prices.enter)} ${esc(L.itemHints[r.id])}"><em>${u}</em></div></label>
+  </article>`;
+}).join('') + `</div>`;
+
+const calcSide = L => `<aside class="calc-side"><div id="calc-result" class="calc-result" aria-live="polite"></div>
+      <p class="fine">${L.prices.disclaimer}</p>
+      <button id="calc-send" class="btn btn-gold" type="button" disabled><span>${L.prices.send}</span>${icon('arrow')}</button>
+      <button id="calc-reset" class="btn btn-line" type="button"><span>${L.prices.reset}</span></button>
+    </aside>`;
+
 const calcBlock = L => `<div class="calc"><div id="calc-fields" class="calc-fields"></div>
     <aside class="calc-side"><div id="calc-result" class="calc-result" aria-live="polite"></div>
       <p class="fine">${L.prices.disclaimer}</p>
@@ -236,15 +254,7 @@ export function homePage(L) {
 
 
 
-<section class="section calc-promo">
-  <div class="wrap calc-promo-in">
-    <div>
-      <p class="eyebrow">${L.nav.prices}</p><h2>${H.calcTitle}</h2><p class="sec-lead">${H.calcLead}</p>
-      <div class="cta-row">${btn(urlFor(c, '/prices/#calculator'), H.calcBtn, 'gold')}${btn(urlFor(c, '/prices/#cennik'), L.prices.listTitle, 'line')}</div>
-    </div>
-    ${miniCalc(L)}
-  </div>
-</section>
+
 
 <section class="section section-sand how">
   <div class="wrap how-in">
@@ -307,7 +317,7 @@ export function servicePage(L, s) {
     ${crumbs(L, [[urlFor(c, '/services/'), L.nav.services], [null, S.name]])}
     <span class="svc-ic big">${icon(s)}</span>
     <h1>${S.name}</h1><p class="lead">${S.lead}</p>
-    <div class="cta-row">${btn(urlFor(c, '/contact/'), L.ui.quote, 'gold')}${btn(urlFor(c, '/prices/#calculator'), L.ui.calc, 'line')}</div>
+    <div class="cta-row">${btn(urlFor(c, '/contact/'), L.ui.quote, 'gold')}${btn('#cennik', L.ui.calc, 'line')}</div>
   </div>
   <div class="svc-hero-photo">${photo('svc-' + s + '-hero', { label: S.photos[0], ratio: '4x3', ic: s, tone: SVC_TONE[s] === 'basalt' ? 'concrete' : SVC_TONE[s], prio: true })}
     ${fp ? priceTag(L, { label: L.ui.from, price: fmtNum(fp.min), unit: fp.unit === 'm2' ? L.ui.perM2 : L.ui.perMb, cls: 'tag-float' }) : scopeTag(L)}</div>
@@ -330,19 +340,15 @@ export function servicePage(L, s) {
   </div>
 </section>
 
-<section class="section" id="cennik">
+<section class="section section-dark calc-merged" id="cennik">
   <div class="wrap">
-    ${secHead(L.ui.pricing, S.priceTitle, L.prices.lead)}
-    ${priceCards(L, rows)}
+    ${secHead(L.ui.pricing, S.priceTitle, S.priceLead, 'on-dark')}
+    <div class="calc calc-m">
+      <div>${priceCardsCalc(L, rows)}</div>
+      ${calcSide(L)}
+    </div>
     <p class="fine">${L.prices.materials}</p>
     <p class="fine">${L.prices.note}</p>
-  </div>
-</section>
-
-<section class="section section-dark" id="calculator">
-  <div class="wrap">
-    ${secHead(L.nav.prices, S.calcTitle, L.prices.calcLead, 'on-dark')}
-    ${calcBlock(L)}
   </div>
 </section>
 

@@ -679,3 +679,30 @@ body { overflow-x: clip; }
 #cennik .fine, .section .pcards + .fine { margin-top: 22px; }
 .page-hero .vat-badge { display: none; }
 .how-photo .photo img { object-position: 78% 50%; }
+
+/* ===== cennik i kalkulator usługi w jednej sekcji ===== */
+.calc-merged .pcards { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+.calc-m { grid-template-columns: 1.7fr 1fr; align-items: start; }
+.calc-merged .pcard { background: var(--ink-2); border-color: var(--line-d); border-top-color: var(--gold); color: var(--paper); transition: border-color .25s, transform .3s; }
+.calc-merged .pcard:hover { box-shadow: none; }
+.calc-merged .pcard.on { border-color: var(--gold); background: #2f3237; }
+.calc-merged .pc-ic { background: var(--gold); color: var(--ink); }
+.calc-merged .pc-sub { color: rgba(246,245,242,.7); }
+.calc-merged .pc-note { color: var(--gold); }
+.calc-merged .pc-price { border-top-color: var(--line-d); }
+.calc-merged .pc-price em, .calc-merged .pc-from { color: rgba(246,245,242,.7); }
+.pc-qty { display: grid; gap: 8px; margin-top: 12px; padding-top: 14px; border-top: 1px solid var(--line-d); }
+.pc-qty > span { font-size: .88rem; color: rgba(246,245,242,.85); }
+.pc-qty > div { display: flex; align-items: center; gap: 8px; }
+.pc-qty input { flex: 1; min-width: 0; padding: 12px 14px; background: var(--ink); color: var(--paper); border: 1.5px solid var(--ink-3); border-radius: 2px; font: 600 1.15rem var(--label); text-align: right; }
+.pc-qty input:focus { outline: none; border-color: var(--gold); }
+.pc-qty em { font: 500 .95rem var(--label); font-style: normal; color: rgba(246,245,242,.7); min-width: 28px; }
+.calc-merged .calc-side { position: sticky; top: calc(var(--hdr) + 20px); }
+@media (max-width: 1040px) { .calc-m { grid-template-columns: 1fr; } .calc-merged .calc-side { position: static; } }
+/* kadr zdjęcia w pasmie kontaktowym: bez powiększenia, mniejsze cięcie, cały stół widoczny */
+.cta-photo .photo { clip-path: polygon(9% 0, 100% 0, 100% 100%, 0 100%); }
+.cta-photo::before { width: 9%; clip-path: polygon(100% 0, 78% 0, 0 100%, 22% 100%); }
+.cta-photo .photo img { object-position: 38% 60%; transform: none !important; }
+.cta-photo { width: 52%; }
+.cta-text { max-width: min(560px, 46%); }
+@media (max-width: 900px) { .cta-text { max-width: none; } }
