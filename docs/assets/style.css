@@ -858,3 +858,14 @@ body:has(.sheet.sticky-foot) .fab { display: none; }
 .legal p { margin-bottom: 10px; max-width: 70ch; }
 .legal a { text-underline-offset: 3px; }
 @media (max-width: 900px) { .fab { bottom: 92px; } .cookie { bottom: 12px; } }
+/* baner cookies: zwarta karta w lewym dolnym rogu */
+.cookie { left: 20px; right: auto; bottom: 20px; max-width: 360px; margin: 0; padding: 16px 18px; gap: 12px; border-radius: 2px; }
+.cookie p { font-size: .88rem; line-height: 1.5; }
+.cookie-btns { gap: 8px; }
+.cookie .btn-sm { padding: 9px 13px; font-size: .85rem; }
+@media (max-width: 900px) { .cookie { left: 12px; right: 12px; bottom: 12px; max-width: none; } }
+.cookie { max-width: 400px; padding: 14px 16px; left: 16px; bottom: 16px; }
+.cookie p { font-size: .82rem; }
+.cookie-btns { flex-wrap: nowrap; }
+.cookie .btn-sm { padding: 8px 11px; font-size: .8rem; white-space: nowrap; }
+@media (max-width: 480px) { .cookie-btns { flex-wrap: wrap; } }
