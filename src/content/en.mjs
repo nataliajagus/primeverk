@@ -1,6 +1,7 @@
 export default {
   code: 'en', htmlLang: 'en', label: 'EN',
   ui: {
+    step: 'Step',
     vat: 'excl. VAT', vatLong: 'All prices exclude VAT', from: 'from', m2: 'm²', mb: 'm',
     perM2: 'kr / m²', perMb: 'kr / m', kr: 'kr', price: 'Price', byScope: 'Quote based on the scope of work',
     call: 'Call', menu: 'Menu', quote: 'Request a quote', calc: 'Estimate the cost', more: 'View service',
@@ -21,7 +22,6 @@ export default {
     eyebrow: 'Done properly',
     title: 'Painting, tiling and flooring in Reykjavík and surroundings',
     lead: 'From refreshing walls to finishing a bathroom. We prepare the substrate, do the agreed work and check the result with you at handover.',
-    help: 'Check the estimated cost in the calculator, or describe your job to get an individual quote.',
     areaLabel: 'Where we work:',
     area: 'Reykjavík, Keflavík, Selfoss and surroundings',
     servicesTitle: 'Five kinds of finishing work',

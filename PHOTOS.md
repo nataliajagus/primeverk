@@ -15,6 +15,8 @@ Wrzuć plik do `src/img/<slot>.jpg` (lub .webp/.png), uruchom `node src/build.mj
 | `svc-bathrooms-card` | 4:3 | Nowoczesna łazienka z płytkami |
 | `svc-flooring-card` | 4:3 | Panele w jasnym pokoju |
 | `why-photo` | 4:5 | Szpachlowana ściana |
+| `steps-photo` | 4:5 | Jak przebiega współpraca |
+| `cta-photo` | 4:3 | Opisz zlecenie, a przygotujemy wycenę |
 | `contact-photo` | 4:3 | Zrobione równo |
 | `svc-painting-hero` | 4:3 | Pomalowany salon |
 | `svc-plastering-hero` | 4:3 | Szpachlowana ściana |

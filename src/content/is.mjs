@@ -1,6 +1,7 @@
 export default {
   code: 'is', htmlLang: 'is', label: 'IS',
   ui: {
+    step: 'Skref',
     vat: 'án VSK', vatLong: 'Öll verð eru án VSK', from: 'frá', m2: 'm²', mb: 'm',
     perM2: 'kr / m²', perMb: 'kr / m', kr: 'kr', price: 'Verð', byScope: 'Tilboð eftir umfangi verks',
     call: 'Hringdu', menu: 'Valmynd', quote: 'Óska eftir tilboði', calc: 'Áætla kostnað', more: 'Skoða þjónustu',
@@ -21,7 +22,6 @@ export default {
     eyebrow: 'Unnið beint',
     title: 'Málun, flísar og gólfefni í Reykjavík og nágrenni',
     lead: 'Allt frá því að fríska upp veggi til frágangs á baðherbergi. Við undirbúum undirlagið, vinnum þau verk sem um er samið og förum saman yfir útkomuna við afhendingu.',
-    help: 'Áætlaðu kostnaðinn í reiknivélinni eða lýstu verkinu og fáðu sérsniðið tilboð.',
     areaLabel: 'Starfssvæði:',
     area: 'Reykjavík, Keflavík, Selfoss og nágrenni',
     servicesTitle: 'Fimm tegundir frágangsverka',

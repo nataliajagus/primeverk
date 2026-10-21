@@ -1,6 +1,7 @@
 export default {
   code: 'pl', htmlLang: 'pl', label: 'PL',
   ui: {
+    step: 'Krok',
     vat: 'bez VAT', vatLong: 'Wszystkie ceny bez VAT', from: 'od', m2: 'm²', mb: 'mb',
     perM2: 'kr / m²', perMb: 'kr / mb', kr: 'kr', price: 'Cena', byScope: 'Wycena według zakresu prac',
     call: 'Zadzwoń', menu: 'Menu', quote: 'Poproś o wycenę', calc: 'Oszacuj koszt', more: 'Zobacz usługę',
@@ -21,7 +22,6 @@ export default {
     eyebrow: 'Zrobione równo',
     title: 'Malowanie, płytki i podłogi w Reykjavíku i okolicach',
     lead: 'Od odświeżenia ścian po wykończenie łazienki. Przygotowujemy podłoże, wykonujemy uzgodnione prace i wspólnie sprawdzamy efekt przy odbiorze.',
-    help: 'Sprawdź orientacyjny koszt w kalkulatorze lub opisz zlecenie, aby otrzymać indywidualną wycenę.',
     areaLabel: 'Obszar działania:',
     area: 'Reykjavík, Keflavík, Selfoss i okolice',
     servicesTitle: 'Pięć rodzajów prac wykończeniowych',

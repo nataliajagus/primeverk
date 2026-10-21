@@ -61,6 +61,8 @@
     tag('.contact > div:first-child', 'reveal-left');
     tag('.form', 'reveal-right');
     tag('.why-photo', 'reveal-wipe');
+    tag('.how-photo', 'reveal-wipe');
+    tag('.cta-photo', 'reveal-wipe');
     tag('.svc-row-photo', 'reveal-wipe');
     tag('.contact-photo', 'reveal-wipe');
     tag('.faq-list details', '', 70);

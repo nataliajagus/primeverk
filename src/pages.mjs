@@ -90,8 +90,16 @@ const secHead = (eyebrow, title, lead = '', cls = '') =>
 const crumbs = (L, items) => `<nav class="crumbs" aria-label="Breadcrumb"><a href="${urlFor(L.code, '/')}">${L.ui.home}</a>${items.map(([h, t]) => `<span>/</span>${h ? `<a href="${h}">${t}</a>` : `<b>${t}</b>`}`).join('')}</nav>`;
 
 const ctaBand = L => `<section class="cta-band"><div class="wrap cta-in">
-  <div><h2>${L.home.ctaTitle}</h2><p>${L.home.ctaLead}</p></div>
-  <div class="cta-btns">${btn(urlFor(L.code, '/contact/'), L.ui.quote, 'dark')}<a class="btn btn-line" href="${CONTACT.phoneHref}"><span>${CONTACT.phone}</span>${icon('phone')}</a><a class="cta-mail" href="mailto:${CONTACT.email}">${CONTACT.email}</a></div>
+  <div class="cta-text">
+    <h2>${L.home.ctaTitle}</h2><p>${L.home.ctaLead}</p>
+    <ul class="cta-contacts">
+      <li><span class="cta-ic">${icon('phone')}</span><a href="${CONTACT.phoneHref}">${CONTACT.phone}</a></li>
+      <li><span class="cta-ic">${icon('mail')}</span><a href="mailto:${CONTACT.email}">${CONTACT.email}</a></li>
+      <li><span class="cta-ic">${icon('pin')}</span><span>${L.contact.areaV}</span></li>
+    </ul>
+    <div class="cta-btns">${btn(urlFor(L.code, '/contact/'), L.ui.quote, 'dark')}</div>
+  </div>
+  <div class="cta-photo">${photo('cta-photo', { label: stripTags(L.home.ctaTitle), ratio: '4x3', tone: 'slate', ic: 'painting' })}</div>
 </div></section>`;
 
 const SVC_TONE = { painting: 'gold', plastering: 'basalt', tiling: 'concrete', bathrooms: 'slate', flooring: 'gold' };
@@ -147,7 +155,6 @@ export function homePage(L) {
       <p class="eyebrow"><i></i>${H.eyebrow}</p>
       <h1>${H.title}</h1>
       <p class="lead">${H.lead}</p>
-      <p class="hero-help">${H.help}</p>
       <div class="cta-row">${btn(urlFor(c, '/contact/'), L.ui.quote, 'gold')}${btn(urlFor(c, '/prices/#calculator'), L.ui.calc, 'line')}</div>
       <p class="hero-area">${icon('pin')}<span>${H.areaLabel}</span> ${H.area}</p>
     </div>
@@ -209,10 +216,13 @@ export function homePage(L) {
   </div>
 </section>
 
-<section class="section section-sand">
-  <div class="wrap">
-    ${secHead(L.ui.process, H.processTitle)}
-    <ol class="steps">${H.process.map(([t, d]) => `<li class="reveal"><h3>${t}</h3><p>${d}</p></li>`).join('')}</ol>
+<section class="section section-sand how">
+  <div class="wrap how-in">
+    <div class="how-text">
+      ${secHead(L.ui.process, H.processTitle)}
+      <ol class="how-steps">${H.process.map(([t, d], i) => `<li class="reveal"><span class="how-ic">${icon(['phone', 'ruler', 'level', 'check'][i])}</span><div><span class="how-n">${L.ui.step} ${i + 1}</span><h3>${t}</h3><p>${d}</p></div></li>`).join('')}</ol>
+    </div>
+    <div class="how-photo reveal">${photo('steps-photo', { label: stripTags(H.processTitle), ratio: '4x5', tone: 'concrete', ic: 'level' })}</div>
   </div>
 </section>
 
