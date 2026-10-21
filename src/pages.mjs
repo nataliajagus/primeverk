@@ -1,3 +1,4 @@
+import LEGAL from './content/legal.mjs';
 import { PRICES, SERVICES, CALC_GROUPS, fromPrice, rowsFor, fmtNum } from './data/prices.mjs';
 import { BASE, SITE, CONTACT, hasImg, esc, stripTags, icon, flag, urlFor, asset, photo, priceTag, ruler, faqList, faqJsonLd, btn } from './ui.mjs';
 
@@ -124,7 +125,7 @@ ${alt}
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Figtree:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${asset('style.css')}?v=${Date.now()}">
-${CONTACT.analytics.src ? `<script defer data-domain="${CONTACT.analytics.domain}" src="${CONTACT.analytics.src}"></script>` : ''}
+${CONTACT.analytics.src ? `<meta name="pv-analytics" content="${CONTACT.analytics.src}|${CONTACT.analytics.domain}">` : ''}
 ${head}
 </head>
 <body>
@@ -154,9 +155,12 @@ ${body}
     <div><h4>${L.footer.pages}</h4>${FOOT_PAGES.map(k => `<a href="${urlFor(L.code, NAV_PATH[k])}">${L.nav[k]}</a>`).join('')}</div>
     <div><h4>${L.footer.contact}</h4><a href="${CONTACT.phoneHref}">${CONTACT.phone}</a><a href="mailto:${CONTACT.email}">${CONTACT.email}</a>${CONTACT.whatsapp ? `<a href="https://wa.me/${CONTACT.whatsapp}" target="_blank" rel="noopener">WhatsApp</a>` : ''}${CONTACT.facebook ? `<a href="${CONTACT.facebook}" target="_blank" rel="noopener">Facebook</a>` : ''}<span class="foot-area">${L.contact.areaV}</span></div>
   </div>
-  <div class="wrap foot-company"><h4>${L.footer.company[0]}</h4><ul>${[1, 2, 3].map(i => `<li><span>${L.footer.company[i]}</span><em>${L.footer.company[4]}</em></li>`).join('')}</ul></div>
-  <div class="wrap foot-bot"><span>© ${new Date().getFullYear()} Prime Verk. ${L.footer.rights}</span><span>${L.footer.credit} <a href="https://nataliajagus.com" target="_blank" rel="noopener">nataliajagus.com</a></span></div>
+  <div class="wrap foot-bot"><span>© ${new Date().getFullYear()} Prime Verk. ${L.footer.rights}</span><span class="foot-legal"><a href="${urlFor(L.code, '/privacy/')}">${LEGAL[L.code].footer.privacy}</a> <button type="button" class="cookie-open">${LEGAL[L.code].footer.settings}</button></span><span>${L.footer.credit} <a href="https://nataliajagus.com" target="_blank" rel="noopener">nataliajagus.com</a></span></div>
 </footer>
+<div class="cookie" id="cookie" role="dialog" aria-live="polite" aria-label="Cookies" hidden>
+  <p>${LEGAL[L.code].banner.text} <a href="${urlFor(L.code, '/privacy/')}">${LEGAL[L.code].banner.more}</a></p>
+  <div class="cookie-btns"><button type="button" class="btn btn-gold btn-sm" data-consent="all"><span>${LEGAL[L.code].banner.accept}</span></button><button type="button" class="btn btn-line btn-sm" data-consent="necessary"><span>${LEGAL[L.code].banner.reject}</span></button></div>
+</div>
 <a class="fab" href="${CONTACT.phoneHref}" aria-label="${L.ui.call}">${icon('phone')}<span>${L.ui.call}</span></a>
 ${pv ? `<script>window.PV=${JSON.stringify(pv)};</script>` : ''}
 <script src="${asset('site.js')}?v=${Date.now()}" defer></script>
@@ -484,4 +488,17 @@ export function contactPage(L) {
   </form>
 </div></section>`;
   return layout(L, { key: 'contact', path: '/contact/', title: L.seo.contact[0], desc: L.seo.contact[1], body });
+}
+
+// ---------- POLITYKA PRYWATNOŚCI ----------
+export function privacyPage(L) {
+  const G = LEGAL[L.code];
+  const fill = s => s.replace('{EMAIL}', `<a href="mailto:${CONTACT.email}">${CONTACT.email}</a>`).replace('{PHONE}', `<a href="${CONTACT.phoneHref}">${CONTACT.phone}</a>`);
+  const body = `
+<section class="page-hero"><div class="wrap">${crumbs(L, [[null, G.title]])}<h1>${G.title}</h1><p class="lead">${G.updated}</p></div><div class="wrap">${ruler('ruler-hero')}</div></section>
+<section class="section"><div class="wrap legal">
+  ${G.sections.map(([h, ps]) => `<section><h2>${h}</h2>${ps.map(t => `<p>${fill(t)}</p>`).join('')}</section>`).join('')}
+  <p><button type="button" class="btn btn-line cookie-open"><span>${G.footer.settings}</span></button></p>
+</div></section>`;
+  return layout(L, { key: 'privacy', path: '/privacy/', title: G.seo[0], desc: G.seo[1], body });
 }

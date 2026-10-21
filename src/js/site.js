@@ -3,6 +3,24 @@
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
+  // ---- cookies: wybór użytkownika (analityka tylko po zgodzie) ----
+  var consentGet = function () { try { return localStorage.getItem('pv-consent'); } catch (e) { return null; } };
+  var consentSet = function (v) { try { localStorage.setItem('pv-consent', v); } catch (e) {} };
+  var loadAnalytics = function () {
+    var m = document.querySelector('meta[name="pv-analytics"]');
+    if (!m || document.getElementById('pv-an')) return;
+    var parts = m.content.split('|'), s = document.createElement('script');
+    s.id = 'pv-an'; s.defer = true; s.src = parts[0]; s.setAttribute('data-domain', parts[1]); document.head.appendChild(s);
+  };
+  var banner = document.getElementById('cookie');
+  var showBanner = function (v) { if (banner) banner.hidden = !v; };
+  if (consentGet() === 'all') loadAnalytics();
+  if (consentGet() === null) showBanner(true);
+  $$('#cookie [data-consent]').forEach(function (b) {
+    b.addEventListener('click', function () { var v = b.getAttribute('data-consent'); consentSet(v); showBanner(false); if (v === 'all') loadAnalytics(); });
+  });
+  $$('.cookie-open').forEach(function (b) { b.addEventListener('click', function () { showBanner(true); }); });
+
   // ---- zdarzenia (Plausible lub zgodne; bez skryptu analityki nic się nie dzieje) ----
   var track = function (name, props) { try { if (window.plausible) window.plausible(name, props ? { props: props } : undefined); } catch (e) {} };
   document.addEventListener('click', function (e) {

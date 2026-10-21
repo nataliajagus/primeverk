@@ -842,3 +842,19 @@ body:has(.sheet.sticky-foot) .fab { display: none; }
 
 .fs-copy h1 { max-width: 15ch; }
 .fs-copy h1 em { font-style: normal; color: var(--gold); display: block; }
+
+/* ===== cookies i polityka ===== */
+.cookie { position: fixed; z-index: 70; left: 16px; right: 16px; bottom: 16px; max-width: 720px; margin-inline: auto; background: var(--ink); color: var(--paper); padding: 18px 20px; display: grid; gap: 14px; box-shadow: 0 24px 50px -16px rgba(0,0,0,.6); border-top: 3px solid var(--gold); }
+.cookie[hidden] { display: none; }
+.cookie p { font-size: .95rem; }
+.cookie a { color: var(--gold); text-underline-offset: 3px; }
+.cookie-btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.cookie .btn-line:hover { background: var(--paper); color: var(--ink); }
+.foot-legal { display: inline-flex; flex-wrap: wrap; gap: 6px 18px; }
+.foot-legal a, .foot-legal .cookie-open { color: inherit; background: none; border: 0; padding: 0; font: inherit; letter-spacing: inherit; text-transform: inherit; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.foot-legal a:hover, .foot-legal .cookie-open:hover { color: var(--gold); }
+.legal { max-width: 780px; display: grid; gap: 28px; }
+.legal h2 { font-size: 1.5rem; margin-bottom: 10px; }
+.legal p { margin-bottom: 10px; max-width: 70ch; }
+.legal a { text-underline-offset: 3px; }
+@media (max-width: 900px) { .fab { bottom: 92px; } .cookie { bottom: 12px; } }
