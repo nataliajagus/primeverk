@@ -523,3 +523,8 @@ p { margin: 0; }
 .form-status { padding: 12px 14px; font-weight: 600; border-left: 3px solid var(--gold); background: rgba(179,142,85,.16); }
 .form-status.ok { border-color: #2f6b4b; background: rgba(47,107,75,.12); }
 .form-status.err { border-color: #a23b2c; background: rgba(162,59,44,.12); }
+
+/* dwie sekcje na tym samym tle obok siebie nie dublują odstępu */
+.section:not(.section-dark):not(.section-sand) + .section:not(.section-dark):not(.section-sand) { padding-top: clamp(24px, 3vw, 44px); }
+.car-sec { padding-bottom: clamp(24px, 3vw, 44px); }
+.section:not(.section-dark):not(.section-sand):has(+ .section:not(.section-dark):not(.section-sand)) { padding-bottom: clamp(24px, 3vw, 44px); }
