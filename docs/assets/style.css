@@ -839,3 +839,6 @@ body:has(.sheet.sticky-foot) .fab { display: none; }
   .car-track { padding-inline: 8vw; scroll-padding-inline: 8vw; }
 }
 @media (min-width: 1041px) { .car-track { width: var(--w); margin-inline: auto; padding-inline: 0; scroll-padding-inline: 0; } .car-foot { width: var(--w); padding-inline: 0; } }
+
+.fs-copy h1 { max-width: 15ch; }
+.fs-copy h1 em { font-style: normal; color: var(--gold); display: block; }

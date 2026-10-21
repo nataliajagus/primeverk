@@ -20,7 +20,7 @@ export default {
   },
   home: {
     eyebrow: 'Vönduð vinna',
-    title: 'Málun, flísar og gólfefni í Reykjavík og nágrenni',
+    title: 'Málun, flísar og gólfefni.<br><em>Reykjavík og nágrenni.</em>',
     lead: 'Allt frá því að fríska upp á veggina til þess að klára baðherbergið. Við undirbúum undirlagið, vinnum verkið eins og um var samið og förum yfir útkomuna með þér við afhendingu.',
     areaLabel: 'Starfssvæði:',
     area: 'Reykjavík, Keflavík, Selfoss og nágrenni',

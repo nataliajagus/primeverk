@@ -20,7 +20,7 @@ export default {
   },
   home: {
     eyebrow: 'Zrobione równo',
-    title: 'Malowanie, płytki i podłogi w Reykjavíku i okolicach',
+    title: 'Malowanie, płytki i podłogi.<br><em>Reykjavík i okolice.</em>',
     lead: 'Od odświeżenia ścian po wykończenie łazienki. Przygotowujemy podłoże, wykonujemy uzgodnione prace i wspólnie sprawdzamy efekt przy odbiorze.',
     areaLabel: 'Obszar działania:',
     area: 'Reykjavík, Keflavík, Selfoss i okolice',

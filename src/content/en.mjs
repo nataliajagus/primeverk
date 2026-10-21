@@ -20,7 +20,7 @@ export default {
   },
   home: {
     eyebrow: 'Done properly',
-    title: 'Painting, tiling and flooring in Reykjavík and nearby',
+    title: 'Painting, tiling and flooring.<br><em>Reykjavík and nearby.</em>',
     lead: 'From freshening up walls to finishing a bathroom. We prepare the surface, do the agreed work and go through the result with you at handover.',
     areaLabel: 'Based in',
     area: 'Reykjavík, Keflavík, Selfoss and nearby',
