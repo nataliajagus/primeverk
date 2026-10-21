@@ -86,7 +86,7 @@ export default {
     painting: {
       name: 'Málun', short: 'Málun og upplyfting veggja og lofta.',
       stepsTitle: 'Svona gengur málunin fyrir sig', faqTitle: 'Spurningar um málun',
-      priceTitle: 'Verð fyrir málun', priceLead: 'Sláðu inn flatarmál við þau verk sem þú þarft og áætlaður kostnaður birtist til hægri.',
+      priceTitle: 'Verð fyrir málun', priceLead: 'Sláðu inn flatarmál við þau verk sem þú þarft. Kostnaður hvers liðar og heildin birtast strax.',
       seo: ['Málun innanhúss Reykjavík frá 3.000 kr/m² | Prime Verk', 'Málun veggja og lofta í Reykjavík og nágrenni. Vinna frá 3.000 kr/m² (án VSK).'],
       lead: 'Við málum veggi og loft. Grunnverðið á við um upplyftingu á veggjum sem eru þegar grunnaðir.',
       intro: ['Verðið 3.000 kr/m² nær eingöngu yfir vinnu. Það á við um veggi sem eru þegar grunnaðir og þarf að fríska upp, með lítils háttar undirbúningi.', 'Ef veggirnir þarfnast lagfæringar jöfnum við þá fyrst. Umfang þeirrar vinnu kemur fram í tilboðinu.'],
@@ -104,7 +104,7 @@ export default {
     plastering: {
       name: 'Spartl og lagfæringar', short: 'Sléttir veggir, samskeyti gipsplatna og endurbætur á gömlum veggjum.',
       stepsTitle: 'Svona gengur spartlið fyrir sig', faqTitle: 'Spurningar um spartl og lagfæringar',
-      priceTitle: 'Verð fyrir spartl og lagfæringar', priceLead: 'Sláðu inn flatarmál við þau verk sem þú þarft og áætlaður kostnaður birtist til hægri.',
+      priceTitle: 'Verð fyrir spartl og lagfæringar', priceLead: 'Sláðu inn flatarmál við þau verk sem þú þarft. Kostnaður hvers liðar og heildin birtast strax.',
       seo: ['Spartl veggja Reykjavík frá 3.500 kr/m² | Prime Verk', 'Spartl, samskeyti gipsplatna og endurbætur á gömlum veggjum í Reykjavík. Frá 3.500 kr/m² (án VSK).'],
       lead: 'Við undirbúum veggi fyrir málun, allt frá spartli á samskeyti gipsplatna til endurbóta á gömlum veggjum.',
       intro: ['Góð málun byrjar á góðum vegg. Við spartlum heila fleti eða aðeins samskeyti gipsplatna. Við lögum líka sprungur og ójöfnur.', 'Á gömlum veggjum skröpum við, lögum sprungur og réttum af yfirborðið.'],
@@ -122,7 +122,7 @@ export default {
     tiling: {
       name: 'Flísalögn', short: 'Gólfflísar og veggflísar, stórar flísar og mósaík.',
       stepsTitle: 'Svona leggjum við flísar', faqTitle: 'Spurningar um flísalögn',
-      priceTitle: 'Verð fyrir flísalögn', priceLead: 'Sláðu inn flatarmál við þau verk sem þú þarft og áætlaður kostnaður birtist til hægri.',
+      priceTitle: 'Verð fyrir flísalögn', priceLead: 'Sláðu inn flatarmál við þau verk sem þú þarft. Kostnaður hvers liðar og heildin birtast strax.',
       seo: ['Flísalögn Reykjavík frá 7.500 kr/m² | Prime Verk', 'Gólfflísar og veggflísar, stórar flísar og mósaík í Reykjavík. Frá 7.500 kr/m² (án VSK).'],
       lead: 'Við leggjum gólfflísar og veggflísar, líka stórar flísar og mósaík.',
       intro: ['Nákvæm jöfnun og sögun ráða úrslitum um útkomuna.', 'Stórar flísar og mósaík taka lengri tíma í sögun og nákvæma jöfnun og hafa því sérstakt verð.'],
@@ -140,7 +140,7 @@ export default {
     bathrooms: {
       name: 'Frágangur baðherbergja', short: 'Brot á flísum, undirbúningur undirlags, vatnsvörn og nýjar flísar.',
       stepsTitle: 'Svona gengur frágangur baðherbergis fyrir sig', faqTitle: 'Spurningar um frágang baðherbergja',
-      priceTitle: 'Verð fyrir vinnu á baðherbergi', priceLead: 'Sláðu inn flatarmál við þau verk sem þú þarft og áætlaður kostnaður birtist til hægri.',
+      priceTitle: 'Verð fyrir vinnu á baðherbergi', priceLead: 'Sláðu inn flatarmál við þau verk sem þú þarft. Kostnaður hvers liðar og heildin birtast strax.',
       seo: ['Frágangur baðherbergja Reykjavík | Prime Verk', 'Brot á flísum, vatnsvörn í votrými og lagning nýrra flísa á baðherbergi. Reykjavík og nágrenni.'],
       lead: 'Við sjáum um frágang baðherbergisins: brjótum gamlar flísar, undirbúum undirlagið, vatnsverjum og leggjum nýjar flísar.',
       intro: ['Verðið fer eftir umfangi verksins og fermetrafjölda. Verð einstakra verkþátta finnur þú í verðskránni hér fyrir neðan.', 'Vatnsvörnina vinnum við með fljótandi vatnsvarnarefni og þéttiböndum í votrýminu. Verðið 2.800–4.000 kr/m² á eingöngu við vatnsvörnina, ekki allt baðherbergið.'],
@@ -158,7 +158,7 @@ export default {
     flooring: {
       name: 'Gólfefni', short: 'Plastparket og vínylgólf, jöfnunarmassi og fjarlæging gamalla gólfefna.',
       stepsTitle: 'Svona leggjum við gólfefni', faqTitle: 'Spurningar um gólfefni',
-      priceTitle: 'Verð fyrir gólfefni', priceLead: 'Sláðu inn flatarmál við þau verk sem þú þarft og áætlaður kostnaður birtist til hægri.',
+      priceTitle: 'Verð fyrir gólfefni', priceLead: 'Sláðu inn flatarmál við þau verk sem þú þarft. Kostnaður hvers liðar og heildin birtast strax.',
       seo: ['Gólfefni og parket Reykjavík | Prime Verk', 'Plastparket, vínylgólf, jöfnunarmassi og fjarlæging gamalla gólfefna í Reykjavík. Frá 1.800 kr/m² (án VSK).'],
       lead: 'Við leggjum plastparket með smellukerfi og vínylgólf með límingu. Við undirbúum líka undirlagið: jöfnunarmassi og fjarlæging gamalla gólfefna.',
       intro: ['Parket þarf jafnt undirlag. Ef gólfið er ójafnt leggjum við jöfnunarmassa. Gamalt gólfefni fjarlægjum við og undirbúum yfirborðið.', 'Við leggjum plastparket með smellukerfi og vínylgólf með límingu.'],
@@ -186,6 +186,7 @@ export default {
     note: 'Rými með óreglulegri lögun (þröngir gangar, margar súlur, vinna í kringum ofnarör) hækka kostnað við vinnuna, því nákvæm sögun efnis tekur lengri tíma.',
     materials: 'Málun: verðið er fyrir vinnu eingöngu. Jöfnunarmassi: verðið innifelur efni. Hvað varðar önnur verk staðfestum við efnið í tilboðinu.',
     listTitle: 'Verðskrá', calcTitle: 'Kostnaðarreiknivél', calcLead: 'Veldu verk og sláðu inn flatarmál. Þar sem verðbil er gefið er niðurstaðan líka verðbil.',
+    colWork: 'Verk', colRate: 'Taxti', colQty: 'Flatarmál', colCost: 'Kostnaður',
     qty: 'Flatarmál', enter: 'Sláðu inn', total: 'Áætlaður kostnaður', empty: 'Veldu verk og sláðu inn flatarmál til að sjá áætlaðan kostnað.',
     disclaimer: 'Þetta er áætlun byggð á verðum úr verðskránni. Endanlegt verð ákveðum við út frá fermetrafjölda, ástandi undirlags og umfangi verksins.',
     send: 'Bæta útreikningnum við fyrirspurnina', openFrom: 'frá', reset: 'Hreinsa'

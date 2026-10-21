@@ -11,7 +11,7 @@
 <link rel="alternate" hreflang="is" href="/primeverk/services/painting/"><link rel="alternate" hreflang="en" href="/primeverk/en/services/painting/"><link rel="alternate" hreflang="pl" href="/primeverk/pl/services/painting/"><link rel="alternate" hreflang="x-default" href="/primeverk/services/painting/">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Figtree:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/primeverk/assets/style.css?v=1792574765630">
+<link rel="stylesheet" href="/primeverk/assets/style.css?v=1792575073890">
 
 
 </head>
@@ -62,20 +62,24 @@
   </div>
 </section>
 
-<section class="section section-dark calc-merged" id="cennik">
+<section class="section" id="cennik">
   <div class="wrap">
-    <div class="sec-head on-dark"><div><p class="eyebrow">Verðskrá</p><h2>Verð fyrir málun</h2></div><p class="sec-lead">Sláðu inn flatarmál við þau verk sem þú þarft og áætlaður kostnaður birtist til hægri.</p></div>
-    <div class="calc calc-m">
-      <div><div class="pcards pcards-calc" id="calc-fields" data-static="1"><article class="pcard calc-row" data-id="paint"><span class="pc-ic"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="14" height="5" rx="1"/><path d="M18 5.5h2.5v5H11.5v3"/><rect x="9.5" y="13.5" width="4" height="7.5" rx="1"/></svg></span><h3>Málun veggja og lofta</h3><p class="pc-sub">grunnaðir veggir, upplyfting, lítils háttar undirbúningur</p><span class="pc-note">Aðeins vinna</span>
-    <div class="pc-price"><strong>3.000</strong><em>kr / m²</em><b class="tag-vat">án VSK</b></div>
-    <label class="pc-qty"><span>Sláðu inn flatarmál veggja og lofta sem á að mála</span><div><input type="number" inputmode="decimal" min="0" step="any" placeholder="0" data-id="paint" aria-label="Málun veggja og lofta: Sláðu inn flatarmál veggja og lofta sem á að mála"><em>m²</em></div></label>
-  </article></div></div>
-      <aside class="calc-side"><div id="calc-result" class="calc-result" aria-live="polite"></div>
-      <p class="fine">Þetta er áætlun byggð á verðum úr verðskránni. Endanlegt verð ákveðum við út frá fermetrafjölda, ástandi undirlags og umfangi verksins.</p>
-      <button id="calc-send" class="btn btn-gold" type="button" disabled><span>Bæta útreikningnum við fyrirspurnina</span><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></button>
-      <button id="calc-reset" class="btn btn-line" type="button"><span>Hreinsa</span></button>
-    </aside>
+    <div class="sec-head "><div><p class="eyebrow">Verðskrá</p><h2>Verð fyrir málun</h2></div><p class="sec-lead">Sláðu inn flatarmál við þau verk sem þú þarft. Kostnaður hvers liðar og heildin birtast strax.</p></div>
+    <div class="sheet">
+    <div class="sheet-head"><span>Verk</span><span>Taxti <b>(án VSK)</b></span><span>Flatarmál</span><span>Kostnaður</span></div>
+    <div id="calc-fields" data-static="1"><div class="calc-row sheet-row" data-id="paint">
+      <div class="sr-name"><h3>Málun veggja og lofta</h3><p>grunnaðir veggir, upplyfting, lítils háttar undirbúningur</p><span class="sr-note">Aðeins vinna</span></div>
+      <div class="sr-rate" data-label="Taxti"><strong>3.000</strong><em>kr / m²</em></div>
+      <label class="sr-qty" data-label="Flatarmál"><input type="number" inputmode="decimal" min="0" step="any" placeholder="0" data-id="paint" aria-label="Málun veggja og lofta: Sláðu inn flatarmál veggja og lofta sem á að mála"><em>m²</em><span class="sr-hint">Sláðu inn flatarmál veggja og lofta sem á að mála</span></label>
+      <div class="sr-sum" data-label="Kostnaður"><span class="row-sum" data-empty="—">—</span></div>
+    </div></div>
+    <div class="sheet-foot">
+      <div class="sf-note"><p>Þetta er áætlun byggð á verðum úr verðskránni. Endanlegt verð ákveðum við út frá fermetrafjölda, ástandi undirlags og umfangi verksins.</p></div>
+      <div class="sf-total"><div id="calc-result" class="calc-result" aria-live="polite"></div>
+        <div class="sf-btns"><button id="calc-send" class="btn btn-gold" type="button" disabled><span>Bæta útreikningnum við fyrirspurnina</span><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></button>
+        <button id="calc-reset" class="btn btn-line" type="button"><span>Hreinsa</span></button></div></div>
     </div>
+  </div>
     <p class="fine">Málun: verðið er fyrir vinnu eingöngu. Jöfnunarmassi: verðið innifelur efni. Hvað varðar önnur verk staðfestum við efnið í tilboðinu.</p>
     <p class="fine">Rými með óreglulegri lögun (þröngir gangar, margar súlur, vinna í kringum ofnarör) hækka kostnað við vinnuna, því nákvæm sögun efnis tekur lengri tíma.</p>
   </div>
@@ -128,7 +132,7 @@
   <div class="wrap foot-bot"><span>© 2026 Prime Verk. Allur réttur áskilinn.</span><span>Vefsíða: <a href="https://nataliajagus.com" target="_blank" rel="noopener">nataliajagus.com</a></span></div>
 </footer>
 <a class="fab" href="tel:+3547696246" aria-label="Hringdu"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3.5h4l1.5 4-2.2 1.5a11 11 0 0 0 6.7 6.7L16.5 13.5l4 1.5v4a2 2 0 0 1-2 2C10.5 21 3 13.5 3 5.5a2 2 0 0 1 2-2z"/></svg><span>Hringdu</span></a>
-<script>window.PV={"lang":"is","prices":[{"id":"paint","calc":"svc","unit":"m2","min":3000,"max":3000}],"groups":["svc"],"groupNames":{"svc":"Málun"},"names":{"paint":"Málun veggja og lofta"},"scopes":{"paint":"grunnaðir veggir, upplyfting, lítils háttar undirbúningur"},"notes":{"paint":"Aðeins vinna"},"hints":{"paint":"flatarmál veggja og lofta sem á að mála","spackle":"flatarmál veggja og lofta sem á að spartla","joints":"heildarlengd samskeyta gipsplatna","renovate":"flatarmál veggja sem á að endurbæta","floorTile":"flatarmál gólfsins","wallTile":"flatarmál veggjanna","largeTile":"flatarmál þess sem á að flísaleggja","removeTile":"flatarmál flísa sem á að brjóta","waterproof":"flatarmál þess sem á að vatnsverja","panelClick":"flatarmál gólfsins","panelGlue":"flatarmál gólfsins","leveling":"flatarmál gólfsins","removeFloor":"flatarmál gólfsins"},"ui":{"m2":"m²","mb":"m","kr":"kr","vat":"án VSK","perM2":"kr / m²","perMb":"kr / m","from":"frá","title":"Verðskrá og reiknivél","lead":"Öll verð eru án VSK. Endanlegt verð fer eftir fermetrafjölda, ástandi undirlags og umfangi verksins.","note":"Rými með óreglulegri lögun (þröngir gangar, margar súlur, vinna í kringum ofnarör) hækka kostnað við vinnuna, því nákvæm sögun efnis tekur lengri tíma.","materials":"Málun: verðið er fyrir vinnu eingöngu. Jöfnunarmassi: verðið innifelur efni. Hvað varðar önnur verk staðfestum við efnið í tilboðinu.","listTitle":"Verðskrá","calcTitle":"Kostnaðarreiknivél","calcLead":"Veldu verk og sláðu inn flatarmál. Þar sem verðbil er gefið er niðurstaðan líka verðbil.","qty":"Flatarmál","enter":"Sláðu inn","total":"Áætlaður kostnaður","empty":"Veldu verk og sláðu inn flatarmál til að sjá áætlaðan kostnað.","disclaimer":"Þetta er áætlun byggð á verðum úr verðskránni. Endanlegt verð ákveðum við út frá fermetrafjölda, ástandi undirlags og umfangi verksins.","send":"Bæta útreikningnum við fyrirspurnina","openFrom":"frá","reset":"Hreinsa"},"contactUrl":"/primeverk/contact/"};</script>
-<script src="/primeverk/assets/site.js?v=1792574765630" defer></script>
+<script>window.PV={"lang":"is","prices":[{"id":"paint","calc":"svc","unit":"m2","min":3000,"max":3000}],"groups":["svc"],"groupNames":{"svc":"Málun"},"names":{"paint":"Málun veggja og lofta"},"scopes":{"paint":"grunnaðir veggir, upplyfting, lítils háttar undirbúningur"},"notes":{"paint":"Aðeins vinna"},"hints":{"paint":"flatarmál veggja og lofta sem á að mála","spackle":"flatarmál veggja og lofta sem á að spartla","joints":"heildarlengd samskeyta gipsplatna","renovate":"flatarmál veggja sem á að endurbæta","floorTile":"flatarmál gólfsins","wallTile":"flatarmál veggjanna","largeTile":"flatarmál þess sem á að flísaleggja","removeTile":"flatarmál flísa sem á að brjóta","waterproof":"flatarmál þess sem á að vatnsverja","panelClick":"flatarmál gólfsins","panelGlue":"flatarmál gólfsins","leveling":"flatarmál gólfsins","removeFloor":"flatarmál gólfsins"},"ui":{"m2":"m²","mb":"m","kr":"kr","vat":"án VSK","perM2":"kr / m²","perMb":"kr / m","from":"frá","title":"Verðskrá og reiknivél","lead":"Öll verð eru án VSK. Endanlegt verð fer eftir fermetrafjölda, ástandi undirlags og umfangi verksins.","note":"Rými með óreglulegri lögun (þröngir gangar, margar súlur, vinna í kringum ofnarör) hækka kostnað við vinnuna, því nákvæm sögun efnis tekur lengri tíma.","materials":"Málun: verðið er fyrir vinnu eingöngu. Jöfnunarmassi: verðið innifelur efni. Hvað varðar önnur verk staðfestum við efnið í tilboðinu.","listTitle":"Verðskrá","calcTitle":"Kostnaðarreiknivél","calcLead":"Veldu verk og sláðu inn flatarmál. Þar sem verðbil er gefið er niðurstaðan líka verðbil.","colWork":"Verk","colRate":"Taxti","colQty":"Flatarmál","colCost":"Kostnaður","qty":"Flatarmál","enter":"Sláðu inn","total":"Áætlaður kostnaður","empty":"Veldu verk og sláðu inn flatarmál til að sjá áætlaðan kostnað.","disclaimer":"Þetta er áætlun byggð á verðum úr verðskránni. Endanlegt verð ákveðum við út frá fermetrafjölda, ástandi undirlags og umfangi verksins.","send":"Bæta útreikningnum við fyrirspurnina","openFrom":"frá","reset":"Hreinsa"},"contactUrl":"/primeverk/contact/"};</script>
+<script src="/primeverk/assets/site.js?v=1792575073890" defer></script>
 </body>
 </html>

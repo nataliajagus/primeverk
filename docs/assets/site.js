@@ -239,7 +239,18 @@
       if (t.open) return ui.openFrom + ' ' + fmt(t.min) + ' ' + ui.kr;
       return Math.round(t.min) === Math.round(t.max) ? fmt(t.min) + ' ' + ui.kr : fmt(t.min) + ' – ' + fmt(t.max) + ' ' + ui.kr;
     };
+    var rowText = function (pp, q) {
+      if (pp.max === null) return ui.from + ' ' + fmt(pp.min * q);
+      return pp.min === pp.max ? fmt(pp.min * q) + ' ' + ui.kr : fmt(pp.min * q) + '–' + fmt(pp.max * q) + ' ' + ui.kr;
+    };
     var render = function () {
+      PV.prices.forEach(function (pp) {
+        var el = $('.sheet-row[data-id="' + pp.id + '"] .row-sum');
+        if (!el) return;
+        var q = parseFloat(qty[pp.id]);
+        el.textContent = q > 0 ? rowText(pp, q) : el.dataset.empty;
+        el.classList.toggle('has', q > 0);
+      });
       var sel = selected(), box = $('#calc-result'), send = $('#calc-send');
       if (!sel.length) { box.innerHTML = '<p class="calc-empty">' + ui.empty + '</p>'; send.disabled = true; return; }
       var t = totals(sel);

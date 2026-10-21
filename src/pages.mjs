@@ -30,6 +30,31 @@ const priceCards = (L, rows) => `<div class="pcards">` + rows.map(r => {
   return `<article class="pcard reveal"><span class="pc-ic">${icon(ic)}</span><h3>${it.n}</h3>${it.s ? `<p class="pc-sub">${it.s}</p>` : ''}${it.m ? `<span class="pc-note">${it.m}</span>` : ''}<div class="pc-price">${amount}<em>${unit}</em><b class="tag-vat">${L.ui.vat}</b></div></article>`;
 }).join('') + `</div>`;
 
+const sheet = (L, rows) => {
+  const P = L.prices;
+  const body = rows.map(r => {
+    const it = L.items[r.id];
+    const unit = r.unit === 'm2' ? L.ui.perM2 : L.ui.perMb, u = r.unit === 'm2' ? L.ui.m2 : L.ui.mb;
+    const rate = r.max === null ? `${L.ui.from} ${fmtNum(r.min)}` : r.min === r.max ? fmtNum(r.min) : `${fmtNum(r.min)}–${fmtNum(r.max)}`;
+    return `<div class="calc-row sheet-row" data-id="${r.id}">
+      <div class="sr-name"><h3>${it.n}</h3>${it.s ? `<p>${it.s}</p>` : ''}${it.m ? `<span class="sr-note">${it.m}</span>` : ''}</div>
+      <div class="sr-rate" data-label="${esc(P.colRate)}"><strong>${rate}</strong><em>${unit}</em></div>
+      <label class="sr-qty" data-label="${esc(P.colQty)}"><input type="number" inputmode="decimal" min="0" step="any" placeholder="0" data-id="${r.id}" aria-label="${esc(it.n)}: ${esc(P.enter)} ${esc(L.itemHints[r.id])}"><em>${u}</em><span class="sr-hint">${esc(P.enter)} ${esc(L.itemHints[r.id])}</span></label>
+      <div class="sr-sum" data-label="${esc(P.colCost)}"><span class="row-sum" data-empty="—">—</span></div>
+    </div>`;
+  }).join('');
+  return `<div class="sheet">
+    <div class="sheet-head"><span>${P.colWork}</span><span>${P.colRate} <b>(${L.ui.vat})</b></span><span>${P.colQty}</span><span>${P.colCost}</span></div>
+    <div id="calc-fields" data-static="1">${body}</div>
+    <div class="sheet-foot">
+      <div class="sf-note"><p>${P.disclaimer}</p></div>
+      <div class="sf-total"><div id="calc-result" class="calc-result" aria-live="polite"></div>
+        <div class="sf-btns"><button id="calc-send" class="btn btn-gold" type="button" disabled><span>${P.send}</span>${icon('arrow')}</button>
+        <button id="calc-reset" class="btn btn-line" type="button"><span>${P.reset}</span></button></div></div>
+    </div>
+  </div>`;
+};
+
 const priceCardsCalc = (L, rows) => `<div class="pcards pcards-calc" id="calc-fields" data-static="1">` + rows.map(r => {
   const it = L.items[r.id];
   const ic = r.id === 'waterproof' ? 'bathrooms' : ITEM_ICON[r.calc];
@@ -340,13 +365,10 @@ export function servicePage(L, s) {
   </div>
 </section>
 
-<section class="section section-dark calc-merged" id="cennik">
+<section class="section" id="cennik">
   <div class="wrap">
-    ${secHead(L.ui.pricing, S.priceTitle, S.priceLead, 'on-dark')}
-    <div class="calc calc-m">
-      <div>${priceCardsCalc(L, rows)}</div>
-      ${calcSide(L)}
-    </div>
+    ${secHead(L.ui.pricing, S.priceTitle, S.priceLead)}
+    ${sheet(L, rows)}
     <p class="fine">${L.prices.materials}</p>
     <p class="fine">${L.prices.note}</p>
   </div>

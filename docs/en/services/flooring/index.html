@@ -11,7 +11,7 @@
 <link rel="alternate" hreflang="is" href="/primeverk/services/flooring/"><link rel="alternate" hreflang="en" href="/primeverk/en/services/flooring/"><link rel="alternate" hreflang="pl" href="/primeverk/pl/services/flooring/"><link rel="alternate" hreflang="x-default" href="/primeverk/services/flooring/">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Figtree:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/primeverk/assets/style.css?v=1792574765641">
+<link rel="stylesheet" href="/primeverk/assets/style.css?v=1792575073902">
 
 
 </head>
@@ -62,29 +62,39 @@
   </div>
 </section>
 
-<section class="section section-dark calc-merged" id="cennik">
+<section class="section" id="cennik">
   <div class="wrap">
-    <div class="sec-head on-dark"><div><p class="eyebrow">Pricing</p><h2>Flooring rates</h2></div><p class="sec-lead">Enter the area for the work you need and the estimated cost appears on the right.</p></div>
-    <div class="calc calc-m">
-      <div><div class="pcards pcards-calc" id="calc-fields" data-static="1"><article class="pcard calc-row" data-id="panelClick"><span class="pc-ic"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 12h18M9 5v7M15 12v7"/></svg></span><h3>Laying panels</h3><p class="pc-sub">click system</p>
-    <div class="pc-price"><strong>1.800–2.300</strong><em>kr / m²</em><b class="tag-vat">excl. VAT</b></div>
-    <label class="pc-qty"><span>Enter the floor area</span><div><input type="number" inputmode="decimal" min="0" step="any" placeholder="0" data-id="panelClick" aria-label="Laying panels: Enter the floor area"><em>m²</em></div></label>
-  </article><article class="pcard calc-row" data-id="panelGlue"><span class="pc-ic"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 12h18M9 5v7M15 12v7"/></svg></span><h3>Laying vinyl panels</h3><p class="pc-sub">glued down</p>
-    <div class="pc-price"><strong>4.000</strong><em>kr / m²</em><b class="tag-vat">excl. VAT</b></div>
-    <label class="pc-qty"><span>Enter the floor area</span><div><input type="number" inputmode="decimal" min="0" step="any" placeholder="0" data-id="panelGlue" aria-label="Laying vinyl panels: Enter the floor area"><em>m²</em></div></label>
-  </article><article class="pcard calc-row" data-id="leveling"><span class="pc-ic"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 12h18M9 5v7M15 12v7"/></svg></span><h3>Self-levelling compound</h3><p class="pc-sub">screed</p><span class="pc-note">Price includes material</span>
-    <div class="pc-price"><strong>4.000</strong><em>kr / m²</em><b class="tag-vat">excl. VAT</b></div>
-    <label class="pc-qty"><span>Enter the floor area</span><div><input type="number" inputmode="decimal" min="0" step="any" placeholder="0" data-id="leveling" aria-label="Self-levelling compound: Enter the floor area"><em>m²</em></div></label>
-  </article><article class="pcard calc-row" data-id="removeFloor"><span class="pc-ic"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 12h18M9 5v7M15 12v7"/></svg></span><h3>Removing the old floor</h3><p class="pc-sub">parquet, tiles or carpet, substrate preparation</p>
-    <div class="pc-price"><strong>2.000</strong><em>kr / m²</em><b class="tag-vat">excl. VAT</b></div>
-    <label class="pc-qty"><span>Enter the floor area</span><div><input type="number" inputmode="decimal" min="0" step="any" placeholder="0" data-id="removeFloor" aria-label="Removing the old floor: Enter the floor area"><em>m²</em></div></label>
-  </article></div></div>
-      <aside class="calc-side"><div id="calc-result" class="calc-result" aria-live="polite"></div>
-      <p class="fine">This is an estimate based on the rates in the price list. We set the final quote from the area, the condition of the substrate and the scope of work.</p>
-      <button id="calc-send" class="btn btn-gold" type="button" disabled><span>Attach the estimate to your enquiry</span><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></button>
-      <button id="calc-reset" class="btn btn-line" type="button"><span>Clear</span></button>
-    </aside>
+    <div class="sec-head "><div><p class="eyebrow">Pricing</p><h2>Flooring rates</h2></div><p class="sec-lead">Enter the area for the work you need. You see the cost of each line and the total straight away.</p></div>
+    <div class="sheet">
+    <div class="sheet-head"><span>Work</span><span>Rate <b>(excl. VAT)</b></span><span>Area</span><span>Cost</span></div>
+    <div id="calc-fields" data-static="1"><div class="calc-row sheet-row" data-id="panelClick">
+      <div class="sr-name"><h3>Laying panels</h3><p>click system</p></div>
+      <div class="sr-rate" data-label="Rate"><strong>1.800–2.300</strong><em>kr / m²</em></div>
+      <label class="sr-qty" data-label="Area"><input type="number" inputmode="decimal" min="0" step="any" placeholder="0" data-id="panelClick" aria-label="Laying panels: Enter the floor area"><em>m²</em><span class="sr-hint">Enter the floor area</span></label>
+      <div class="sr-sum" data-label="Cost"><span class="row-sum" data-empty="—">—</span></div>
+    </div><div class="calc-row sheet-row" data-id="panelGlue">
+      <div class="sr-name"><h3>Laying vinyl panels</h3><p>glued down</p></div>
+      <div class="sr-rate" data-label="Rate"><strong>4.000</strong><em>kr / m²</em></div>
+      <label class="sr-qty" data-label="Area"><input type="number" inputmode="decimal" min="0" step="any" placeholder="0" data-id="panelGlue" aria-label="Laying vinyl panels: Enter the floor area"><em>m²</em><span class="sr-hint">Enter the floor area</span></label>
+      <div class="sr-sum" data-label="Cost"><span class="row-sum" data-empty="—">—</span></div>
+    </div><div class="calc-row sheet-row" data-id="leveling">
+      <div class="sr-name"><h3>Self-levelling compound</h3><p>screed</p><span class="sr-note">Price includes material</span></div>
+      <div class="sr-rate" data-label="Rate"><strong>4.000</strong><em>kr / m²</em></div>
+      <label class="sr-qty" data-label="Area"><input type="number" inputmode="decimal" min="0" step="any" placeholder="0" data-id="leveling" aria-label="Self-levelling compound: Enter the floor area"><em>m²</em><span class="sr-hint">Enter the floor area</span></label>
+      <div class="sr-sum" data-label="Cost"><span class="row-sum" data-empty="—">—</span></div>
+    </div><div class="calc-row sheet-row" data-id="removeFloor">
+      <div class="sr-name"><h3>Removing the old floor</h3><p>parquet, tiles or carpet, substrate preparation</p></div>
+      <div class="sr-rate" data-label="Rate"><strong>2.000</strong><em>kr / m²</em></div>
+      <label class="sr-qty" data-label="Area"><input type="number" inputmode="decimal" min="0" step="any" placeholder="0" data-id="removeFloor" aria-label="Removing the old floor: Enter the floor area"><em>m²</em><span class="sr-hint">Enter the floor area</span></label>
+      <div class="sr-sum" data-label="Cost"><span class="row-sum" data-empty="—">—</span></div>
+    </div></div>
+    <div class="sheet-foot">
+      <div class="sf-note"><p>This is an estimate based on the rates in the price list. We set the final quote from the area, the condition of the substrate and the scope of work.</p></div>
+      <div class="sf-total"><div id="calc-result" class="calc-result" aria-live="polite"></div>
+        <div class="sf-btns"><button id="calc-send" class="btn btn-gold" type="button" disabled><span>Attach the estimate to your enquiry</span><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></button>
+        <button id="calc-reset" class="btn btn-line" type="button"><span>Clear</span></button></div></div>
     </div>
+  </div>
     <p class="fine">Painting: the price covers labour only. Self-levelling compound: the price includes material. For other items, we confirm which materials are covered in the quote.</p>
     <p class="fine">Irregular rooms (narrow hallways, many columns, cutting around radiator pipes) raise the cost of labour, because precise cutting takes more time.</p>
   </div>
@@ -137,7 +147,7 @@
   <div class="wrap foot-bot"><span>© 2026 Prime Verk. All rights reserved.</span><span>Website by <a href="https://nataliajagus.com" target="_blank" rel="noopener">nataliajagus.com</a></span></div>
 </footer>
 <a class="fab" href="tel:+3547696246" aria-label="Call"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3.5h4l1.5 4-2.2 1.5a11 11 0 0 0 6.7 6.7L16.5 13.5l4 1.5v4a2 2 0 0 1-2 2C10.5 21 3 13.5 3 5.5a2 2 0 0 1 2-2z"/></svg><span>Call</span></a>
-<script>window.PV={"lang":"en","prices":[{"id":"panelClick","calc":"svc","unit":"m2","min":1800,"max":2300},{"id":"panelGlue","calc":"svc","unit":"m2","min":4000,"max":4000},{"id":"leveling","calc":"svc","unit":"m2","min":4000,"max":4000},{"id":"removeFloor","calc":"svc","unit":"m2","min":2000,"max":2000}],"groups":["svc"],"groupNames":{"svc":"Flooring"},"names":{"panelClick":"Laying panels","panelGlue":"Laying vinyl panels","leveling":"Self-levelling compound","removeFloor":"Removing the old floor"},"scopes":{"panelClick":"click system","panelGlue":"glued down","leveling":"screed","removeFloor":"parquet, tiles or carpet, substrate preparation"},"notes":{"panelClick":"","panelGlue":"","leveling":"Price includes material","removeFloor":""},"hints":{"paint":"the area of the walls and ceilings to be painted","spackle":"the area of the walls and ceilings to be plastered","joints":"the total length of the plasterboard joints","renovate":"the area of the walls to be renovated","floorTile":"the floor area","wallTile":"the wall area","largeTile":"the area to be tiled","removeTile":"the area of tiles to be removed","waterproof":"the area to be waterproofed","panelClick":"the floor area","panelGlue":"the floor area","leveling":"the floor area","removeFloor":"the floor area"},"ui":{"m2":"m²","mb":"m","kr":"kr","vat":"excl. VAT","perM2":"kr / m²","perMb":"kr / m","from":"from","title":"Pricing and calculator","lead":"Prices are excl. VAT. The final quote depends on the area, the condition of the substrate and the scope of work.","note":"Irregular rooms (narrow hallways, many columns, cutting around radiator pipes) raise the cost of labour, because precise cutting takes more time.","materials":"Painting: the price covers labour only. Self-levelling compound: the price includes material. For other items, we confirm which materials are covered in the quote.","listTitle":"Price list","calcTitle":"Cost calculator","calcLead":"Choose the work and enter the area. For items with a range of rates, the result is also a range.","qty":"Area","enter":"Enter","total":"Estimated cost","empty":"Choose the work and enter the area to see the estimated cost.","disclaimer":"This is an estimate based on the rates in the price list. We set the final quote from the area, the condition of the substrate and the scope of work.","send":"Attach the estimate to your enquiry","openFrom":"from","reset":"Clear"},"contactUrl":"/primeverk/en/contact/"};</script>
-<script src="/primeverk/assets/site.js?v=1792574765641" defer></script>
+<script>window.PV={"lang":"en","prices":[{"id":"panelClick","calc":"svc","unit":"m2","min":1800,"max":2300},{"id":"panelGlue","calc":"svc","unit":"m2","min":4000,"max":4000},{"id":"leveling","calc":"svc","unit":"m2","min":4000,"max":4000},{"id":"removeFloor","calc":"svc","unit":"m2","min":2000,"max":2000}],"groups":["svc"],"groupNames":{"svc":"Flooring"},"names":{"panelClick":"Laying panels","panelGlue":"Laying vinyl panels","leveling":"Self-levelling compound","removeFloor":"Removing the old floor"},"scopes":{"panelClick":"click system","panelGlue":"glued down","leveling":"screed","removeFloor":"parquet, tiles or carpet, substrate preparation"},"notes":{"panelClick":"","panelGlue":"","leveling":"Price includes material","removeFloor":""},"hints":{"paint":"the area of the walls and ceilings to be painted","spackle":"the area of the walls and ceilings to be plastered","joints":"the total length of the plasterboard joints","renovate":"the area of the walls to be renovated","floorTile":"the floor area","wallTile":"the wall area","largeTile":"the area to be tiled","removeTile":"the area of tiles to be removed","waterproof":"the area to be waterproofed","panelClick":"the floor area","panelGlue":"the floor area","leveling":"the floor area","removeFloor":"the floor area"},"ui":{"m2":"m²","mb":"m","kr":"kr","vat":"excl. VAT","perM2":"kr / m²","perMb":"kr / m","from":"from","title":"Pricing and calculator","lead":"Prices are excl. VAT. The final quote depends on the area, the condition of the substrate and the scope of work.","note":"Irregular rooms (narrow hallways, many columns, cutting around radiator pipes) raise the cost of labour, because precise cutting takes more time.","materials":"Painting: the price covers labour only. Self-levelling compound: the price includes material. For other items, we confirm which materials are covered in the quote.","listTitle":"Price list","calcTitle":"Cost calculator","calcLead":"Choose the work and enter the area. For items with a range of rates, the result is also a range.","colWork":"Work","colRate":"Rate","colQty":"Area","colCost":"Cost","qty":"Area","enter":"Enter","total":"Estimated cost","empty":"Choose the work and enter the area to see the estimated cost.","disclaimer":"This is an estimate based on the rates in the price list. We set the final quote from the area, the condition of the substrate and the scope of work.","send":"Attach the estimate to your enquiry","openFrom":"from","reset":"Clear"},"contactUrl":"/primeverk/en/contact/"};</script>
+<script src="/primeverk/assets/site.js?v=1792575073902" defer></script>
 </body>
 </html>

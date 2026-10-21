@@ -707,3 +707,40 @@ body { overflow-x: clip; }
 .cta-text { max-width: min(560px, 46%); }
 @media (max-width: 900px) { .cta-text { max-width: none; } }
 .svc-painting-steps, .how-photo .photo img { object-position: 60% 40%; }
+
+/* ===== kartka wyceny (cennik + liczenie w jednym) ===== */
+.sheet { background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--gold); box-shadow: 0 30px 60px -40px rgba(0,0,0,.45); }
+.sheet-head, .sheet-row { display: grid; grid-template-columns: minmax(0, 2.4fr) minmax(0, 1.1fr) minmax(0, 1.3fr) minmax(0, 1.2fr); gap: 20px; align-items: center; padding: 0 28px; }
+.sheet-head { padding-block: 14px; background: var(--ink); color: var(--paper); font: 600 .85rem var(--label); letter-spacing: .12em; text-transform: uppercase; }
+.sheet-head b { font-weight: 500; color: var(--gold); }
+.sheet-row { padding-block: 20px; border-bottom: 1px solid var(--line); transition: background .25s; }
+.sheet-row:hover, .sheet-row.on { background: rgba(179,142,85,.1); }
+.sr-name h3 { font-size: 1.12rem; }
+.sr-name p { color: var(--muted); font-size: .9rem; margin-top: 2px; }
+.sr-note { display: inline-block; margin-top: 6px; font: 600 .8rem var(--label); letter-spacing: .08em; text-transform: uppercase; color: var(--gold-ink); border: 1px solid var(--gold); padding: 2px 8px; }
+.sr-rate strong { font: 800 1.35rem/1 var(--display); font-stretch: 108%; letter-spacing: -.02em; }
+.sr-rate em { display: block; margin-top: 3px; font: 500 .85rem var(--label); font-style: normal; color: var(--muted); }
+.sr-qty { display: grid; grid-template-columns: 1fr auto; gap: 4px 8px; align-items: center; }
+.sr-qty input { min-width: 0; width: 100%; padding: 12px 14px; background: #fff; color: var(--fg); border: 2px solid var(--line); border-radius: 2px; font: 700 1.2rem var(--label); text-align: right; }
+.sr-qty input:focus { outline: none; border-color: var(--gold); }
+.sr-qty em { font: 500 .95rem var(--label); font-style: normal; color: var(--muted); }
+.sr-hint { grid-column: 1 / -1; font-size: .78rem; color: var(--muted); line-height: 1.3; }
+.row-sum { font: 800 1.25rem/1.1 var(--display); font-stretch: 106%; letter-spacing: -.02em; color: var(--muted); opacity: .55; }
+.row-sum.has { color: var(--fg); opacity: 1; }
+.sheet-foot { display: grid; grid-template-columns: 1fr minmax(0, 1.1fr); gap: 28px; align-items: center; padding: 24px 28px; background: var(--sand); }
+.sf-note p { font-size: .88rem; color: var(--muted); max-width: 42ch; }
+.sheet .calc-result { background: transparent; padding: 0; min-height: 0; color: var(--fg); gap: 6px; }
+.sheet .calc-sum { font-size: clamp(1.8rem, 3vw, 2.4rem); }
+.sheet .calc-lines { display: none; }
+.sheet .calc-empty { font-size: .95rem; }
+.sf-btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+@media (max-width: 860px) {
+  .sheet-head { display: none; }
+  .sheet-row { grid-template-columns: 1fr 1fr 1fr; gap: 14px 16px; padding: 20px 18px; }
+  .sr-name { grid-column: 1 / -1; }
+  .sr-rate::before, .sr-qty::before, .sr-sum::before { content: attr(data-label); display: block; font: 600 .75rem var(--label); letter-spacing: .1em; text-transform: uppercase; color: var(--gold-ink); margin-bottom: 4px; }
+  .sr-qty { grid-template-columns: 1fr auto; } .sr-qty::before { grid-column: 1 / -1; }
+  .sr-hint { display: none; }
+  .sheet-foot { grid-template-columns: 1fr; padding: 20px 18px; }
+}
+@media (max-width: 480px) { .sheet-row { grid-template-columns: 1fr 1fr; } .sr-sum { grid-column: 1 / -1; } }

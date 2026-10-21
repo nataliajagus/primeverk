@@ -86,7 +86,7 @@ export default {
     painting: {
       name: 'Malowanie', short: 'Malowanie i odświeżanie ścian oraz sufitów.',
       stepsTitle: 'Jak wygląda malowanie', faqTitle: 'Pytania o malowanie',
-      priceTitle: 'Stawka za malowanie', priceLead: 'Podaj powierzchnię przy wybranych pracach, a po prawej zobaczysz orientacyjny koszt.',
+      priceTitle: 'Stawka za malowanie', priceLead: 'Podaj powierzchnię przy wybranych pracach. Koszt każdej pozycji i sumę zobaczysz od razu.',
       seo: ['Malowanie wnętrz Reykjavík od 3.000 kr/m² | Prime Verk', 'Malowanie ścian i sufitów w Reykjavíku i okolicach. Robocizna od 3.000 kr/m² (bez VAT).'],
       lead: 'Malujemy ściany i sufity. Podstawowa stawka dotyczy odświeżania ścian, które są już zagruntowane.',
       intro: ['Stawka 3.000 kr/m² obejmuje samą robociznę. Dotyczy ścian już zagruntowanych, które trzeba odświeżyć, z drobnymi przygotowaniami.', 'Jeśli ściany wymagają naprawy, najpierw je wyrównujemy. Zakres takich prac opisujemy w wycenie.'],
@@ -104,7 +104,7 @@ export default {
     plastering: {
       name: 'Szpachlowanie i naprawy', short: 'Gładkie ściany, łączenia płyt G-K i renowacja starych ścian.',
       stepsTitle: 'Jak wygląda szpachlowanie', faqTitle: 'Pytania o szpachlowanie i naprawy',
-      priceTitle: 'Stawki za szpachlowanie i naprawy', priceLead: 'Podaj powierzchnię przy wybranych pracach, a po prawej zobaczysz orientacyjny koszt.',
+      priceTitle: 'Stawki za szpachlowanie i naprawy', priceLead: 'Podaj powierzchnię przy wybranych pracach. Koszt każdej pozycji i sumę zobaczysz od razu.',
       seo: ['Szpachlowanie ścian Reykjavík od 3.500 kr/m² | Prime Verk', 'Szpachlowanie ścian, łączenia płyt G-K i renowacja starych ścian w Reykjavíku. Od 3.500 kr/m² (bez VAT).'],
       lead: 'Przygotowujemy ściany pod malowanie: od szpachlowania łączeń płyt G-K po renowację starych ścian.',
       intro: ['Dobre malowanie zaczyna się od dobrej ściany. Szpachlujemy całe powierzchnie albo same łączenia płyt G-K. Naprawiamy też pęknięcia i nierówności.', 'Przy starych ścianach skrobiemy, usuwamy pęknięcia i prostujemy powierzchnię.'],
@@ -122,7 +122,7 @@ export default {
     tiling: {
       name: 'Układanie płytek', short: 'Płytki podłogowe i ścienne, wielki format i mozaiki.',
       stepsTitle: 'Jak układamy płytki', faqTitle: 'Pytania o układanie płytek',
-      priceTitle: 'Stawki za układanie płytek', priceLead: 'Podaj powierzchnię przy wybranych pracach, a po prawej zobaczysz orientacyjny koszt.',
+      priceTitle: 'Stawki za układanie płytek', priceLead: 'Podaj powierzchnię przy wybranych pracach. Koszt każdej pozycji i sumę zobaczysz od razu.',
       seo: ['Układanie płytek Reykjavík od 7.500 kr/m² | Prime Verk', 'Układanie płytek podłogowych i ściennych, wielkiego formatu i mozaik w Reykjavíku. Od 7.500 kr/m² (bez VAT).'],
       lead: 'Układamy płytki podłogowe i ścienne, także wielkoformatowe i mozaiki.',
       intro: ['O efekcie decydują dokładne poziomowanie i docinanie płytek.', 'Wielki format i mozaiki wymagają więcej czasu na cięcie i precyzyjne poziomowanie, dlatego mają osobną stawkę.'],
@@ -140,7 +140,7 @@ export default {
     bathrooms: {
       name: 'Wykończenie łazienek', short: 'Skuwanie płytek, przygotowanie podłoża, hydroizolacja i nowe okładziny.',
       stepsTitle: 'Jak wygląda wykończenie łazienki', faqTitle: 'Pytania o wykończenie łazienek',
-      priceTitle: 'Stawki za prace w łazience', priceLead: 'Podaj powierzchnię przy wybranych pracach, a po prawej zobaczysz orientacyjny koszt.',
+      priceTitle: 'Stawki za prace w łazience', priceLead: 'Podaj powierzchnię przy wybranych pracach. Koszt każdej pozycji i sumę zobaczysz od razu.',
       seo: ['Wykończenie łazienek Reykjavík | Prime Verk', 'Skuwanie płytek, hydroizolacja strefy mokrej i układanie nowych płytek w łazience. Reykjavík i okolice.'],
       lead: 'Zajmujemy się wykończeniem łazienki: skuwamy stare płytki, przygotowujemy podłoże, wykonujemy hydroizolację i układamy nowe okładziny.',
       intro: ['Wycena zależy od zakresu prac i metrażu. Stawki poszczególnych prac znajdziesz w cenniku poniżej.', 'Hydroizolację wykonujemy płynną folią z taśmami uszczelniającymi w strefie mokrej. Stawka 2.800–4.000 kr/m² dotyczy wyłącznie hydroizolacji, a nie całej łazienki.'],
@@ -158,7 +158,7 @@ export default {
     flooring: {
       name: 'Podłogi', short: 'Panele klik i winylowe, masa samopoziomująca, zrywanie starych podłóg.',
       stepsTitle: 'Jak układamy podłogi', faqTitle: 'Pytania o podłogi',
-      priceTitle: 'Stawki za podłogi', priceLead: 'Podaj powierzchnię przy wybranych pracach, a po prawej zobaczysz orientacyjny koszt.',
+      priceTitle: 'Stawki za podłogi', priceLead: 'Podaj powierzchnię przy wybranych pracach. Koszt każdej pozycji i sumę zobaczysz od razu.',
       seo: ['Układanie paneli i podłóg Reykjavík | Prime Verk', 'Panele klik i winylowe na klej, masa samopoziomująca i zrywanie starych podłóg w Reykjavíku. Od 1.800 kr/m² (bez VAT).'],
       lead: 'Układamy panele klik i winylowe na klej. Przygotowujemy też podłoże: masa samopoziomująca i zrywanie starych podłóg.',
       intro: ['Panele wymagają równego podłoża. Jeśli podłoga jest nierówna, wykonujemy masę samopoziomującą. Starą podłogę zrywamy i przygotowujemy powierzchnię.', 'Układamy panele w systemie klik oraz panele winylowe na klej.'],
@@ -186,6 +186,7 @@ export default {
     note: 'Pomieszczenia o nieregularnych kształtach (wąskie korytarze, dużo filarów, obróbka wokół rur od grzejników) podnoszą koszt robocizny, bo precyzyjne docinanie materiału zajmuje więcej czasu.',
     materials: 'Malowanie: cena dotyczy samej robocizny. Masa samopoziomująca: cena obejmuje materiał. Przy pozostałych pozycjach zakres materiałów potwierdzamy w wycenie.',
     listTitle: 'Cennik', calcTitle: 'Kalkulator kosztów', calcLead: 'Wybierz prace i podaj powierzchnię. Dla pozycji z przedziałem stawek wynik też jest przedziałem.',
+    colWork: 'Praca', colRate: 'Stawka', colQty: 'Powierzchnia', colCost: 'Koszt',
     qty: 'Powierzchnia', enter: 'Podaj', total: 'Orientacyjny koszt', empty: 'Wybierz prace i podaj powierzchnię, aby zobaczyć orientacyjny koszt.',
     disclaimer: 'To wyliczenie orientacyjne, oparte na stawkach z cennika. Ostateczną wycenę ustalamy na podstawie metrażu, stanu podłoża i zakresu prac.',
     send: 'Dołącz wyliczenie do zapytania', openFrom: 'od', reset: 'Wyczyść'
