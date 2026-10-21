@@ -19,6 +19,7 @@ Wrzuć plik do `src/img/<slot>.jpg` (lub .webp/.png), uruchom `node src/build.mj
 | `cta-photo` | 4:3 | Opisz zlecenie, a przygotujemy wycenę |
 | `contact-photo` | 4:3 | Zrobione równo |
 | `svc-painting-hero` | 4:3 | Pomalowany salon |
+| `svc-painting-steps` | 4:5 | Pomalowany salon |
 | `svc-plastering-hero` | 4:3 | Szpachlowana ściana |
 | `svc-tiling-hero` | 4:3 | Płytki podłogowe w korytarzu |
 | `svc-bathrooms-hero` | 4:3 | Nowoczesna łazienka z płytkami |

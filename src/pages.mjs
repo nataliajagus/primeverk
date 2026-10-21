@@ -1,5 +1,5 @@
 import { PRICES, SERVICES, CALC_GROUPS, fromPrice, rowsFor, fmtNum } from './data/prices.mjs';
-import { BASE, CONTACT, esc, stripTags, icon, flag, urlFor, asset, photo, priceTag, ruler, faqList, faqJsonLd, btn } from './ui.mjs';
+import { BASE, CONTACT, hasImg, esc, stripTags, icon, flag, urlFor, asset, photo, priceTag, ruler, faqList, faqJsonLd, btn } from './ui.mjs';
 
 export const LANGS = ['is', 'en', 'pl'];
 const NAV_ORDER = ['services', 'prices', 'contact'];
@@ -336,7 +336,7 @@ export function servicePage(L, s) {
       ${secHead(L.ui.process, S.stepsTitle)}
       <ol class="how-steps">${S.steps.map(([t, d], i) => `<li class="reveal"><span class="how-ic">${icon(['ruler', 'level', s, 'check'][i] || 'check')}</span><div><span class="how-n">${L.ui.step} ${i + 1}</span><h3>${t}</h3><p>${d}</p></div></li>`).join('')}</ol>
     </div>
-    <div class="how-photo reveal">${photo('svc-' + s + '-card', { label: S.photos[0], ratio: '4x5', ic: s, tone: SVC_TONE[s] })}</div>
+    <div class="how-photo reveal">${photo(hasImg('svc-' + s + '-steps') ? 'svc-' + s + '-steps' : 'svc-' + s + '-card', { label: S.photos[0], ratio: '4x5', ic: s, tone: SVC_TONE[s] })}</div>
   </div>
 </section>
 

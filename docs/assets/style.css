@@ -706,3 +706,4 @@ body { overflow-x: clip; }
 .cta-photo { width: 52%; }
 .cta-text { max-width: min(560px, 46%); }
 @media (max-width: 900px) { .cta-text { max-width: none; } }
+.svc-painting-steps, .how-photo .photo img { object-position: 60% 40%; }

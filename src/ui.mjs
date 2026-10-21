@@ -57,6 +57,7 @@ export const urlFor = (lang, p = '/') => `${BASE}${lang === 'is' ? '' : '/' + la
 export const asset = f => `${BASE}/assets/${f}`;
 
 // ---------- zdjęcia stockowe: placeholdery (podmieniane plikami z src/img/<slot>.jpg|webp|png) ----------
+export const hasImg = slot => ['jpg','jpeg','webp','png'].some(e => fs.existsSync(path.join(ROOT, 'img', `${slot}.${e}`)));
 export const PHOTO_SLOTS = new Map();
 const TONES = ['concrete', 'basalt', 'gold', 'slate'];
 export function photo(slot, { label, ratio = '4x3', tone, ic = 'camera', stock, cls = '', prio = false } = {}) {
