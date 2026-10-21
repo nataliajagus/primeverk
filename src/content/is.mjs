@@ -63,7 +63,8 @@ export default {
     panelClick: { n: 'Lagning plastparkets', s: 'smellukerfi' },
     panelGlue: { n: 'Lagning vínylgólfs', s: 'límt við undirlag' },
     leveling: { n: 'Jöfnunarmassi', s: 'gólfjöfnun' },
-    removeFloor: { n: 'Fjarlæging gamals parkets', s: 'undirbúningur undirlags' }
+    removeFloor: { n: 'Fjarlæging gamals parkets', s: 'undirbúningur undirlags' },
+    skirting: { n: 'Uppsetning gólflista', s: 'verð fer eftir gerð: plast (PVC) ódýrara, MDF eða tré dýrara vegna 45° geirskurðar og límingar' }
   },
   itemHints: {
     paint: 'flatarmál veggja og lofta sem á að mála',
@@ -78,7 +79,8 @@ export default {
     panelClick: 'flatarmál gólfsins',
     panelGlue: 'flatarmál gólfsins',
     leveling: 'flatarmál gólfsins',
-    removeFloor: 'flatarmál gólfsins'
+    removeFloor: 'flatarmál gólfsins',
+    skirting: 'heildarlengd gólflista'
   },
   calcGroups: { paint: 'Málun', plaster: 'Spartl og lagfæringar', tiles: 'Flísar, upprif og vatnsvörn', floor: 'Gólfefni' },
   svc: {
@@ -162,7 +164,7 @@ export default {
       seo: ['Gólfefni og parket Reykjavík | Prime Verk', 'Plastparket, vínylgólf, jöfnunarmassi og fjarlæging gamalla gólfefna í Reykjavík. Frá 1.800 kr/m² (án VSK).'],
       lead: 'Við leggjum plastparket með smellukerfi og vínylgólf með límingu. Við sjáum líka um undirlagið: jöfnunarmassa og fjarlægingu gamalla gólfefna.',
       intro: ['Parket þarf jafnt undirlag. Sé gólfið ójafnt leggjum við jöfnunarmassa. Gamla gólfefnið tökum við upp og undirbúum yfirborðið.', 'Plastparket leggjum við með smellukerfi og vínylgólf með límingu.'],
-      includes: ['Lagning plastparkets með smellukerfi', 'Lagning vínylgólfs með límingu', 'Jöfnunarmassi', 'Fjarlæging gamals parkets', 'Slípun á gömlu lími'],
+      includes: ['Lagning plastparkets með smellukerfi', 'Lagning vínylgólfs með límingu', 'Jöfnunarmassi', 'Fjarlæging gamals parkets', 'Slípun á gömlu lími', 'Uppsetning gólflista'],
       steps: [['Mæling', 'Við athugum hvort undirlagið er jafnt.'], ['Fjarlæging', 'Við tökum upp gamla gólfefnið.'], ['Jöfnun', 'Við leggjum jöfnunarmassa.'], ['Lagning', 'Við leggjum nýja gólfefnið.']],
       photos: ['Parket í björtu herbergi', 'Vínylgólf í eldhúsi', 'Undirbúningur undirlags'],
       faq: [

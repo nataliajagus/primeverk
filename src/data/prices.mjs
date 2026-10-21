@@ -13,7 +13,8 @@ export const PRICES = [
   { id: 'panelClick',  calc: 'floor',    unit: 'm2', min: 1800,  max: 2300, svc: ['flooring'] },
   { id: 'panelGlue',   calc: 'floor',    unit: 'm2', min: 4000,  max: 4000, svc: ['flooring'] },
   { id: 'leveling',    calc: 'floor',    unit: 'm2', min: 3000,  max: 3000, svc: ['flooring'] },
-  { id: 'removeFloor', calc: 'floor',    unit: 'm2', min: 2000,  max: 2000, svc: ['flooring'] }
+  { id: 'removeFloor', calc: 'floor',    unit: 'm2', min: 2000,  max: 2000, svc: ['flooring'] },
+  { id: 'skirting',    calc: 'floor',    unit: 'mb', min: 500,   max: 1100, svc: ['flooring'] }
 ];
 export const CALC_GROUPS = ['paint', 'plaster', 'tiles', 'floor'];
 

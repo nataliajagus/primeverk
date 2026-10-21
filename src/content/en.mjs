@@ -63,7 +63,8 @@ export default {
     panelClick: { n: 'Click panels', s: 'click-lock system' },
     panelGlue: { n: 'Vinyl panels', s: 'glued down' },
     leveling: { n: 'Self-levelling compound', s: 'screed' },
-    removeFloor: { n: 'Removing old panels', s: 'with surface preparation' }
+    removeFloor: { n: 'Removing old panels', s: 'with surface preparation' },
+    skirting: { n: 'Skirting board fitting', s: 'the price depends on the type: PVC (cheaper), MDF or wood (more, because of 45° mitre cuts and gluing)' }
   },
   itemHints: {
     paint: 'the area of walls and ceilings to be painted',
@@ -78,7 +79,8 @@ export default {
     panelClick: 'the floor area',
     panelGlue: 'the floor area',
     leveling: 'the floor area',
-    removeFloor: 'the floor area'
+    removeFloor: 'the floor area',
+    skirting: 'the total length of skirting'
   },
   calcGroups: { paint: 'Painting', plaster: 'Plastering and repairs', tiles: 'Tiles, removal and waterproofing', floor: 'Flooring' },
   svc: {
@@ -162,7 +164,7 @@ export default {
       seo: ['Laying panels and floors Reykjavík | Prime Verk', 'Click panels, glued vinyl, self-levelling compound and floor removal in Reykjavík. From 1.800 kr/m² (excl. VAT).'],
       lead: 'We lay click panels and glued vinyl panels, and prepare the floor beneath: self-levelling compound and removing the old surface.',
       intro: ['Panels need an even base. If your floor is uneven, we apply self-levelling compound. Where there is an old floor, we take it up and prepare the surface.', 'We lay click-lock panels and glued vinyl panels.'],
-      includes: ['Laying click-lock panels', 'Laying glued vinyl panels', 'Self-levelling compound', 'Removing old panels', 'Grinding off old adhesive'],
+      includes: ['Laying click-lock panels', 'Laying glued vinyl panels', 'Self-levelling compound', 'Removing old panels', 'Grinding off old adhesive', 'Fitting skirting boards'],
       steps: [['Measuring', 'We check how level the floor is.'], ['Removal', 'We take up the old floor.'], ['Levelling', 'We apply the self-levelling compound.'], ['Laying', 'We lay the panels.']],
       photos: ['Panels in a bright room', 'Vinyl floor in a kitchen', 'Preparing the surface'],
       faq: [

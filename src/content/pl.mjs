@@ -63,7 +63,8 @@ export default {
     panelClick: { n: 'Układanie paneli', s: 'system „klik”' },
     panelGlue: { n: 'Układanie paneli winylowych', s: 'na klej' },
     leveling: { n: 'Masa samopoziomująca', s: 'wylewka' },
-    removeFloor: { n: 'Zrywanie starych paneli', s: 'przygotowanie podłoża' }
+    removeFloor: { n: 'Zrywanie starych paneli', s: 'przygotowanie podłoża' },
+    skirting: { n: 'Montaż listew przypodłogowych', s: 'cena zależy od rodzaju listwy: PCV (tańsze), MDF lub drewno (droższe, bo wymagają docinania kątów 45° i klejenia)' }
   },
   itemHints: {
     paint: 'powierzchnię malowanych ścian i sufitów',
@@ -78,7 +79,8 @@ export default {
     panelClick: 'powierzchnię podłogi',
     panelGlue: 'powierzchnię podłogi',
     leveling: 'powierzchnię podłogi',
-    removeFloor: 'powierzchnię podłogi'
+    removeFloor: 'powierzchnię podłogi',
+    skirting: 'łączną długość listew'
   },
   calcGroups: { paint: 'Malowanie', plaster: 'Szpachlowanie i naprawy', tiles: 'Płytki, skuwanie i hydroizolacja', floor: 'Podłogi' },
   svc: {
@@ -162,7 +164,7 @@ export default {
       seo: ['Układanie paneli i podłóg Reykjavík | Prime Verk', 'Panele klik i winylowe na klej, masa samopoziomująca i zrywanie starych podłóg w Reykjavíku. Od 1.800 kr/m² (bez VAT).'],
       lead: 'Układamy panele klik i winylowe na klej. Przygotowujemy też podłoże: masa samopoziomująca i zrywanie starych podłóg.',
       intro: ['Panele wymagają równego podłoża. Jeśli podłoga jest nierówna, wykonujemy masę samopoziomującą. Starą podłogę zrywamy i przygotowujemy powierzchnię.', 'Układamy panele w systemie klik oraz panele winylowe na klej.'],
-      includes: ['Układanie paneli w systemie „klik”', 'Układanie paneli winylowych na klej', 'Masa samopoziomująca', 'Zrywanie starych paneli', 'Szlifowanie starego kleju'],
+      includes: ['Układanie paneli w systemie „klik”', 'Układanie paneli winylowych na klej', 'Masa samopoziomująca', 'Zrywanie starych paneli', 'Szlifowanie starego kleju', 'Montaż listew przypodłogowych'],
       steps: [['Pomiar', 'Sprawdzamy równość podłoża.'], ['Demontaż', 'Zrywamy starą podłogę.'], ['Wyrównanie', 'Wykonujemy masę samopoziomującą.'], ['Układanie', 'Układamy panele.']],
       photos: ['Panele w jasnym pokoju', 'Winylowa podłoga w kuchni', 'Przygotowanie podłoża'],
       faq: [
