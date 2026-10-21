@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
+export const SITE = (process.env.SITE ?? 'https://nataliajagus.github.io').replace(/\/$/, '');
 export const BASE = (process.env.BASE ?? '').replace(/\/$/, '');
 if (BASE && !/^\/[\w.-]+(\/[\w.-]+)*$/.test(BASE)) throw new Error(`Zły BASE "${BASE}" (w Git Bash użyj MSYS_NO_PATHCONV=1 albo PowerShell)`);
 export const CONTACT = {

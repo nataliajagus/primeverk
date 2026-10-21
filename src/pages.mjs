@@ -1,5 +1,5 @@
 import { PRICES, SERVICES, CALC_GROUPS, fromPrice, rowsFor, fmtNum } from './data/prices.mjs';
-import { BASE, CONTACT, hasImg, esc, stripTags, icon, flag, urlFor, asset, photo, priceTag, ruler, faqList, faqJsonLd, btn } from './ui.mjs';
+import { BASE, SITE, CONTACT, hasImg, esc, stripTags, icon, flag, urlFor, asset, photo, priceTag, ruler, faqList, faqJsonLd, btn } from './ui.mjs';
 
 export const LANGS = ['is', 'en', 'pl'];
 const NAV_ORDER = ['services', 'prices', 'contact'];
@@ -114,7 +114,12 @@ export function layout(L, { key, path, title, desc, body, head = '', pv = null }
 <meta name="description" content="${esc(desc)}">
 <meta name="theme-color" content="#1E2023">
 <meta property="og:title" content="${esc(stripTags(title))}"><meta property="og:description" content="${esc(desc)}"><meta property="og:type" content="website">
+<meta property="og:site_name" content="Prime Verk"><meta property="og:url" content="${SITE}${urlFor(L.code, path)}"><meta property="og:locale" content="${{ is: 'is_IS', en: 'en_GB', pl: 'pl_PL' }[L.code]}">
+<meta property="og:image" content="${SITE}${asset('og.png')}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="${SITE}${asset('og.png')}">
 <link rel="icon" href="${asset('favicon.svg')}" type="image/svg+xml">
+<link rel="icon" href="${asset('favicon-32.png')}" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="${asset('apple-touch-icon.png')}">
 ${alt}
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Figtree:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
