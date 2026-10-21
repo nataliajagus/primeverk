@@ -4,7 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { LANGS, homePage, servicesPage, servicePage, pricesPage, faqPage, contactPage, privacyPage } from './pages.mjs';
 import { SERVICES } from './data/prices.mjs';
-import { PHOTO_SLOTS } from './ui.mjs';
+import { PHOTO_SLOTS, SITE, BASE } from './ui.mjs';
 
 const SRC = path.dirname(fileURLToPath(import.meta.url));
 const OUT = path.join(SRC, '..', 'docs');
@@ -34,6 +34,7 @@ const copyDir = (from, to) => {
 };
 
 let count = 0;
+const urls = []; // {path, alt:{lang: path}}
 for (const code of LANGS) {
   const L = (await import(`./content/${code}.mjs`)).default;
   const dir = code === 'is' ? '' : code + '/';
@@ -42,7 +43,7 @@ for (const code of LANGS) {
     ['faq/', faqPage(L)], ['contact/', contactPage(L)], ['privacy/', privacyPage(L)],
     ...SERVICES.map(s => [`services/${s}/`, servicePage(L, s)])
   ];
-  for (const [p, html] of pages) { write(`${dir}${p}index.html`, html); count++; }
+  for (const [p, html] of pages) { write(`${dir}${p}index.html`, html); count++; urls.push({ lang: code, p }); }
 }
 
 copyDir(path.join(SRC, 'assets'), path.join(OUT, 'assets'));
@@ -52,7 +53,23 @@ fs.copyFileSync(path.join(SRC, 'js', 'site.js'), path.join(OUT, 'assets', 'site.
 write('.nojekyll', '');
 
 // 404 + lista slotów na zdjęcia
-write('404.html', fs.readFileSync(path.join(OUT, 'index.html'), 'utf8'));
+write('404.html', fs.readFileSync(path.join(OUT, 'index.html'), 'utf8')
+  .replace('<meta name="robots" content="index, follow, max-image-preview:large">', '<meta name="robots" content="noindex">')
+  .replace(/<link rel="canonical"[^>]*>/, ''));
+
+// sitemap.xml z wersjami językowymi + robots.txt
+const loc = (lang, p) => SITE + BASE + (lang === 'is' ? '' : '/' + lang) + '/' + p;
+const today = new Date().toISOString().slice(0, 10);
+const pagesSet = [...new Set(urls.map(u => u.p))];
+const xml = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">'];
+for (const p of pagesSet) for (const lang of LANGS) {
+  xml.push('<url><loc>' + loc(lang, p) + '</loc><lastmod>' + today + '</lastmod><changefreq>' + (p === '' ? 'weekly' : 'monthly') + '</changefreq><priority>' + (p === '' ? '1.0' : p.startsWith('services/') ? '0.8' : '0.6') + '</priority>' +
+    LANGS.map(l => '<xhtml:link rel="alternate" hreflang="' + l + '" href="' + loc(l, p) + '"/>').join('') +
+    '<xhtml:link rel="alternate" hreflang="x-default" href="' + loc('is', p) + '"/></url>');
+}
+xml.push('</urlset>');
+write('sitemap.xml', xml.join('\n'));
+write('robots.txt', 'User-agent: *\nAllow: /\n\nSitemap: ' + SITE + BASE + '/sitemap.xml\n');
 const md = ['# Sloty na zdjęcia stockowe', '',
   'Wrzuć plik do `src/img/<slot>.jpg` (lub .webp/.png), uruchom `node src/build.mjs` – placeholder zniknie.', '',
   '| Slot (nazwa pliku) | Proporcje | Co ma być na zdjęciu (PL) |', '|---|---|---|',

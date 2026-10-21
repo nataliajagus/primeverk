@@ -96,10 +96,50 @@ const pvFor = (L, rows, groupName) => ({
   contactUrl: urlFor(L.code, '/contact/')
 });
 
+// ---------- dane strukturalne ----------
+const abs = path => SITE + path;
+const BIZ_ID = () => abs(BASE + '/#business');
+const AREAS = ['Reykjavík', 'Keflavík', 'Selfoss'];
+const businessLd = L => ({
+  '@context': 'https://schema.org', '@type': ['HomeAndConstructionBusiness', 'LocalBusiness'], '@id': BIZ_ID(),
+  name: 'Prime Verk', url: abs(urlFor('is', '/')), description: L.seo.home[1],
+  image: abs(asset('og.png')), logo: abs(asset('icon-512.png')),
+  telephone: CONTACT.phone, email: CONTACT.email,
+  address: { '@type': 'PostalAddress', addressCountry: 'IS', addressRegion: 'Höfuðborgarsvæðið' },
+  areaServed: AREAS.map(n => ({ '@type': 'City', name: n })),
+  knowsLanguage: ['is', 'en', 'pl'],
+  contactPoint: { '@type': 'ContactPoint', contactType: 'customer service', telephone: CONTACT.phone, email: CONTACT.email, availableLanguage: ['Icelandic', 'English', 'Polish'] },
+  makesOffer: SERVICES.map(s => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: L.svc[s].name, url: abs(urlFor(L.code, '/services/' + s + '/')) } })),
+  ...(CONTACT.facebook ? { sameAs: [CONTACT.facebook] } : {})
+});
+const websiteLd = L => ({ '@context': 'https://schema.org', '@type': 'WebSite', '@id': abs(BASE + '/#website'), name: 'Prime Verk', url: abs(urlFor('is', '/')), inLanguage: ['is', 'en', 'pl'], publisher: { '@id': BIZ_ID() } });
+const breadcrumbLd = (L, crumbs) => ({
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [[L.ui.home, '/'], ...crumbs].map(([name, path], i) => ({ '@type': 'ListItem', position: i + 1, name: stripTags(name), item: abs(urlFor(L.code, path)) }))
+});
+const serviceLd = (L, s) => {
+  const S = L.svc[s];
+  const offers = rowsFor(s).map(r => ({
+    '@type': 'Offer', name: stripTags(L.items[r.id].n), priceCurrency: 'ISK', availability: 'https://schema.org/InStock',
+    priceSpecification: r.max === null || r.min === r.max
+      ? { '@type': 'UnitPriceSpecification', price: r.min, priceCurrency: 'ISK', unitText: r.unit === 'm2' ? 'm²' : 'm', valueAddedTaxIncluded: false }
+      : { '@type': 'UnitPriceSpecification', minPrice: r.min, maxPrice: r.max, priceCurrency: 'ISK', unitText: r.unit === 'm2' ? 'm²' : 'm', valueAddedTaxIncluded: false }
+  }));
+  return { '@context': 'https://schema.org', '@type': 'Service', name: S.name, description: stripTags(S.lead), serviceType: S.name, url: abs(urlFor(L.code, '/services/' + s + '/')), inLanguage: L.htmlLang, provider: { '@id': BIZ_ID() }, areaServed: AREAS.map(n => ({ '@type': 'City', name: n })), offers };
+};
+const ldTag = o => `<script type="application/ld+json">${JSON.stringify(o)}</script>`;
+
 // ---------- layout ----------
-export function layout(L, { key, path, title, desc, body, head = '', pv = null }) {
-  const alt = LANGS.map(l => `<link rel="alternate" hreflang="${l}" href="${urlFor(l, path)}">`).join('') +
-    `<link rel="alternate" hreflang="x-default" href="${urlFor('is', path)}">`;
+export function layout(L, { key, path, title, desc, body, head = '', pv = null, crumbs = null, ld = [] }) {
+  const inferred = { services: [[L.nav.services, '/services/']], prices: [[L.nav.prices, '/prices/']], faq: [[L.nav.faq, '/faq/']], contact: [[L.nav.contact, '/contact/']], privacy: [[LEGAL[L.code].title, '/privacy/']] };
+  const trail = crumbs || inferred[key] || null;
+  const schema = [];
+  if (key === 'home') { schema.push(businessLd(L), websiteLd(L)); }
+  if (trail) schema.push(breadcrumbLd(L, trail));
+  schema.push(...ld);
+  const schemaHtml = schema.map(ldTag).join('\n');
+  const alt = LANGS.map(l => `<link rel="alternate" hreflang="${l}" href="${SITE}${urlFor(l, path)}">`).join('') +
+    `<link rel="alternate" hreflang="x-default" href="${SITE}${urlFor('is', path)}">`;
   const langs = LANGS.map(l => `<a role="menuitem" href="${urlFor(l, path)}" lang="${l}" hreflang="${l}"${l === L.code ? ' aria-current="true"' : ''}>${flag(l)}<span>${LANG_NAME[l]}</span></a>`).join('');
   const svcLinks = SERVICES.map(s => `<a href="${urlFor(L.code, '/services/' + s + '/')}">${icon(s)}<span>${L.svc[s].name}</span></a>`).join('');
   const nav = NAV_ORDER.map(k => {
@@ -113,6 +153,9 @@ export function layout(L, { key, path, title, desc, body, head = '', pv = null }
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(stripTags(title))}</title>
 <meta name="description" content="${esc(desc)}">
+<link rel="canonical" href="${SITE}${urlFor(L.code, path)}">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="Prime Verk">
 <meta name="theme-color" content="#1E2023">
 <meta property="og:title" content="${esc(stripTags(title))}"><meta property="og:description" content="${esc(desc)}"><meta property="og:type" content="website">
 <meta property="og:site_name" content="Prime Verk"><meta property="og:url" content="${SITE}${urlFor(L.code, path)}"><meta property="og:locale" content="${{ is: 'is_IS', en: 'en_GB', pl: 'pl_PL' }[L.code]}">
@@ -127,6 +170,7 @@ ${alt}
 <link rel="stylesheet" href="${asset('style.css')}?v=${Date.now()}">
 ${CONTACT.analytics.src ? `<meta name="pv-analytics" content="${CONTACT.analytics.src}|${CONTACT.analytics.domain}">` : ''}
 ${head}
+${schemaHtml}
 </head>
 <body>
 <a class="skip" href="#main">${L.ui.skip}</a>
@@ -314,12 +358,7 @@ export function homePage(L) {
 </section>
 ${ctaBand(L)}
 ${faqJsonLd(faqs)}`;
-  const ld = `<script type="application/ld+json">${JSON.stringify({
-    '@context': 'https://schema.org', '@type': 'HomeAndConstructionBusiness', name: 'Prime Verk',
-    telephone: CONTACT.phone, email: CONTACT.email,
-    areaServed: ['Reykjavík', 'Keflavík', 'Selfoss'], knowsLanguage: ['is', 'en', 'pl']
-  })}</script>`;
-  return layout(L, { key: 'home', path: '/', title: L.seo.home[0], desc: L.seo.home[1], body, head: ld });
+  return layout(L, { key: 'home', path: '/', title: L.seo.home[0], desc: L.seo.home[1], body });
 }
 
 // ---------- USŁUGI: przegląd ----------
@@ -398,7 +437,7 @@ export function servicePage(L, s) {
 </section>
 ${ctaBand(L)}
 ${faqJsonLd(S.faq)}`;
-  return layout(L, { key: 'service', path: '/services/' + s + '/', title: S.seo[0], desc: S.seo[1], body, pv: pvFor(L, rows, S.name) });
+  return layout(L, { key: 'service', path: '/services/' + s + '/', title: S.seo[0], desc: S.seo[1], body, pv: pvFor(L, rows, S.name), crumbs: [[L.nav.services, '/services/'], [S.name, '/services/' + s + '/']], ld: [serviceLd(L, s)] });
 }
 
 // ---------- CENNIK + KALKULATOR ----------
