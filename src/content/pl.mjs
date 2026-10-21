@@ -51,7 +51,7 @@ export default {
     ctaLead: 'Podaj rodzaj prac, miejscowość, przybliżony metraż i planowany termin.'
   },
   items: {
-    paint: { n: 'Malowanie ścian i sufitów', s: 'ściany zagruntowane, odświeżenie, drobne przygotowania', m: 'Cena za samą robociznę' },
+    paint: { n: 'Malowanie ścian i sufitów', s: 'ściany zagruntowane, odświeżenie, drobne przygotowania' },
     spackle: { n: 'Szpachlowanie' },
     joints: { n: 'Szpachlowanie łączeń płyt G-K', s: 'włóknina i dwie warstwy masy' },
     renovate: { n: 'Renowacja starych ścian', s: 'skrobanie, usuwanie pęknięć, prostowanie ścian i inne prace' },
@@ -62,7 +62,7 @@ export default {
     waterproof: { n: 'Hydroizolacja strefy mokrej', s: 'płynna folia z taśmami uszczelniającymi' },
     panelClick: { n: 'Układanie paneli', s: 'system „klik”' },
     panelGlue: { n: 'Układanie paneli winylowych', s: 'na klej' },
-    leveling: { n: 'Masa samopoziomująca', s: 'wylewka', m: 'Cena obejmuje materiał' },
+    leveling: { n: 'Masa samopoziomująca', s: 'wylewka' },
     removeFloor: { n: 'Zrywanie starej podłogi', s: 'parkiet, płytki lub wykładzina, przygotowanie podłoża' }
   },
   itemHints: {
@@ -131,7 +131,7 @@ export default {
       photos: ['Płytki podłogowe w korytarzu', 'Wielki format w salonie', 'Mozaika na ścianie'],
       faq: [
         ['Dlaczego wielki format kosztuje więcej?', 'Płytki 60×120 cm i mozaiki wymagają więcej czasu na cięcie i precyzyjne poziomowanie. Stawka wynosi 14.000 kr/m².'],
-        ['Czy w cenie jest płytka i klej?', 'Cennik podaje stawki za prace. Zakres materiałów, czyli płytki, kleje i fugi, potwierdzamy w wycenie.'],
+        ['Czy w cenie jest płytka i klej?', 'Nie. Ceny dotyczą samej robocizny. Płytki, kleje i fugi ustalamy w wycenie.'],
         ['Czy skujecie stare płytki?', 'Tak. Skuwanie to osobna pozycja: 6.000 kr/m².'],
         ['Czy nieregularne pomieszczenie zmienia cenę?', 'Tak. Wąskie korytarze, filary i obróbka wokół rur wydłużają pracę, więc rośnie koszt robocizny.'],
         ['Jak szybko mogę zacząć?', 'Napisz lub zadzwoń. Termin i zakres ustalimy po oględzinach i wpiszemy do oferty.']
@@ -166,11 +166,11 @@ export default {
       steps: [['Pomiar', 'Sprawdzamy równość podłoża.'], ['Demontaż', 'Zrywamy starą podłogę.'], ['Wyrównanie', 'Wykonujemy masę samopoziomującą.'], ['Układanie', 'Układamy panele.']],
       photos: ['Panele w jasnym pokoju', 'Winylowa podłoga w kuchni', 'Przygotowanie podłoża'],
       faq: [
-        ['Czy muszę wykonywać masę samopoziomującą?', 'Tylko gdy podłoga jest nierówna. Panele wymagają równego podłoża. Masa samopoziomująca kosztuje 4.000 kr/m², razem z materiałem.'],
+        ['Czy muszę wykonywać masę samopoziomującą?', 'Tylko gdy podłoga jest nierówna. Panele wymagają równego podłoża. Masa samopoziomująca kosztuje 4.000 kr/m² (sama robocizna).'],
         ['Czym różni się system klik od paneli na klej?', 'Panele klik układamy bez kleju (1.800–2.300 kr/m²). Panele winylowe przyklejamy do podłoża (4.000 kr/m²).'],
         ['Czy zerwiecie starą podłogę?', 'Tak. Zrywamy parkiet, płytki lub wykładzinę i przygotowujemy podłoże. To 2.000 kr/m².'],
         ['Czy kształt pomieszczenia wpływa na cenę?', 'Tak. Wąskie korytarze, filary i obróbka wokół rur grzejnikowych wydłużają docinanie, więc rośnie koszt robocizny.'],
-        ['Czy cena obejmuje panele?', 'Cennik wymienia prace układania, a materiał jest wliczony tylko w masę samopoziomującą. Pozostałe materiały potwierdzamy w wycenie.']
+        ['Czy cena obejmuje panele?', 'Nie. Cennik dotyczy samej robocizny, bez materiałów. Materiały, w tym panele, ustalamy w wycenie.']
       ]
     }
   },
@@ -184,10 +184,10 @@ export default {
   prices: {
     title: 'Cennik i kalkulator', lead: 'Ceny podajemy bez VAT. Końcowa wycena zależy od metrażu, stanu podłoża i zakresu prac.',
     note: 'Pomieszczenia o nieregularnych kształtach (wąskie korytarze, dużo filarów, obróbka wokół rur od grzejników) podnoszą koszt robocizny, bo precyzyjne docinanie materiału zajmuje więcej czasu.',
-    materials: 'Malowanie: cena dotyczy samej robocizny. Masa samopoziomująca: cena obejmuje materiał. Przy pozostałych pozycjach zakres materiałów potwierdzamy w wycenie.',
+    materials: 'Wszystkie ceny dotyczą samej robocizny, bez materiałów.',
     listTitle: 'Cennik', calcTitle: 'Kalkulator kosztów', calcLead: 'Wybierz prace i podaj powierzchnię. Dla pozycji z przedziałem stawek wynik też jest przedziałem.',
     colWork: 'Praca', colRate: 'Stawka', colQty: 'Powierzchnia', colCost: 'Koszt',
-    shortNote: 'Wynik jest orientacyjny. Ostateczną wycenę ustalamy po poznaniu metrażu, stanu podłoża i zakresu prac.',
+    shortNote: 'Ceny dotyczą samej robocizny, bez materiałów. Wynik jest orientacyjny, a ostateczną wycenę ustalamy po poznaniu metrażu, stanu podłoża i zakresu prac.',
     qty: 'Powierzchnia', enter: 'Podaj', total: 'Orientacyjny koszt', empty: 'Wybierz prace i podaj powierzchnię, aby zobaczyć orientacyjny koszt.',
     disclaimer: 'To wyliczenie orientacyjne, oparte na stawkach z cennika. Ostateczną wycenę ustalamy na podstawie metrażu, stanu podłoża i zakresu prac.',
     send: 'Dołącz wyliczenie do zapytania', openFrom: 'od', reset: 'Wyczyść'

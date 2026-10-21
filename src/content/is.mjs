@@ -51,7 +51,7 @@ export default {
     ctaLead: 'Segðu okkur hvað á að gera, hvar verkið er, um það bil hve marga fermetra það nær yfir og hvenær þú vilt byrja.'
   },
   items: {
-    paint: { n: 'Málun veggja og lofta', s: 'grunnaðir veggir, upplyfting, lítils háttar undirbúningur', m: 'Aðeins vinna' },
+    paint: { n: 'Málun veggja og lofta', s: 'grunnaðir veggir, upplyfting, lítils háttar undirbúningur' },
     spackle: { n: 'Spartl' },
     joints: { n: 'Spartl á samskeyti gipsplatna', s: 'glertrefjanet og tvær umferðir af massa' },
     renovate: { n: 'Endurbætur á gömlum veggjum', s: 'skröpun, sprungur lagaðar, veggir réttir af og fleira' },
@@ -62,7 +62,7 @@ export default {
     waterproof: { n: 'Vatnsvörn í votrými', s: 'fljótandi vatnsvarnarefni með þéttiböndum' },
     panelClick: { n: 'Lagning plastparkets', s: 'smellukerfi' },
     panelGlue: { n: 'Lagning vínylgólfs', s: 'límt við undirlag' },
-    leveling: { n: 'Jöfnunarmassi', s: 'gólfjöfnun', m: 'Verð innifelur efni' },
+    leveling: { n: 'Jöfnunarmassi', s: 'gólfjöfnun' },
     removeFloor: { n: 'Fjarlæging gamals gólfefnis', s: 'parket, flísar eða teppi, undirbúningur undirlags' }
   },
   itemHints: {
@@ -131,7 +131,7 @@ export default {
       photos: ['Gólfflísar á gangi', 'Stórar flísar í stofu', 'Mósaík á vegg'],
       faq: [
         ['Af hverju kosta stórar flísar meira?', 'Flísar eins og 60×120 cm og mósaík kalla á meiri tíma við sögun og nákvæma jöfnun. Verðið er 14.000 kr/m².'],
-        ['Eru flísar og flísalím innifalin í verðinu?', 'Verðskráin sýnir verð fyrir vinnu. Hvaða efni er innifalið, það er flísar, lím og fúga, staðfestum við í tilboðinu.'],
+        ['Eru flísar og flísalím innifalin í verðinu?', 'Nei. Verðin eru fyrir vinnu eingöngu. Flísar, lím og fúgu ákveðum við í tilboðinu.'],
         ['Rífið þið upp gamlar flísar?', 'Já. Upprif á gömlum flísum er sérstakur liður: 6.000 kr/m².'],
         ['Breytir lögun rýmisins verðinu?', 'Já. Þröngir gangar, súlur og vinna í kringum rör lengja verkið og hækka kostnað við vinnuna.'],
         ['Hvenær getið þið byrjað?', 'Sendu skilaboð eða hringdu. Tímasetningu og umfang ákveðum við eftir skoðun og skráum í tilboðið.']
@@ -166,11 +166,11 @@ export default {
       steps: [['Mæling', 'Við athugum hvort undirlagið er jafnt.'], ['Fjarlæging', 'Við tökum upp gamla gólfefnið.'], ['Jöfnun', 'Við leggjum jöfnunarmassa.'], ['Lagning', 'Við leggjum nýja gólfefnið.']],
       photos: ['Parket í björtu herbergi', 'Vínylgólf í eldhúsi', 'Undirbúningur undirlags'],
       faq: [
-        ['Þarf ég jöfnunarmassa?', 'Aðeins ef gólfið er ójafnt, því parket þarf jafnt undirlag. Jöfnunarmassi kostar 4.000 kr/m², með efni.'],
+        ['Þarf ég jöfnunarmassa?', 'Aðeins ef gólfið er ójafnt, því parket þarf jafnt undirlag. Jöfnunarmassi kostar 4.000 kr/m², vinna eingöngu.'],
         ['Hver er munurinn á smellukerfi og límdu vínylgólfi?', 'Plastparket með smellukerfi leggjum við án líms (1.800–2.300 kr/m²). Vínylgólf límum við við undirlagið (4.000 kr/m²).'],
         ['Fjarlægið þið gamla gólfefnið?', 'Já. Við fjarlægjum parket, flísar eða teppi og undirbúum undirlagið. Það kostar 2.000 kr/m².'],
         ['Hefur lögun rýmisins áhrif á verðið?', 'Já. Þröngir gangar, súlur og vinna í kringum ofnarör lengja sögunartímann og hækka kostnað við vinnuna.'],
-        ['Er parketið innifalið í verðinu?', 'Verðskráin sýnir verð fyrir lagningu. Efni er aðeins innifalið í jöfnunarmassanum. Annað efni staðfestum við í tilboðinu.']
+        ['Er parketið innifalið í verðinu?', 'Nei. Verðskráin er fyrir vinnu eingöngu, án efnis. Efni, þar með talið parketið, ákveðum við í tilboðinu.']
       ]
     }
   },
@@ -184,10 +184,10 @@ export default {
   prices: {
     title: 'Verðskrá og reiknivél', lead: 'Öll verð eru án VSK. Endanlegt verð fer eftir fermetrafjölda, ástandi undirlags og umfangi verksins.',
     note: 'Rými með óreglulega lögun, svo sem þröngir gangar, margar súlur eða vinna í kringum ofnarör, hækka kostnað við vinnuna því nákvæm sögun efnis tekur lengri tíma.',
-    materials: 'Málun: verðið er fyrir vinnu eingöngu. Jöfnunarmassi: verðið innifelur efni. Hjá öðrum verkum staðfestum við efnið í tilboðinu.',
+    materials: 'Öll verð eru fyrir vinnu eingöngu, án efnis.',
     listTitle: 'Verðskrá', calcTitle: 'Kostnaðarreiknivél', calcLead: 'Veldu verk og sláðu inn flatarmál. Þar sem gefið er verðbil er niðurstaðan líka verðbil.',
     colWork: 'Verk', colRate: 'Verð', colQty: 'Flatarmál', colCost: 'Kostnaður',
-    shortNote: 'Niðurstaðan er áætlun. Endanlegt tilboð fer eftir flatarmáli, ástandi undirlags og umfangi verks.',
+    shortNote: 'Verðin eru fyrir vinnu eingöngu, án efnis. Niðurstaðan er áætlun og endanlegt tilboð fer eftir flatarmáli, ástandi undirlags og umfangi verks.',
     qty: 'Flatarmál', enter: 'Sláðu inn', total: 'Áætlaður kostnaður', empty: 'Veldu verk og sláðu inn flatarmál til að sjá áætlaðan kostnað.',
     disclaimer: 'Þetta er áætlun byggð á verðum úr verðskránni. Endanlegt verð ákveðum við út frá fermetrafjölda, ástandi undirlags og umfangi verksins.',
     send: 'Bæta útreikningi við fyrirspurn', openFrom: 'frá', reset: 'Hreinsa'

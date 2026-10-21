@@ -51,7 +51,7 @@ export default {
     ctaLead: 'Give us the type of work, the town, the rough area and when you would like to start.'
   },
   items: {
-    paint: { n: 'Painting walls and ceilings', s: 'primed walls, a refresh, light preparation', m: 'Labour only' },
+    paint: { n: 'Painting walls and ceilings', s: 'primed walls, a refresh, light preparation' },
     spackle: { n: 'Plastering' },
     joints: { n: 'Plasterboard joints', s: 'mesh tape and two coats of compound' },
     renovate: { n: 'Renovating old walls', s: 'scraping, filling cracks, levelling and other work' },
@@ -62,7 +62,7 @@ export default {
     waterproof: { n: 'Wet-area waterproofing', s: 'liquid membrane with sealing tapes' },
     panelClick: { n: 'Click panels', s: 'click-lock system' },
     panelGlue: { n: 'Vinyl panels', s: 'glued down' },
-    leveling: { n: 'Self-levelling compound', s: 'screed', m: 'Price includes material' },
+    leveling: { n: 'Self-levelling compound', s: 'screed' },
     removeFloor: { n: 'Removing the old floor', s: 'parquet, tiles or carpet, with surface preparation' }
   },
   itemHints: {
@@ -131,7 +131,7 @@ export default {
       photos: ['Floor tiles in a hallway', 'Large format in a living room', 'Mosaic on a wall'],
       faq: [
         ['Why does large format cost more?', 'Tiles of 60×120 cm and mosaics take longer to cut and level precisely. The rate is 14.000 kr/m².'],
-        ['Are tiles and adhesive included?', 'The price list gives rates for the work. We confirm in the quote which materials are covered: tiles, adhesive and grout.'],
+        ['Are tiles and adhesive included?', 'No. The rates cover labour only. Tiles, adhesive and grout are settled in the quote.'],
         ['Do you remove old tiles?', 'Yes. Removal is a separate line at 6.000 kr/m².'],
         ['Does an awkward room change the price?', 'Yes. Narrow hallways, columns and cutting around pipes add time, so labour costs more.'],
         ['How soon can I start?', 'Write or call. We agree the date and the work after a site visit, then put both in the offer.']
@@ -166,11 +166,11 @@ export default {
       steps: [['Measuring', 'We check how level the floor is.'], ['Removal', 'We take up the old floor.'], ['Levelling', 'We apply the self-levelling compound.'], ['Laying', 'We lay the panels.']],
       photos: ['Panels in a bright room', 'Vinyl floor in a kitchen', 'Preparing the surface'],
       faq: [
-        ['Do I need self-levelling compound?', 'Only if the floor is uneven, because panels need an even base. It costs 4.000 kr/m², material included.'],
+        ['Do I need self-levelling compound?', 'Only if the floor is uneven, because panels need an even base. It costs 4.000 kr/m², labour only.'],
         ['What is the difference between click and glued panels?', 'Click panels go down without adhesive (1.800–2.300 kr/m²). Vinyl panels are glued to the floor beneath (4.000 kr/m²).'],
         ['Will you take up the old floor?', 'Yes. We remove parquet, tiles or carpet and prepare the surface. It costs 2.000 kr/m².'],
         ['Does the shape of the room affect the price?', 'Yes. Narrow hallways, columns and cutting around radiator pipes take more time, so labour costs more.'],
-        ['Are the panels included in the price?', 'The price list covers the laying. Material is included only for self-levelling compound. We confirm the rest in the quote.']
+        ['Are the panels included in the price?', 'No. The price list covers labour only, without materials. Materials, including the panels, are settled in the quote.']
       ]
     }
   },
@@ -184,10 +184,10 @@ export default {
   prices: {
     title: 'Pricing and calculator', lead: 'All prices exclude VAT. The final quote depends on the area, the state of the surface and what needs doing.',
     note: 'Awkward rooms (narrow hallways, many columns, cutting around radiator pipes) cost more in labour, because precise cutting takes longer.',
-    materials: 'Painting is labour only. Self-levelling compound includes material. For everything else, the quote confirms which materials are covered.',
+    materials: 'All prices are for labour only, without materials.',
     listTitle: 'Price list', calcTitle: 'Cost calculator', calcLead: 'Choose the work and enter the area. Where a rate is a range, the result is a range too.',
     colWork: 'Work', colRate: 'Rate', colQty: 'Area', colCost: 'Cost',
-    shortNote: 'This is an estimate. The final quote depends on the area, the state of the surface and what needs doing.',
+    shortNote: 'Prices are for labour only, without materials. The result is an estimate, and the final quote depends on the area, the condition of the surface and the scope of work.',
     qty: 'Area', enter: 'Enter', total: 'Estimated cost', empty: 'Choose the work and enter the area to see an estimate.',
     disclaimer: 'An estimate based on the rates in the price list. We set the final quote from the area, the state of the surface and what needs doing.',
     send: 'Add the estimate to your enquiry', openFrom: 'from', reset: 'Clear'

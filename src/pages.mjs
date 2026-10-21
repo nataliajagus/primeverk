@@ -416,7 +416,7 @@ export function pricesPage(L) {
   <ul class="chips chips-link">${groups.map(([id, t]) => `<li><a href="#g-${id}">${t}</a></li>`).join('')}</ul></div><div class="wrap">${ruler('ruler-hero')}</div></section>
 <section class="section prices-sec" id="cennik"><div class="wrap" id="calculator">
   ${sheet(L, null, groups)}
-  <p class="fine">${L.prices.note}</p>
+  <p class="fine"><b>${L.prices.materials}</b> ${L.prices.note}</p>
 </div></section>
 ${ctaBand(L)}`;
   return layout(L, { key: 'prices', path: '/prices/', title: L.seo.prices[0], desc: L.seo.prices[1], body, pv });
