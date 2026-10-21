@@ -14,16 +14,19 @@ export const PRICES = [
   { id: 'panelGlue',   calc: 'floor',    unit: 'm2', min: 4000,  max: 4000, svc: ['flooring'] },
   { id: 'leveling',    calc: 'floor',    unit: 'm2', min: 3000,  max: 3000, svc: ['flooring'] },
   { id: 'removeFloor', calc: 'floor',    unit: 'm2', min: 2000,  max: 2000, svc: ['flooring'] },
+  { id: 'drywallWall',    calc: 'drywall', unit: 'm2', min: 3800, max: 4300, svc: ['drywall'] },
+  { id: 'drywallFrame',   calc: 'drywall', unit: 'm2', min: 4300, max: null, svc: ['drywall'] },
+  { id: 'drywallComplex', calc: 'drywall', unit: 'm2', min: 7200, max: 9500, svc: ['drywall'] },
   { id: 'sanitary',    calc: 'sanitary', unit: 'szt', min: 15000, max: 30000, svc: ['sanitary'] },
   { id: 'skirting',    calc: 'floor',    unit: 'mb', min: 500,   max: 1100, svc: ['flooring'] }
 ];
-export const CALC_GROUPS = ['paint', 'plaster', 'tiles', 'sanitary', 'floor'];
+export const CALC_GROUPS = ['paint', 'plaster', 'drywall', 'tiles', 'sanitary', 'floor'];
 
-export const SERVICES = ['painting', 'plastering', 'tiling', 'bathrooms', 'sanitary', 'flooring'];
+export const SERVICES = ['painting', 'plastering', 'drywall', 'tiling', 'bathrooms', 'sanitary', 'flooring'];
 // najniższa cena "od" dla usługi (do kafelków)
 // pozycja reprezentatywna dla usługi (nie "najtańsza", bo np. hydroizolacja nie jest ceną płytek)
 // łazienki nie mają ceny „od”: 2.800 kr/m² to stawka za samą hydroizolację, a nie za całą łazienkę
-const HEADLINE = { painting: 'paint', plastering: 'spackle', tiling: 'floorTile', bathrooms: null, sanitary: 'sanitary', flooring: 'panelClick' };
+const HEADLINE = { painting: 'paint', plastering: 'spackle', tiling: 'floorTile', bathrooms: null, drywall: 'drywallWall', sanitary: 'sanitary', flooring: 'panelClick' };
 const ORDER = { bathrooms: ['removeTile', 'waterproof', 'floorTile', 'wallTile', 'largeTile'] };
 export function rowsFor(svc) {
   const rows = PRICES.filter(p => p.svc.includes(svc));

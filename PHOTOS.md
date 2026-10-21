@@ -6,12 +6,14 @@ Wrzuć plik do `src/img/<slot>.jpg` (lub .webp/.png), uruchom `node src/build.mj
 |---|---|---|
 | `hero-painting` | 16:9 | Pomalowany salon |
 | `hero-plastering` | 16:9 | Szpachlowana ściana |
+| `hero-drywall` | 16:9 | Ścianka działowa z płyt GK |
 | `hero-tiling` | 16:9 | Płytki podłogowe w korytarzu |
 | `hero-bathrooms` | 16:9 | Nowoczesna łazienka z płytkami |
 | `hero-sanitary` | 16:9 | Umywalka i bateria w łazience |
 | `hero-flooring` | 16:9 | Panele w jasnym pokoju |
 | `svc-painting-card` | 4:3 | Pomalowany salon |
 | `svc-plastering-card` | 4:3 | Szpachlowana ściana |
+| `svc-drywall-card` | 4:3 | Ścianka działowa z płyt GK |
 | `svc-tiling-card` | 4:3 | Płytki podłogowe w korytarzu |
 | `svc-bathrooms-card` | 4:3 | Nowoczesna łazienka z płytkami |
 | `svc-sanitary-card` | 4:3 | Umywalka i bateria w łazience |
@@ -23,6 +25,8 @@ Wrzuć plik do `src/img/<slot>.jpg` (lub .webp/.png), uruchom `node src/build.mj
 | `svc-painting-hero` | 4:3 | Pomalowany salon |
 | `svc-painting-steps` | 4:5 | Pomalowany salon |
 | `svc-plastering-hero` | 4:3 | Szpachlowana ściana |
+| `svc-drywall-hero` | 4:3 | Ścianka działowa z płyt GK |
+| `svc-drywall-steps` | 4:5 | Ścianka działowa z płyt GK |
 | `svc-tiling-hero` | 4:3 | Płytki podłogowe w korytarzu |
 | `svc-tiling-steps` | 4:5 | Płytki podłogowe w korytarzu |
 | `svc-bathrooms-hero` | 4:3 | Nowoczesna łazienka z płytkami |

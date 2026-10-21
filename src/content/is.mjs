@@ -24,7 +24,7 @@ export default {
     lead: 'Allt frá því að fríska upp á veggina til þess að klára baðherbergið. Við undirbúum undirlagið, vinnum verkið eins og um var samið og förum yfir útkomuna með þér við afhendingu.',
     areaLabel: 'Starfssvæði:',
     area: 'Reykjavík, Keflavík, Selfoss og nágrenni',
-    servicesTitle: 'Sex tegundir frágangsverka',
+    servicesTitle: 'Sjö tegundir frágangsverka',
     servicesLead: 'Veldu þjónustu og sjáðu hvað verkið felur í sér og hvað það kostar um það bil.',
     whyTitle: 'Af hverju Prime Verk',
     why: [
@@ -65,7 +65,10 @@ export default {
     leveling: { n: 'Jöfnunarmassi', s: 'gólfjöfnun' },
     removeFloor: { n: 'Fjarlæging gamals parkets', s: 'undirbúningur undirlags' },
     skirting: { n: 'Uppsetning gólflista', s: 'verð fer eftir gerð: plast (PVC) ódýrara, MDF eða tré dýrara vegna 45° geirskurðar og límingar' },
-    sanitary: { n: 'Uppsetning hreinlætistækja', s: 'salerni, handlaug, blöndunartæki, sturtuklefi; verð fyrir hvert tæki, að meðaltali' }
+    sanitary: { n: 'Uppsetning hreinlætistækja', s: 'salerni, handlaug, blöndunartæki, sturtuklefi; verð fyrir hvert tæki, að meðaltali' },
+    drywallWall: { n: 'Gipsveggir og loft', s: 'einfaldir milliveggir og léttir veggir' },
+    drywallFrame: { n: 'Uppsetning á loftagrind', s: 'nákvæmt verð eftir skoðun og samkomulagi' },
+    drywallComplex: { n: 'Heildarklæðning (grind og gipsplata)', s: 'grind, uppsetning platna, einföld límbandsvinna' }
   },
   itemHints: {
     paint: 'flatarmál veggja og lofta sem á að mála',
@@ -82,11 +85,14 @@ export default {
     leveling: 'flatarmál gólfsins',
     removeFloor: 'flatarmál gólfsins',
     skirting: 'heildarlengd gólflista',
-    sanitary: 'fjölda tækja sem á að setja upp'
+    sanitary: 'fjölda tækja sem á að setja upp',
+    drywallWall: 'flatarmál gipsveggja eða lofta',
+    drywallFrame: 'flatarmál lofts með grind',
+    drywallComplex: 'flatarmál klæðningarinnar'
   },
-  calcGroups: { paint: 'Málun', plaster: 'Spartl og lagfæringar', tiles: 'Flísar, upprif og vatnsvörn', floor: 'Gólfefni', sanitary: 'Uppsetning hreinlætistækja' },
+  calcGroups: { paint: 'Málun', plaster: 'Spartl og lagfæringar', tiles: 'Flísar, upprif og vatnsvörn', floor: 'Gólfefni', sanitary: 'Uppsetning hreinlætistækja', drywall: 'Gipsvinna' },
   svc: {
-    index: { title: 'Þjónusta', lead: 'Sex tegundir frágangsverka. Veldu þjónustu og sjáðu hvað verkið felur í sér og hvað það kostar um það bil.' },
+    index: { title: 'Þjónusta', lead: 'Sjö tegundir frágangsverka. Veldu þjónustu og sjáðu hvað verkið felur í sér og hvað það kostar um það bil.' },
     painting: {
       name: 'Málun', short: 'Málun og upplyfting á veggjum og loftum.',
       stepsTitle: 'Svona gengur málunin fyrir sig', faqTitle: 'Spurningar um málun',
@@ -121,6 +127,24 @@ export default {
         ['Hvenær þarf að endurbæta gamla veggi?', 'Þegar veggirnir eru með sprungur eða ójöfnur, eða þarf að skrapa þá. Þá byrjar verðið á 5.000 kr/m².'],
         ['Má mála strax eftir spartl?', 'Nei, massinn þarf fyrst að þorna. Hvenær má byrja að mála ákveðum við þegar verkið er unnið.'],
         ['Takið þið bæði spartl og málun?', 'Já, við getum gert eitt tilboð í bæði verkin.']
+      ]
+    },
+    drywall: {
+      name: 'Gipsvinna', short: 'Milliveggir, léttir veggir, loft og heildarklæðningar með grind.',
+      stepsTitle: 'Svona vinnum við með gips', faqTitle: 'Spurningar um gipsvinnu',
+      priceTitle: 'Verð fyrir gipsvinnu', priceLead: 'Sláðu inn flatarmál við þau verk sem þú þarft. Kostnaður hvers liðar og heildin birtast strax.',
+      seo: ['Gipsveggir og loft Reykjavík | Prime Verk', 'Milliveggir, léttir veggir, loft og gipsklæðningar með grind í Reykjavík og nágrenni. Frá 3.800 kr/m² (án VSK).'],
+      lead: 'Við setjum upp milliveggi, létta veggi, loft og heildarklæðningar með grind og gipsplötum.',
+      intro: ['Einfaldir milliveggir og léttir veggir úr gipsplötum kosta frá 3.800 til 4.300 kr/m². Uppsetning á loftagrind og heildarklæðning (grind, uppsetning platna og einföld límbandsvinna) eru verðlögð sérstaklega.', 'Hvert verk á Íslandi er ólíkt. Endanlegt verð fer eftir því hve flókið verkið er: veggskotum, raflögnum og lofthæð.'],
+      includes: ['Milliveggir og léttir veggir úr gipsplötum', 'Loft úr gipsplötum', 'Uppsetning á loftagrind', 'Grind og uppsetning platna', 'Einföld límbandsvinna'],
+      steps: [['Skoðun', 'Við metum rýmið, veggskot, lagnir og hæð.'], ['Grind', 'Við setjum upp grindina.'], ['Plötur', 'Við setjum upp gipsplöturnar.'], ['Límbandsvinna', 'Við gerum einfalda límbandsvinnu og förum yfir niðurstöðuna.']],
+      photos: ['Milliveggur úr gipsplötum', 'Loftagrind', 'Gipsklæðning'],
+      faq: [
+        ['Hvað felst í gipsvinnu?', 'Einfaldir milliveggir og léttir veggir, loft úr gipsplötum, uppsetning á loftagrind og heildarklæðningar: grind, uppsetning platna og einföld límbandsvinna.'],
+        ['Hvað kosta gipsveggir og loft?', 'Einfaldir milliveggir og léttir veggir kosta 3.800–4.300 kr/m² og heildarklæðning með grind og gipsplötum 7.200–9.500 kr/m² (án VSK).'],
+        ['Hvað ræður verðinu?', 'Hve flókið verkið er: veggskot, raflagnir og lofthæð. Þess vegna gefum við upp bil og ákveðum endanlegt verð þegar við þekkjum verkefnið.'],
+        ['Hvers vegna er uppsetning á loftagrind verðlögð „frá“?', 'Því nákvæmt verð gefum við aðeins eftir skoðun og samkomulag. Verðið byrjar á 4.300 kr/m².'],
+        ['Er efni innifalið í verðinu?', 'Nei. Verðin eru fyrir vinnu eingöngu, án efnis. Efnið ákveðum við í tilboðinu.']
       ]
     },
     tiling: {

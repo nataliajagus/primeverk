@@ -26,7 +26,7 @@ const shelf = (L, rows) => `<ul class="shelf">` + rows.map(p => {
   return `<li><div class="shelf-info"><span class="shelf-name">${it.n}</span>${it.s ? `<span class="shelf-sub">${it.s}</span>` : ''}${it.m ? `<span class="shelf-note">${it.m}</span>` : ''}</div><span class="shelf-price">${priceText(L, p)}</span></li>`;
 }).join('') + `</ul>`;
 
-const ITEM_ICON = { paint: 'painting', plaster: 'plastering', tiles: 'tiling', sanitary: 'sanitary', floor: 'flooring' };
+const ITEM_ICON = { paint: 'painting', plaster: 'plastering', tiles: 'tiling', sanitary: 'sanitary', drywall: 'drywall', floor: 'flooring' };
 const priceCards = (L, rows) => `<div class="pcards">` + rows.map(r => {
   const it = L.items[r.id];
   const ic = r.id === 'waterproof' ? 'bathrooms' : ITEM_ICON[r.calc];
@@ -237,9 +237,9 @@ const ctaBand = L => `<section class="cta-band"><div class="wrap cta-in">
   <div class="cta-photo">${photo('cta-photo', { label: stripTags(L.home.ctaTitle), ratio: '4x3', tone: 'slate', ic: 'painting' })}</div>
 </div></section>`;
 
-const SVC_TONE = { painting: 'gold', plastering: 'basalt', tiling: 'concrete', bathrooms: 'slate', sanitary: 'slate', flooring: 'gold' };
+const SVC_TONE = { painting: 'gold', plastering: 'basalt', tiling: 'concrete', bathrooms: 'slate', sanitary: 'slate', drywall: 'concrete', flooring: 'gold' };
 
-const CAR_FOCUS = { painting: '72% 50%', plastering: '45% 38%', tiling: '40% 50%', bathrooms: '78% 50%', sanitary: '45% 50%', flooring: '68% 50%' };
+const CAR_FOCUS = { painting: '72% 50%', plastering: '45% 38%', tiling: '40% 50%', bathrooms: '78% 50%', sanitary: '45% 50%', drywall: '45% 38%', flooring: '68% 50%' };
 function carCard(L, s) {
   const S = L.svc[s], fp = fromPrice(s);
   const price = fp

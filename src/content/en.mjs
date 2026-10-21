@@ -24,7 +24,7 @@ export default {
     lead: 'From freshening up walls to finishing a bathroom. We prepare the surface, do the agreed work and go through the result with you at handover.',
     areaLabel: 'Based in',
     area: 'Reykjavík, Keflavík, Selfoss and nearby',
-    servicesTitle: 'Six kinds of finishing work',
+    servicesTitle: 'Seven kinds of finishing work',
     servicesLead: 'Pick a service to see what the job involves and what it roughly costs.',
     whyTitle: 'Why Prime Verk',
     why: [
@@ -65,7 +65,10 @@ export default {
     leveling: { n: 'Self-levelling compound', s: 'screed' },
     removeFloor: { n: 'Removing old panels', s: 'with surface preparation' },
     skirting: { n: 'Skirting board fitting', s: 'the price depends on the type: PVC (cheaper), MDF or wood (more, because of 45° mitre cuts and gluing)' },
-    sanitary: { n: 'Fitting sanitaryware', s: 'toilet, washbasin, tap, shower cabin; price per item, on average' }
+    sanitary: { n: 'Fitting sanitaryware', s: 'toilet, washbasin, tap, shower cabin; price per item, on average' },
+    drywallWall: { n: 'Plasterboard walls and ceilings', s: 'simple partition walls and lining walls' },
+    drywallFrame: { n: 'Ceiling frame installation', s: 'exact price after a site visit and agreeing the details' },
+    drywallComplex: { n: 'Full build (frame and plasterboard)', s: 'framework, board fitting, basic taping' }
   },
   itemHints: {
     paint: 'the area of walls and ceilings to be painted',
@@ -82,11 +85,14 @@ export default {
     leveling: 'the floor area',
     removeFloor: 'the floor area',
     skirting: 'the total length of skirting',
-    sanitary: 'the number of items to be fitted'
+    sanitary: 'the number of items to be fitted',
+    drywallWall: 'the area of plasterboard walls or ceilings',
+    drywallFrame: 'the ceiling area with a frame',
+    drywallComplex: 'the area of the build'
   },
-  calcGroups: { paint: 'Painting', plaster: 'Plastering and repairs', tiles: 'Tiles, removal and waterproofing', floor: 'Flooring', sanitary: 'Sanitaryware installation' },
+  calcGroups: { paint: 'Painting', plaster: 'Plastering and repairs', tiles: 'Tiles, removal and waterproofing', floor: 'Flooring', sanitary: 'Sanitaryware installation', drywall: 'Plasterboard construction' },
   svc: {
-    index: { title: 'Services', lead: 'Six kinds of finishing work. Pick one to see what the job involves and what it roughly costs.' },
+    index: { title: 'Services', lead: 'Seven kinds of finishing work. Pick one to see what the job involves and what it roughly costs.' },
     painting: {
       name: 'Painting', short: 'Painting and freshening up walls and ceilings.',
       stepsTitle: 'How a painting job goes', faqTitle: 'Painting questions',
@@ -121,6 +127,24 @@ export default {
         ['When do old walls need renovating?', 'When they are cracked, uneven or need scraping. Prices then start at 5.000 kr/m².'],
         ['Can I paint straight after plastering?', 'Not quite. The compound has to dry first. We agree when painting can begin as the work goes on.'],
         ['Can you plaster and paint in one job?', 'Yes. We can put both in a single offer.']
+      ]
+    },
+    drywall: {
+      name: 'Plasterboard construction', short: 'Partition walls, lining walls, ceilings and full builds with a frame.',
+      stepsTitle: 'How we build with plasterboard', faqTitle: 'Questions about plasterboard construction',
+      priceTitle: 'Plasterboard rates', priceLead: 'Enter the area for the work you need. You see the cost of each line and the total straight away.',
+      seo: ['Plasterboard walls and ceilings Reykjavík | Prime Verk', 'Partition walls, lining walls, ceilings and framed plasterboard builds in Reykjavík and nearby. From 3.800 kr/m² (excl. VAT).'],
+      lead: 'We build partition walls, lining walls, ceilings and full builds with a frame and plasterboard.',
+      intro: ['Simple partition walls and lining walls in plasterboard are priced from 3.800 to 4.300 kr/m². Ceiling frame installation and a full build (framework, board fitting and basic taping) are priced separately.', 'Every project in Iceland is different. The final rate depends on how complex the job is: recesses, electrical installations and ceiling height.'],
+      includes: ['Partition and lining walls in plasterboard', 'Plasterboard ceilings', 'Ceiling frame installation', 'Framework and board fitting', 'Basic taping'],
+      steps: [['Site visit', 'We assess the room, recesses, installations and height.'], ['Framework', 'We fit the frame.'], ['Boards', 'We fit the plasterboard.'], ['Taping', 'We do basic taping and check the result.']],
+      photos: ['A plasterboard partition wall', 'A ceiling frame', 'A plasterboard build'],
+      faq: [
+        ['What does plasterboard construction cover?', 'Simple partition and lining walls, plasterboard ceilings, ceiling frame installation and full builds: framework, board fitting and basic taping.'],
+        ['How much do plasterboard walls and ceilings cost?', 'Simple partition and lining walls cost 3.800–4.300 kr/m², and a full build with frame and plasterboard 7.200–9.500 kr/m² (excl. VAT).'],
+        ['What does the price depend on?', 'On how complex the job is: recesses, electrical installations and ceiling height. That is why we give ranges and settle the final rate once we know the project.'],
+        ['Why is ceiling frame installation priced “from”?', 'Because we give the exact price only after a site visit and agreeing the details. The rate starts at 4.300 kr/m².'],
+        ['Does the price include materials?', 'No. The prices are for labour only, without materials. Materials are settled in the quote.']
       ]
     },
     tiling: {

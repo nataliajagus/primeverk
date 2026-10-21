@@ -24,7 +24,7 @@ export default {
     lead: 'Od odświeżenia ścian po wykończenie łazienki. Przygotowujemy podłoże, wykonujemy uzgodnione prace i wspólnie sprawdzamy efekt przy odbiorze.',
     areaLabel: 'Obszar działania:',
     area: 'Reykjavík, Keflavík, Selfoss i okolice',
-    servicesTitle: 'Sześć rodzajów prac wykończeniowych',
+    servicesTitle: 'Siedem rodzajów prac wykończeniowych',
     servicesLead: 'Wybierz usługę, aby sprawdzić zakres prac i orientacyjne ceny.',
     whyTitle: 'Dlaczego Prime Verk',
     why: [
@@ -65,7 +65,10 @@ export default {
     leveling: { n: 'Masa samopoziomująca', s: 'wylewka' },
     removeFloor: { n: 'Zrywanie starych paneli', s: 'przygotowanie podłoża' },
     skirting: { n: 'Montaż listew przypodłogowych', s: 'cena zależy od rodzaju listwy: PCV (tańsze), MDF lub drewno (droższe, bo wymagają docinania kątów 45° i klejenia)' },
-    sanitary: { n: 'Montaż urządzeń sanitarnych', s: 'miska WC, umywalka, bateria, kabina prysznicowa; cena za jeden element, średnio' }
+    sanitary: { n: 'Montaż urządzeń sanitarnych', s: 'miska WC, umywalka, bateria, kabina prysznicowa; cena za jeden element, średnio' },
+    drywallWall: { n: 'Ściany i sufity z płyt GK', s: 'proste ścianki działowe i przedścianki' },
+    drywallFrame: { n: 'Montaż stelaża sufitowego', s: 'dokładna cena po oględzinach i ustaleniach' },
+    drywallComplex: { n: 'Kompleks zabudowy (stelaż i płyta GK)', s: 'konstrukcja, montaż płyt, podstawowe taśmowanie' }
   },
   itemHints: {
     paint: 'powierzchnię malowanych ścian i sufitów',
@@ -82,11 +85,14 @@ export default {
     leveling: 'powierzchnię podłogi',
     removeFloor: 'powierzchnię podłogi',
     skirting: 'łączną długość listew',
-    sanitary: 'liczbę montowanych elementów'
+    sanitary: 'liczbę montowanych elementów',
+    drywallWall: 'powierzchnię ścian lub sufitów z płyt GK',
+    drywallFrame: 'powierzchnię sufitu ze stelażem',
+    drywallComplex: 'powierzchnię zabudowy'
   },
-  calcGroups: { paint: 'Malowanie', plaster: 'Szpachlowanie i naprawy', tiles: 'Płytki, skuwanie i hydroizolacja', floor: 'Podłogi', sanitary: 'Biały montaż' },
+  calcGroups: { paint: 'Malowanie', plaster: 'Szpachlowanie i naprawy', tiles: 'Płytki, skuwanie i hydroizolacja', floor: 'Podłogi', sanitary: 'Biały montaż', drywall: 'Zabudowy z płyt GK' },
   svc: {
-    index: { title: 'Usługi', lead: 'Sześć rodzajów prac wykończeniowych. Wybierz usługę, aby sprawdzić zakres prac i orientacyjne ceny.' },
+    index: { title: 'Usługi', lead: 'Siedem rodzajów prac wykończeniowych. Wybierz usługę, aby sprawdzić zakres prac i orientacyjne ceny.' },
     painting: {
       name: 'Malowanie', short: 'Malowanie i odświeżanie ścian oraz sufitów.',
       stepsTitle: 'Jak wygląda malowanie', faqTitle: 'Pytania o malowanie',
@@ -121,6 +127,24 @@ export default {
         ['Kiedy potrzebna jest renowacja starych ścian?', 'Gdy ściany mają pęknięcia, nierówności albo wymagają skrobania. Ceny zaczynają się wtedy od 5.000 kr/m².'],
         ['Czy po szpachlowaniu można od razu malować?', 'Najpierw masa musi wyschnąć. Kiedy można zacząć malowanie, ustalamy przy realizacji.'],
         ['Czy robicie szpachlowanie i malowanie razem?', 'Tak. Obie prace możemy wycenić w jednej ofercie.']
+      ]
+    },
+    drywall: {
+      name: 'Zabudowy z płyt GK', short: 'Ścianki działowe, przedścianki, sufity i kompletne zabudowy ze stelażem.',
+      stepsTitle: 'Jak wykonujemy zabudowę z płyt GK', faqTitle: 'Pytania o zabudowy z płyt GK',
+      priceTitle: 'Stawki za zabudowy z płyt GK', priceLead: 'Podaj powierzchnię przy wybranych pracach. Koszt każdej pozycji i sumę zobaczysz od razu.',
+      seo: ['Zabudowy z płyt GK Reykjavík od 3.800 kr/m² | Prime Verk', 'Ścianki działowe, przedścianki, sufity i zabudowy ze stelażem z płyt GK w Reykjavíku i okolicach. Od 3.800 kr/m² (bez VAT).'],
+      lead: 'Wykonujemy ścianki działowe, przedścianki, sufity i kompletne zabudowy ze stelażem i płytą GK.',
+      intro: ['Proste ścianki działowe i przedścianki z płyt GK wyceniamy od 3.800 do 4.300 kr/m². Osobno wyceniamy montaż stelaża sufitowego oraz kompletną zabudowę: konstrukcję, montaż płyt i podstawowe taśmowanie.', 'Każdy projekt na Islandii jest inny. Stawka końcowa zależy od stopnia skomplikowania: wnęk, instalacji elektrycznych i wysokości pomieszczeń.'],
+      includes: ['Ścianki działowe i przedścianki z płyt GK', 'Sufity z płyt GK', 'Montaż stelaża sufitowego', 'Konstrukcja i montaż płyt', 'Podstawowe taśmowanie'],
+      steps: [['Oględziny', 'Oceniamy pomieszczenie, wnęki, instalacje i wysokość.'], ['Konstrukcja', 'Montujemy stelaż.'], ['Płyty', 'Montujemy płyty GK.'], ['Taśmowanie', 'Wykonujemy podstawowe taśmowanie i sprawdzamy efekt.']],
+      photos: ['Ścianka działowa z płyt GK', 'Stelaż sufitowy', 'Zabudowa z płyt GK'],
+      faq: [
+        ['Co obejmuje zabudowa z płyt GK?', 'Proste ścianki działowe i przedścianki, sufity z płyt GK, montaż stelaża sufitowego oraz kompletne zabudowy: konstrukcję, montaż płyt i podstawowe taśmowanie.'],
+        ['Ile kosztują ściany i sufity z płyt GK?', 'Proste ścianki działowe i przedścianki kosztują 3.800–4.300 kr/m², a kompletna zabudowa ze stelażem i płytą GK 7.200–9.500 kr/m² (bez VAT).'],
+        ['Od czego zależy cena?', 'Od stopnia skomplikowania: wnęk, instalacji elektrycznych i wysokości pomieszczeń. Dlatego podajemy przedziały, a ostateczną stawkę ustalamy po poznaniu projektu.'],
+        ['Dlaczego montaż stelaża sufitowego ma cenę „od”?', 'Bo dokładną cenę podajemy dopiero po oględzinach i ustaleniach. Stawka zaczyna się od 4.300 kr/m².'],
+        ['Czy cena obejmuje materiały?', 'Nie. Ceny dotyczą samej robocizny, bez materiałów. Materiały ustalamy w wycenie.']
       ]
     },
     tiling: {
