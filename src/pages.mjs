@@ -425,6 +425,23 @@ ${ctaBand(L)}`;
 
 // ---------- REALIZACJE ----------
 // ---------- FAQ ----------
+const FAQ_SEARCH = {
+  pl: { label: 'Szukaj pytania', ph: 'Szukaj, np. cena, termin, hydroizolacja', clear: 'Wyczyść', none: 'Nie ma odpowiedzi na to pytanie. Zadzwoń lub napisz, a odpowiemy.', count: 'Znalezione pytania:', all: 'Wszystkie pytania',
+    syn: [['cen', 'kosz', 'ile', 'kwot', 'stawk', 'platn'], ['vat', 'netto', 'faktur'], ['termin', 'kiedy', 'czas', 'szybko', 'dlugo', 'trwa'], ['zdjec', 'foto', 'wymiar'], ['wycen', 'ofert', 'kalkulat'], ['materi', 'farb', 'klej', 'plytk'], ['lazien', 'prysznic', 'hydroizol', 'mokr']] },
+  en: { label: 'Search questions', ph: 'Search, e.g. price, timing, waterproofing', clear: 'Clear', none: 'No answer found for that. Call or write to us and we will reply.', count: 'Questions found:', all: 'All questions',
+    syn: [['price', 'cost', 'much', 'rate', 'pay'], ['vat', 'net', 'invoice'], ['when', 'time', 'long', 'start', 'quick'], ['photo', 'picture', 'measure'], ['quote', 'estimate', 'calcul', 'offer'], ['material', 'paint', 'adhesive', 'tile'], ['bathroom', 'shower', 'waterproof', 'wet']] },
+  is: { label: 'Leita að spurningu', ph: 'Leita, t.d. verð, tími, vatnsvörn', clear: 'Hreinsa', none: 'Ekkert svar fannst. Hringdu eða skrifaðu okkur og við svörum.', count: 'Spurningar fundust:', all: 'Allar spurningar',
+    syn: [['ver', 'kostn', 'hvad', 'taxt', 'greid'], ['vsk', 'nett', 'reikn'], ['tim', 'hven', 'lengi', 'byrja', 'fljot'], ['mynd', 'ljosm', 'mal'], ['tilbod', 'aaetl', 'reikni'], ['efni', 'malning', 'lim', 'flis'], ['badherb', 'sturt', 'vatnsv', 'votr']] }
+};
+const faqTools = L => {
+  const F = FAQ_SEARCH[L.code];
+  return `<div class="faq-tools" data-syn='${esc(JSON.stringify(F.syn))}' data-none="${esc(F.none)}" data-count="${esc(F.count)}">
+    <label class="faq-search"><span class="sr-only">${F.label}</span>${icon('search')}<input id="faq-q" type="search" placeholder="${esc(F.ph)}" autocomplete="off" enterkeyhint="search"><button id="faq-clear" class="faq-clear" type="button" hidden aria-label="${esc(F.clear)}">${icon('plus')}</button></label>
+    <p id="faq-status" class="faq-status" aria-live="polite"></p>
+  </div>
+  <div id="faq-none" class="faq-none" hidden><p>${F.none}</p><div class="cta-row">${btn(urlFor(L.code, '/contact/'), L.ui.quote, 'gold')}<a class="btn btn-line" href="${CONTACT.phoneHref}"><span>${CONTACT.phone}</span>${icon('phone')}</a></div></div>`;
+};
+
 export function faqPage(L) {
   const blocks = [[L.faqPage.general, L.generalFaq, 'general'], ...SERVICES.map(s => [L.svc[s].name, L.svc[s].faq, s])];
   const all = blocks.flatMap(b => b[1]);
@@ -432,6 +449,7 @@ export function faqPage(L) {
 <section class="page-hero"><div class="wrap">${crumbs(L, [[null, L.nav.faq]])}<h1>${L.faqPage.title}</h1><p class="lead">${L.faqPage.lead}</p>
   <ul class="chips chips-link">${blocks.map(([t, , id]) => `<li><a href="#${id}">${t}</a></li>`).join('')}</ul></div><div class="wrap">${ruler('ruler-hero')}</div></section>
 <section class="section"><div class="wrap faq-all">
+  ${faqTools(L)}
   ${blocks.map(([t, items, id]) => `<div class="faq-block" id="${id}"><h2>${t}</h2>${faqList(items)}</div>`).join('')}
 </div></section>
 ${ctaBand(L)}

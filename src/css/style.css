@@ -810,3 +810,18 @@ body:has(.sheet.sticky-foot) .fab { display: none; }
 }
 @media (max-width: 480px) { .sheet-row { grid-template-columns: 1fr auto; } .sr-sum { grid-column: 1 / -1; } }
 .sheet .tag-vat { white-space: nowrap; }
+
+/* ===== FAQ: wyszukiwarka ===== */
+.faq-tools { display: grid; gap: 10px; margin-bottom: 8px; position: sticky; top: calc(var(--hdr) + 8px); z-index: 6; }
+.faq-search { display: flex; align-items: center; gap: 12px; background: #fff; border: 2px solid var(--ink); padding: 0 16px; box-shadow: 0 14px 30px -20px rgba(0,0,0,.4); }
+.faq-search:focus-within { border-color: var(--gold); }
+.faq-search .ic { width: 22px; height: 22px; color: var(--gold-ink); flex: none; }
+.faq-search input { flex: 1; min-width: 0; border: 0; outline: none; background: transparent; font: 500 1.1rem var(--body); padding: 18px 0; color: var(--fg); }
+.faq-search input::-webkit-search-cancel-button { display: none; }
+.faq-clear { border: 0; background: var(--ink); color: var(--paper); width: 30px; height: 30px; display: grid; place-items: center; cursor: pointer; flex: none; }
+.faq-clear .ic { color: var(--paper); transform: rotate(45deg); width: 16px; height: 16px; }
+.faq-status { font: 600 .9rem var(--label); letter-spacing: .1em; text-transform: uppercase; color: var(--gold-ink); min-height: 1.2em; background: var(--bg); padding-block: 2px; }
+.faq-none { background: var(--card); border: 1px dashed var(--gold); padding: 28px; display: grid; gap: 4px; }
+.faq-none p { font: 700 1.2rem var(--display); }
+.faq-all [hidden] { display: none !important; }
+@media (max-width: 860px) { .faq-tools { top: calc(var(--hdr) + 4px); } }

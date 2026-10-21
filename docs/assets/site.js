@@ -79,6 +79,66 @@
     $$('.reveal').forEach(function (el) { io.observe(el); });
   }
 
+  // ---- FAQ: inteligentne wyszukiwanie ----
+  var tools = $('.faq-tools');
+  if (tools) {
+    var input = $('#faq-q'), clearBtn = $('#faq-clear'), statusEl = $('#faq-status'), noneEl = $('#faq-none');
+    var SYN = JSON.parse(tools.getAttribute('data-syn') || '[]');
+    var normalize = function (s) {
+      return String(s).toLowerCase()
+        .replace(/ł/g, 'l').replace(/đ|ð/g, 'd').replace(/þ/g, 'th').replace(/æ/g, 'ae').replace(/ø/g, 'o')
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]+/g, ' ').trim();
+    };
+    var stem = function (w) { return w.length > 6 ? w.slice(0, w.length - 2) : w.length > 4 ? w.slice(0, w.length - 1) : w; };
+    var STOP = ' czy jak co sie na w z do o i a to ale jest sa mozna mam mi nam wam you can are for and the how what does with your our is do to of in it we be a an er og ad um til ekki eg get ';
+    var items = $$('.faq-list details').map(function (d) {
+      var qw = normalize($('summary', d).textContent).split(' '), aw = normalize($('.faq-a', d).textContent).split(' ');
+      return { el: d, qw: qw, aw: aw, block: d.closest('.faq-block') };
+    });
+    var variants = function (tok) {
+      var st = stem(tok), syn = [];
+      SYN.forEach(function (g) { if (g.some(function (x) { return st.indexOf(x) === 0 || (x.indexOf(st) === 0 && st.length >= 3); })) g.forEach(function (x) { if (x !== st && syn.indexOf(x) < 0) syn.push(x); }); });
+      return { st: st, syn: syn };
+    };
+    var inWords = function (words, v) { return words.some(function (w) { return w.indexOf(v) === 0; }); };
+    var score = function (it, vs) {
+      var s = 0;
+      for (var i = 0; i < vs.length; i++) {
+        var v = vs[i], t = 0;
+        if (inWords(it.qw, v.st)) t = 3; else if (inWords(it.aw, v.st)) t = 1;
+        else if (v.syn.some(function (x) { return inWords(it.qw, x); })) t = 0.6;
+        else if (v.syn.some(function (x) { return inWords(it.aw, x); })) t = 0.3;
+        if (!t) return 0;
+        s += t;
+      }
+      return s;
+    };
+    var run = function () {
+      var q = normalize(input.value);
+      var toks = q ? q.split(' ').filter(function (t) { return t.length > 1 && STOP.indexOf(' ' + t + ' ') < 0; }) : [];
+      clearBtn.hidden = !input.value;
+      var vs = toks.map(variants), shown = 0, max = 0;
+      items.forEach(function (it) { it.s = toks.length ? score(it, vs) : 1; if (it.s > max) max = it.s; });
+      items.forEach(function (it) {
+        var ok = !toks.length || (it.s > 0 && it.s >= max * 0.5);
+        it.el.hidden = !ok; if (ok) shown++;
+        if (!toks.length) it.el.removeAttribute('open');
+      });
+      $$('.faq-block').forEach(function (bk) { bk.hidden = !items.some(function (it) { return it.block === bk && !it.el.hidden; }); });
+      noneEl.hidden = !(toks.length && !shown);
+      statusEl.textContent = toks.length && shown ? tools.getAttribute('data-count') + ' ' + shown : '';
+      if (toks.length && shown && shown <= 3) items.forEach(function (it) { if (!it.el.hidden) it.el.setAttribute('open', ''); });
+      $$('.chips-link').forEach(function (c) { c.hidden = !!toks.length; });
+    };
+    var t = null;
+    input.addEventListener('input', function () { clearTimeout(t); t = setTimeout(run, 120); });
+    input.addEventListener('search', run);
+    clearBtn.addEventListener('click', function () { input.value = ''; run(); input.focus(); });
+    input.addEventListener('keydown', function (e) { if (e.key === 'Escape') { input.value = ''; run(); } });
+    if (location.hash === '#szukaj' || /[?&]q=/.test(location.search)) { var m = location.search.match(/[?&]q=([^&]*)/); if (m) { input.value = decodeURIComponent(m[1]); run(); } }
+  }
+
   // ---- FAQ: płynne rozwijanie i zwijanie ----
   $$('.faq-list details').forEach(function (d) {
     var sm = $('summary', d), body = $('.faq-a', d), anim = null;
