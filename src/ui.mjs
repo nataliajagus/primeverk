@@ -9,7 +9,10 @@ export const CONTACT = {
   phone: '+354 769 6246',
   phoneHref: 'tel:+3547696246',
   email: 'adriannowicki3226@gmail.com', // TODO: docelowo adres na domenie firmy
-  facebook: 'https://www.facebook.com/' // TODO: link do profilu FB
+  facebook: '',     // TODO: link do profilu FB (puste = link się nie wyświetla)
+  whatsapp: '',     // numer bez plusa, np. '3547696246' (puste = przycisk się nie wyświetla)
+  formEndpoint: '', // np. 'https://formspree.io/f/xxxx' (puste = formularz otwiera program pocztowy)
+  analytics: { src: '', domain: '' } // np. Plausible: src 'https://plausible.io/js/script.tagged-events.js'
 };
 
 export const esc = s => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');

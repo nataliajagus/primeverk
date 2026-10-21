@@ -41,6 +41,7 @@ ${alt}
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Figtree:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${asset('style.css')}?v=${Date.now()}">
+${CONTACT.analytics.src ? `<script defer data-domain="${CONTACT.analytics.domain}" src="${CONTACT.analytics.src}"></script>` : ''}
 ${head}
 </head>
 <body>
@@ -69,7 +70,7 @@ ${body}
       <span class="tag-vat">${L.ui.vatLong}</span></div>
     <div><h4>${L.footer.services}</h4>${svcLinks}</div>
     <div><h4>${L.footer.pages}</h4>${NAV_ORDER.filter(k => k !== 'services').map(k => `<a href="${urlFor(L.code, NAV_PATH[k])}">${L.nav[k]}</a>`).join('')}</div>
-    <div><h4>${L.footer.contact}</h4><a href="${CONTACT.phoneHref}">${CONTACT.phone}</a><a href="mailto:${CONTACT.email}">${CONTACT.email}</a><a href="${CONTACT.facebook}" target="_blank" rel="noopener">Facebook</a><span class="foot-area">${L.contact.areaV}</span></div>
+    <div><h4>${L.footer.contact}</h4><a href="${CONTACT.phoneHref}">${CONTACT.phone}</a><a href="mailto:${CONTACT.email}">${CONTACT.email}</a>${CONTACT.whatsapp ? `<a href="https://wa.me/${CONTACT.whatsapp}" target="_blank" rel="noopener">WhatsApp</a>` : ''}${CONTACT.facebook ? `<a href="${CONTACT.facebook}" target="_blank" rel="noopener">Facebook</a>` : ''}<span class="foot-area">${L.contact.areaV}</span></div>
   </div>
   <div class="wrap foot-bot"><span>© ${new Date().getFullYear()} Prime Verk. ${L.footer.rights}</span><span>${L.ui.vatLong}</span><span>${L.footer.credit} <a href="https://nataliajagus.com" target="_blank" rel="noopener">nataliajagus.com</a></span></div>
 </footer>
@@ -203,14 +204,9 @@ export function homePage(L) {
 
 
 
-<section class="section">
-  <div class="wrap">
-    ${secHead('', H.revTitle)}
-    <div class="rev-grid">${[0, 1, 2].map(() => `<figure class="rev reveal"><span class="stars" aria-hidden="true">★★★★★</span><blockquote>${H.revSoon}</blockquote><figcaption>${H.revWho}</figcaption></figure>`).join('')}</div>
-  </div>
-</section>
 
-<section class="section section-sand">
+
+<section class="section">
   <div class="wrap faq-wrap">
     <div>${secHead(L.ui.faq, H.faqTitle)}<div class="cta-row">${btn(urlFor(c, '/faq/'), L.nav.faq, 'line')}</div></div>
     ${faqList(faqs)}
@@ -365,19 +361,23 @@ export function contactPage(L) {
     <dl class="contact-list">
       <div><dt>${icon('phone')}${C.phone}</dt><dd><a href="${CONTACT.phoneHref}">${CONTACT.phone}</a></dd></div>
       <div><dt>${icon('mail')}${C.email}</dt><dd><a href="mailto:${CONTACT.email}">${CONTACT.email}</a></dd></div>
+      ${CONTACT.whatsapp ? `<div><dt>${icon('phone')}WhatsApp</dt><dd><a href="https://wa.me/${CONTACT.whatsapp}" target="_blank" rel="noopener">${CONTACT.phone}</a></dd></div>` : ''}
       <div><dt>${icon('pin')}${C.area}</dt><dd>${C.areaV}</dd></div>
     </dl>
     <span class="vat-badge">${L.ui.vatLong}</span>
     <div class="contact-photo">${photo('contact-photo', { label: L.home.eyebrow, ratio: '4x3', tone: 'slate', ic: 'painting', cls: 'fill' })}</div>
   </div>
-  <form id="contact-form" class="form" data-subject="${esc(C.subject)}" data-lbl-name="${esc(C.name)}" data-lbl-phone="${esc(C.fphone)}" data-lbl-email="${esc(C.femail)}" data-from-calc="${esc(C.fromCalc)}">
+  <form id="contact-form" class="form" data-subject="${esc(C.subject)}" data-lbl-name="${esc(C.name)}" data-lbl-phone="${esc(C.fphone)}" data-lbl-email="${esc(C.femail)}" data-from-calc="${esc(C.fromCalc)}" data-endpoint="${CONTACT.formEndpoint}" data-sending="${esc(C.sending)}" data-sent="${esc(C.sent)}" data-error="${esc(C.error)}" data-phone="${CONTACT.phone}">
     <label><span>${C.name}</span><input id="f-name" type="text" required autocomplete="name"></label>
     <div class="row2"><label><span>${C.fphone}</span><input id="f-phone" type="tel" autocomplete="tel"></label>
     <label><span>${C.femail}</span><input id="f-email" type="email" autocomplete="email"></label></div>
     <label><span>${C.msg}</span><textarea id="f-msg" rows="7" required placeholder="${esc(C.ph)}"></textarea></label>
+    <p class="field-hint">${C.hint}</p>
     <p class="form-info" id="f-info" hidden></p>
+    <p class="form-status" id="f-status" role="status" aria-live="polite" hidden></p>
     <button class="btn btn-gold" type="submit"><span>${C.send}</span>${icon('arrow')}</button>
-    <p class="fine">${C.note}</p>
+    ${CONTACT.formEndpoint ? '' : `<p class="fine">${C.note}</p>`}
+    <p class="fine">${C.privacy}</p>
   </form>
 </div></section>`;
   return layout(L, { key: 'contact', path: '/contact/', title: L.seo.contact[0], desc: L.seo.contact[1], body });

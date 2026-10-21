@@ -3,6 +3,18 @@
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
+  // ---- zdarzenia (Plausible lub zgodne; bez skryptu analityki nic się nie dzieje) ----
+  var track = function (name, props) { try { if (window.plausible) window.plausible(name, props ? { props: props } : undefined); } catch (e) {} };
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a') : null;
+    if (!a) return;
+    var h = a.getAttribute('href') || '';
+    if (h.indexOf('tel:') === 0) track('Call');
+    else if (h.indexOf('mailto:') === 0) track('Email');
+    else if (h.indexOf('wa.me') >= 0) track('WhatsApp');
+    else if (a.closest('.lang-menu')) track('Language', { to: a.getAttribute('lang') });
+  });
+
   // ---- przełącznik języka ----
   var lang = $("#lang");
   if (lang) {
@@ -124,7 +136,9 @@
   // ---- mini-kalkulator (strona główna) ----
   $$('.mini').forEach(function (m) {
     var min = +m.dataset.min, max = +m.dataset.max, input = $('input', m), out = $('.mini-sum', m);
+    var usedMini = false;
     input.addEventListener('input', function () {
+      if (!usedMini) { usedMini = true; track('Mini calculator'); }
       var q = parseFloat(input.value);
       var kr = out.dataset.kr;
       if (!(q > 0)) { out.textContent = '0 ' + kr; return; }
@@ -135,7 +149,7 @@
   // ---- kalkulator (strona cennika) ----
   var PV = window.PV;
   if (PV && $('#calc-fields')) {
-    var qty = {}, ui = PV.ui;
+    var qty = {}, ui = PV.ui, usedCalc = false;
     var unitLbl = function (u) { return u === 'm2' ? ui.m2 : ui.mb; };
     var perLbl = function (u) { return u === 'm2' ? ui.perM2 : ui.perMb; };
     var priceTxt = function (p) {
@@ -178,6 +192,7 @@
     };
     $('#calc-fields').addEventListener('input', function (e) {
       var id = e.target.getAttribute('data-id'); if (!id) return;
+      if (!usedCalc) { usedCalc = true; track('Calculator used'); }
       qty[id] = e.target.value;
       e.target.closest('.calc-row').classList.toggle('on', parseFloat(e.target.value) > 0);
       render();
@@ -189,6 +204,7 @@
       var sel = selected(), t = totals(sel);
       var txt = sel.map(function (s) { return '- ' + PV.names[s.p.id] + ': ' + fmt(s.q) + ' ' + unitLbl(s.p.unit); }).join('\n') +
         '\n\n' + ui.total + ': ' + totalText(t) + ' ' + ui.vat;
+      track('Calculator to contact');
       try { sessionStorage.setItem('pv-calc', txt); } catch (e) {}
       location.href = PV.contactUrl;
     });
@@ -204,10 +220,27 @@
       msg.value = saved + '\n\n';
       var info = $('#f-info'); info.hidden = false; info.textContent = form.dataset.fromCalc;
     }
+    var status = $('#f-status');
+    var say = function (txt, ok) { status.hidden = false; status.textContent = txt; status.className = 'form-status ' + (ok ? 'ok' : 'err'); };
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var body = form.dataset.lblName + ': ' + $('#f-name').value + '\n' + form.dataset.lblPhone + ': ' + $('#f-phone').value + '\n' +
-        form.dataset.lblEmail + ': ' + $('#f-email').value + '\n\n' + msg.value;
+      track('Quote request');
+      var name = $('#f-name').value, phone = $('#f-phone').value, email = $('#f-email').value;
+      var ep = form.dataset.endpoint;
+      if (ep) {
+        var sendBtn = $('button[type=submit]', form); sendBtn.disabled = true; say(form.dataset.sending, true);
+        var fd = new FormData();
+        fd.append('name', name); fd.append('phone', phone); fd.append('email', email); fd.append('message', msg.value);
+        fd.append('_subject', form.dataset.subject);
+        fetch(ep, { method: 'POST', body: fd, headers: { Accept: 'application/json' } }).then(function (r) {
+          if (!r.ok) throw new Error('http ' + r.status);
+          say(form.dataset.sent, true); form.reset(); try { sessionStorage.removeItem('pv-calc'); } catch (x) {}
+          $('#f-info').hidden = true;
+        }).catch(function () { say(form.dataset.error + form.dataset.phone, false); }).then(function () { sendBtn.disabled = false; });
+        return;
+      }
+      var body = form.dataset.lblName + ': ' + name + '\n' + form.dataset.lblPhone + ': ' + phone + '\n' +
+        form.dataset.lblEmail + ': ' + email + '\n\n' + msg.value;
       var to = $('a[href^="mailto:"]').getAttribute('href').replace('mailto:', '');
       location.href = 'mailto:' + to + '?subject=' + encodeURIComponent(form.dataset.subject) + '&body=' + encodeURIComponent(body);
     });

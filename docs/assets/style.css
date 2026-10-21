@@ -518,3 +518,8 @@ p { margin: 0; }
 .foot-grid a .ic { width: 18px; height: 18px; color: var(--gold); opacity: .9; }
 .foot-grid a:hover .ic { opacity: 1; }
 .foot-bot a { display: inline; }
+
+.field-hint { font-size: .88rem; color: var(--muted); margin-top: -6px; }
+.form-status { padding: 12px 14px; font-weight: 600; border-left: 3px solid var(--gold); background: rgba(179,142,85,.16); }
+.form-status.ok { border-color: #2f6b4b; background: rgba(47,107,75,.12); }
+.form-status.err { border-color: #a23b2c; background: rgba(162,59,44,.12); }
