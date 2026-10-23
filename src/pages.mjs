@@ -239,7 +239,7 @@ const ctaBand = L => `<section class="cta-band"><div class="wrap cta-in">
 
 const SVC_TONE = { painting: 'gold', plastering: 'basalt', tiling: 'concrete', bathrooms: 'slate', sanitary: 'slate', drywall: 'concrete', flooring: 'gold' };
 
-const CAR_FOCUS = { painting: '72% 50%', plastering: '45% 38%', tiling: '40% 50%', bathrooms: '78% 50%', sanitary: '45% 50%', drywall: '45% 38%', flooring: '68% 50%' };
+const CAR_FOCUS = { painting: '72% 50%', plastering: '45% 38%', tiling: '40% 50%', bathrooms: '78% 50%', sanitary: '45% 50%', drywall: '38% 45%', flooring: '68% 50%' };
 function carCard(L, s) {
   const S = L.svc[s], fp = fromPrice(s);
   const price = fp
