@@ -874,3 +874,10 @@ body:has(.sheet.sticky-foot) .fab { display: none; }
 .strip-fb .ic { width: 16px; height: 16px; }
 @media (max-width: 720px) { .strip .strip-fb { display: inline-flex; } }
 @media (max-width: 720px) { .strip .strip-fb { display: none; } }
+
+.sr-dims { margin-top: 6px; }
+.sr-dims summary { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; list-style: none; font: 600 .82rem var(--label); letter-spacing: .08em; text-transform: uppercase; color: var(--gold-ink); border-bottom: 1px dashed var(--gold); padding-bottom: 1px; }
+.sr-dims summary::-webkit-details-marker { display: none; }
+.sr-dims summary::after { content: "+"; font-weight: 700; }
+.sr-dims[open] summary::after { content: "–"; }
+.sr-dims ul { list-style: none; margin: 8px 0 2px; padding: 0 0 0 12px; border-left: 2px solid var(--gold); display: grid; gap: 4px; font-size: .88rem; color: var(--muted); }

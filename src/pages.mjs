@@ -43,7 +43,7 @@ const sheet = (L, rows, groups) => {
     const unit = perOf(L, r.unit), u = shortOf(L, r.unit);
     const rate = r.max === null ? `${L.ui.from} ${fmtNum(r.min)}` : r.min === r.max ? fmtNum(r.min) : `${fmtNum(r.min)}–${fmtNum(r.max)}`;
     return `<div class="calc-row sheet-row" data-id="${r.id}">
-      <div class="sr-name"><h3>${it.n}</h3>${it.s ? `<p>${it.s}</p>` : ''}${it.m ? `<span class="sr-note">${it.m}</span>` : ''}</div>
+      <div class="sr-name"><h3>${it.n}</h3>${it.s ? `<p>${it.s}</p>` : ''}${it.d ? `<details class="sr-dims"><summary>${P.dimsLabel}</summary><ul>${it.d.map(x => `<li>${x}</li>`).join('')}</ul></details>` : ''}${it.m ? `<span class="sr-note">${it.m}</span>` : ''}</div>
       <div class="sr-rate" data-label="${esc(P.colRate)}"><strong>${rate}</strong><em>${unit}</em></div>
       <label class="sr-qty" data-label="${esc(P.colQty)}" title="${esc(P.enter)} ${esc(L.itemHints[r.id])}"><input type="number" inputmode="decimal" min="0" step="any" placeholder="0" data-id="${r.id}" aria-label="${esc(it.n)}: ${esc(P.enter)} ${esc(L.itemHints[r.id])}"><em>${u}</em></label>
       <div class="sr-sum" data-label="${esc(P.colCost)}"><span class="row-sum" data-empty="—">—</span></div>
