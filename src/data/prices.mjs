@@ -1,7 +1,7 @@
 // Cennik (kr, bez VAT). max: null = "od" (cena otwarta). unit: m2 | mb
 // calc = grupa w kalkulatorze; svc = na których podstronach usług pokazać pozycję
 export const PRICES = [
-  { id: 'paint',       calc: 'paint',    unit: 'm2', min: 3000,  max: 3000, svc: ['painting'] },
+  { id: 'paint',       calc: 'paint',    unit: 'm2', min: 3000,  max: 3000, svc: ['painting'], layers: { extra: 1700, max: 3 } },
   { id: 'spackle',     calc: 'plaster',  unit: 'm2', min: 3500,  max: 5000, svc: ['plastering'] },
   { id: 'joints',      calc: 'plaster',  unit: 'mb', min: 4000,  max: 4000, svc: ['plastering'] },
   { id: 'renovate',    calc: 'plaster',  unit: 'm2', min: 5000,  max: null, svc: ['plastering'] },

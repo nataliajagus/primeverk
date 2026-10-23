@@ -305,8 +305,14 @@
     });
     if (!$('#calc-fields').hasAttribute('data-static')) $('#calc-fields').innerHTML = html;
 
+    var layerSel = {};
+    var eff = function (p) {
+      if (!p.layers) return p;
+      var add = ((layerSel[p.id] || 1) - 1) * p.layers.extra;
+      return { id: p.id, unit: p.unit, min: p.min + add, max: p.max === null ? null : p.max + add };
+    };
     var selected = function () {
-      return PV.prices.map(function (p) { return { p: p, q: parseFloat(qty[p.id]) }; }).filter(function (s) { return s.q > 0; });
+      return PV.prices.map(function (p) { return { p: eff(p), q: parseFloat(qty[p.id]), n: p.layers ? (layerSel[p.id] || 1) : 0 }; }).filter(function (s) { return s.q > 0; });
     };
     var totals = function (sel) {
       var min = 0, max = 0, open = false;
@@ -325,15 +331,16 @@
       PV.prices.forEach(function (pp) {
         var el = $('.sheet-row[data-id="' + pp.id + '"] .row-sum');
         if (!el) return;
-        var q = parseFloat(qty[pp.id]);
-        el.textContent = q > 0 ? rowText(pp, q) : el.dataset.empty;
+        var q = parseFloat(qty[pp.id]), ep = eff(pp);
+        if (pp.layers) { var rs = $('.sheet-row[data-id="' + pp.id + '"] .sr-rate strong'); if (rs) rs.textContent = fmt(ep.min); }
+        el.textContent = q > 0 ? rowText(ep, q) : el.dataset.empty;
         el.classList.toggle('has', q > 0);
       });
       var sel = selected(), box = $('#calc-result'), send = $('#calc-send');
       if (!sel.length) { box.innerHTML = '<p class="calc-empty">' + ui.empty + '</p>'; send.disabled = true; return; }
       var t = totals(sel);
       box.innerHTML = '<span class="calc-label">' + ui.total + '</span><div class="calc-sum">' + totalText(t) + '</div><span class="tag-vat">' + ui.vat +
-        '</span><ul class="calc-lines">' + sel.map(function (s) { return '<li>' + PV.names[s.p.id] + ' · ' + fmt(s.q) + ' ' + unitLbl(s.p.unit) + '</li>'; }).join('') + '</ul>';
+        '</span><ul class="calc-lines">' + sel.map(function (s) { return '<li>' + PV.names[s.p.id] + ' · ' + fmt(s.q) + ' ' + unitLbl(s.p.unit) + (s.n ? ' · ' + ui.layersShort + ': ' + s.n : '') + '</li>'; }).join('') + '</ul>';
       send.disabled = false;
     };
     $('#calc-fields').addEventListener('input', function (e) {
@@ -343,12 +350,20 @@
       var rowEl = e.target.closest('.calc-row'); if (rowEl) rowEl.classList.toggle('on', parseFloat(e.target.value) > 0);
       render();
     });
+    $('#calc-fields').addEventListener('click', function (e) {
+      var b = e.target.closest ? e.target.closest('.layer-btn') : null; if (!b) return;
+      var row = b.closest('.calc-row'), id = row.getAttribute('data-id');
+      layerSel[id] = +b.getAttribute('data-n');
+      $$('.layer-btn', row).forEach(function (x) { var on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+      render();
+    });
     $('#calc-reset').addEventListener('click', function () {
+      layerSel = {}; $$('.layer-btn').forEach(function (x) { var on = x.getAttribute('data-n') === '1'; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on ? 'true' : 'false'); });
       qty = {}; $$('#calc-fields input').forEach(function (i) { i.value = ''; }); $$('.calc-row').forEach(function (r) { r.classList.remove('on'); }); render();
     });
     $('#calc-send').addEventListener('click', function () {
       var sel = selected(), t = totals(sel);
-      var txt = sel.map(function (s) { return '- ' + PV.names[s.p.id] + ': ' + fmt(s.q) + ' ' + unitLbl(s.p.unit); }).join('\n') +
+      var txt = sel.map(function (s) { return '- ' + PV.names[s.p.id] + ': ' + fmt(s.q) + ' ' + unitLbl(s.p.unit) + (s.n ? ' (' + ui.layersShort + ': ' + s.n + ')' : ''); }).join('\n') +
         '\n\n' + ui.total + ': ' + totalText(t) + ' ' + ui.vat;
       track('Calculator to contact');
       try { sessionStorage.setItem('pv-calc', txt); } catch (e) {}

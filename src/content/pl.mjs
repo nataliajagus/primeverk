@@ -51,7 +51,7 @@ export default {
     ctaLead: 'Podaj rodzaj prac, miejscowość, przybliżony metraż i planowany termin.'
   },
   items: {
-    paint: { n: 'Malowanie ścian i sufitów', s: 'ściany zagruntowane, odświeżenie, drobne przygotowania' },
+    paint: { n: 'Malowanie ścian i sufitów', s: 'ściany zagruntowane, odświeżenie, drobne przygotowania', l: 'Pierwsza warstwa 3.000 kr/m², każda kolejna warstwa 1.700 kr/m². Wybierz liczbę warstw przy stawce.' },
     spackle: { n: 'Szpachlowanie' },
     joints: { n: 'Szpachlowanie łączeń płyt G-K', s: 'włóknina i dwie warstwy masy' },
     renovate: { n: 'Renowacja starych ścian', s: 'skrobanie, usuwanie pęknięć, prostowanie ścian i inne prace' },
@@ -60,7 +60,7 @@ export default {
     largeTile: { n: 'Płytki wielkoformatowe i mozaiki', s: 'np. 60×120 cm' },
     removeTile: { n: 'Skuwanie starych płytek' },
     waterproof: { n: 'Hydroizolacja strefy mokrej', s: 'płynna folia z taśmami uszczelniającymi' },
-    panelClick: { n: 'Układanie paneli', s: 'system „klik”' },
+    panelClick: { n: 'Układanie paneli', s: 'system „klik”, w prostym pomieszczeniu' },
     panelGlue: { n: 'Układanie paneli winylowych', s: 'na klej' },
     leveling: { n: 'Masa samopoziomująca', s: 'wylewka' },
     removeFloor: { n: 'Zrywanie starych paneli', s: 'przygotowanie podłoża' },
@@ -105,7 +105,7 @@ export default {
       photos: ['Pomalowany salon', 'Wałek i farba na ścianie', 'Biała ściana, kontrast kolorów'],
       faq: [
         ['Czy cena obejmuje farbę?', 'Nie, stawka to sama robocizna. Kwestię materiału ustalamy przy wycenie: możesz kupić farbę sam albo ustalić jej zakup z nami.'],
-        ['Ile warstw farby nakładacie?', 'To zależy od koloru, stanu ścian i farby. Zakres wpisujemy do oferty.'],
+        ['Ile kosztują kolejne warstwy farby?', 'Stawka 3.000 kr/m² dotyczy pierwszej warstwy. Druga i trzecia kosztują po 1.700 kr/m². W kalkulatorze wybierasz liczbę warstw, a koszt liczy się automatycznie. Ile warstw potrzeba, zależy od koloru, stanu ścian i farby.'],
         ['Co jeśli ściany są w złym stanie?', 'Szpachlowanie i naprawę pęknięć wyceniamy osobno, według cennika szpachlowania.'],
         ['Jak długo trwa malowanie mieszkania?', 'To zależy od metrażu i stanu ścian. Orientacyjny czas podajemy w ofercie, po oględzinach.'],
         ['Czy malujecie sufity?', 'Tak. Sufity wchodzą w zakres malowania. Przy wycenie podajesz łączną powierzchnię ścian i sufitów.']
@@ -234,6 +234,7 @@ export default {
     listTitle: 'Cennik', calcTitle: 'Kalkulator kosztów', calcLead: 'Wybierz prace i podaj powierzchnię. Dla pozycji z przedziałem stawek wynik też jest przedziałem.',
     colWork: 'Praca', colRate: 'Stawka', colQty: 'Powierzchnia', colCost: 'Koszt',
     dimsLabel: 'Standardowe wymiary',
+    layersLabel: 'Liczba warstw', layersShort: 'warstwy',
     shortNote: 'Ceny dotyczą samej robocizny, bez materiałów. Wynik jest orientacyjny, a ostateczną wycenę ustalamy po poznaniu metrażu, stanu podłoża i zakresu prac.',
     qty: 'Powierzchnia', enter: 'Podaj', total: 'Orientacyjny koszt', empty: 'Wybierz prace i podaj powierzchnię, aby zobaczyć orientacyjny koszt.',
     disclaimer: 'To wyliczenie orientacyjne, oparte na stawkach z cennika. Ostateczną wycenę ustalamy na podstawie metrażu, stanu podłoża i zakresu prac.',

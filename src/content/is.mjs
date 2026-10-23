@@ -51,7 +51,7 @@ export default {
     ctaLead: 'Segðu okkur hvað á að gera, hvar verkið er, um það bil hve marga fermetra það nær yfir og hvenær þú vilt byrja.'
   },
   items: {
-    paint: { n: 'Málun veggja og lofta', s: 'grunnaðir veggir, upplyfting, lítils háttar undirbúningur' },
+    paint: { n: 'Málun veggja og lofta', s: 'grunnaðir veggir, upplyfting, lítils háttar undirbúningur', l: 'Fyrsta umferð kostar 3.000 kr/m², hver umferð til viðbótar 1.700 kr/m². Veldu fjölda umferða við verðið.' },
     spackle: { n: 'Spartl' },
     joints: { n: 'Spartl á samskeyti gipsplatna', s: 'glertrefjanet og tvær umferðir af massa' },
     renovate: { n: 'Endurbætur á gömlum veggjum', s: 'skröpun, sprungur lagaðar, veggir réttir af og fleira' },
@@ -60,7 +60,7 @@ export default {
     largeTile: { n: 'Stórar flísar og mósaík', s: 't.d. 60×120 cm' },
     removeTile: { n: 'Upprif á gömlum flísum' },
     waterproof: { n: 'Vatnsvörn í votrými', s: 'fljótandi vatnsvarnarefni með þéttiböndum' },
-    panelClick: { n: 'Lagning plastparkets', s: 'smellukerfi' },
+    panelClick: { n: 'Lagning plastparkets', s: 'smellukerfi, í einföldu rými' },
     panelGlue: { n: 'Lagning vínylgólfs', s: 'límt við undirlag' },
     leveling: { n: 'Jöfnunarmassi', s: 'gólfjöfnun' },
     removeFloor: { n: 'Fjarlæging gamals parkets', s: 'undirbúningur undirlags' },
@@ -105,7 +105,7 @@ export default {
       photos: ['Máluð stofa', 'Rúlla og málning á vegg', 'Hvítur veggur, litaskil'],
       faq: [
         ['Er málning innifalin í verðinu?', 'Nei, verðið er fyrir vinnu eingöngu. Efnið ákveðum við þegar tilboðið er gert. Þú getur keypt málninguna sjálf(ur) eða samið við okkur um innkaupin.'],
-        ['Hversu margar umferðir berið þið á?', 'Það fer eftir lit, ástandi veggja og málningunni. Fjöldi umferða kemur fram í tilboðinu.'],
+        ['Hvað kosta aukaumferðir af málningu?', 'Verðið 3.000 kr/m² er fyrir fyrstu umferð. Önnur og þriðja umferð kosta 1.700 kr/m² hvor. Í reiknivélinni velurðu fjölda umferða og kostnaðurinn uppfærist sjálfkrafa. Hve margar umferðir þarf fer eftir lit, veggjum og málningu.'],
         ['Hvað ef veggirnir eru illa farnir?', 'Spartl og viðgerðir á sprungum eru verðlagðar sérstaklega samkvæmt verðskránni fyrir spartl.'],
         ['Hvað tekur langan tíma að mála íbúð?', 'Það fer eftir fermetrafjölda og ástandi veggja. Áætlaðan tíma gefum við upp í tilboðinu, eftir skoðun.'],
         ['Málið þið líka loft?', 'Já, loftin eru hluti af málunarverkinu. Þegar þú óskar eftir tilboði gefur þú upp samanlagt flatarmál veggja og lofta.']
@@ -234,6 +234,7 @@ export default {
     listTitle: 'Verðskrá', calcTitle: 'Kostnaðarreiknivél', calcLead: 'Veldu verk og sláðu inn flatarmál. Þar sem gefið er verðbil er niðurstaðan líka verðbil.',
     colWork: 'Verk', colRate: 'Verð', colQty: 'Flatarmál', colCost: 'Kostnaður',
     dimsLabel: 'Staðalstærðir',
+    layersLabel: 'Fjöldi umferða', layersShort: 'umferðir',
     shortNote: 'Verðin eru fyrir vinnu eingöngu, án efnis. Niðurstaðan er áætlun og endanlegt tilboð fer eftir flatarmáli, ástandi undirlags og umfangi verks.',
     qty: 'Flatarmál', enter: 'Sláðu inn', total: 'Áætlaður kostnaður', empty: 'Veldu verk og sláðu inn flatarmál til að sjá áætlaðan kostnað.',
     disclaimer: 'Þetta er áætlun byggð á verðum úr verðskránni. Endanlegt verð ákveðum við út frá fermetrafjölda, ástandi undirlags og umfangi verksins.',

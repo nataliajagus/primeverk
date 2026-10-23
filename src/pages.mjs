@@ -43,8 +43,8 @@ const sheet = (L, rows, groups) => {
     const unit = perOf(L, r.unit), u = shortOf(L, r.unit);
     const rate = r.max === null ? `${L.ui.from} ${fmtNum(r.min)}` : r.min === r.max ? fmtNum(r.min) : `${fmtNum(r.min)}–${fmtNum(r.max)}`;
     return `<div class="calc-row sheet-row" data-id="${r.id}">
-      <div class="sr-name"><h3>${it.n}</h3>${it.s ? `<p>${it.s}</p>` : ''}${it.d ? `<details class="sr-dims"><summary>${P.dimsLabel}</summary><ul>${it.d.map(x => `<li>${x}</li>`).join('')}</ul></details>` : ''}${it.m ? `<span class="sr-note">${it.m}</span>` : ''}</div>
-      <div class="sr-rate" data-label="${esc(P.colRate)}"><strong>${rate}</strong><em>${unit}</em></div>
+      <div class="sr-name"><h3>${it.n}</h3>${it.s ? `<p>${it.s}</p>` : ''}${it.l ? `<p class="sr-layers">${it.l}</p>` : ''}${it.d ? `<details class="sr-dims"><summary>${P.dimsLabel}</summary><ul>${it.d.map(x => `<li>${x}</li>`).join('')}</ul></details>` : ''}${it.m ? `<span class="sr-note">${it.m}</span>` : ''}</div>
+      <div class="sr-rate" data-label="${esc(P.colRate)}"><strong>${rate}</strong><em>${unit}</em>${r.layers ? `<div class="layers" role="group" aria-label="${esc(P.layersLabel)}"><span>${P.layersLabel}</span>${[1, 2, 3].map(n => `<button type="button" class="layer-btn${n === 1 ? ' on' : ''}" data-n="${n}" aria-pressed="${n === 1}">${n}</button>`).join('')}</div>` : ''}</div>
       <label class="sr-qty" data-label="${esc(P.colQty)}" title="${esc(P.enter)} ${esc(L.itemHints[r.id])}"><input type="number" inputmode="decimal" min="0" step="any" placeholder="0" data-id="${r.id}" aria-label="${esc(it.n)}: ${esc(P.enter)} ${esc(L.itemHints[r.id])}"><em>${u}</em></label>
       <div class="sr-sum" data-label="${esc(P.colCost)}"><span class="row-sum" data-empty="—">—</span></div>
     </div>`;
@@ -91,7 +91,7 @@ const calcBlock = L => `<div class="calc"><div id="calc-fields" class="calc-fiel
 
 const pvFor = (L, rows, groupName) => ({
   lang: L.code,
-  prices: rows.map(({ id, unit, min, max }) => ({ id, calc: 'svc', unit, min, max })),
+  prices: rows.map(({ id, unit, min, max, layers }) => ({ id, calc: 'svc', unit, min, max, layers })),
   groups: ['svc'], groupNames: { svc: groupName },
   names: Object.fromEntries(rows.map(x => [x.id, L.items[x.id].n])),
   scopes: Object.fromEntries(rows.map(x => [x.id, L.items[x.id].s || ''])),
@@ -451,7 +451,7 @@ export function pricesPage(L) {
   const groups = CALC_GROUPS.map(g => [g, L.calcGroups[g], PRICES.filter(x => x.calc === g)]);
   const pv = {
     lang: L.code,
-    prices: PRICES.map(({ id, calc, unit, min, max }) => ({ id, calc, unit, min, max })),
+    prices: PRICES.map(({ id, calc, unit, min, max, layers }) => ({ id, calc, unit, min, max, layers })),
     groups: CALC_GROUPS, groupNames: L.calcGroups,
     names: Object.fromEntries(PRICES.map(x => [x.id, L.items[x.id].n])),
     scopes: Object.fromEntries(PRICES.map(x => [x.id, L.items[x.id].s || ''])),

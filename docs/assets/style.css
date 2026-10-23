@@ -881,3 +881,15 @@ body:has(.sheet.sticky-foot) .fab { display: none; }
 .sr-dims summary::after { content: "+"; font-weight: 700; }
 .sr-dims[open] summary::after { content: "–"; }
 .sr-dims ul { list-style: none; margin: 8px 0 2px; padding: 0 0 0 12px; border-left: 2px solid var(--gold); display: grid; gap: 4px; font-size: .88rem; color: var(--muted); }
+
+/* ===== warstwy farby ===== */
+.layers { display: flex; align-items: center; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+.layers > span { font: 600 .78rem var(--label); letter-spacing: .08em; text-transform: uppercase; color: var(--gold-ink); margin-right: 2px; }
+.layer-btn { width: 34px; height: 34px; border: 1.5px solid var(--ink); background: transparent; color: var(--ink); font: 700 1rem var(--label); cursor: pointer; border-radius: 2px; transition: background .2s, color .2s; }
+.layer-btn:hover { background: var(--sand); }
+.layer-btn.on { background: var(--ink); color: var(--gold); }
+.sr-layers { margin-top: 6px; font-size: .86rem; color: var(--ink); background: rgba(179,142,85,.16); border-left: 3px solid var(--gold); padding: 6px 10px; max-width: 46ch; }
+.layers { flex-wrap: nowrap; gap: 6px; }
+.layers > span { flex: none; margin-right: 4px; white-space: nowrap; font-size: .72rem; }
+.layer-btn { flex: none; width: 32px; height: 32px; }
+@media (max-width: 860px) { .layers { flex-wrap: wrap; } .layers > span { width: 100%; } }

@@ -51,7 +51,7 @@ export default {
     ctaLead: 'Give us the type of work, the town, the rough area and when you would like to start.'
   },
   items: {
-    paint: { n: 'Painting walls and ceilings', s: 'primed walls, a refresh, light preparation' },
+    paint: { n: 'Painting walls and ceilings', s: 'primed walls, a refresh, light preparation', l: 'The first coat is 3.000 kr/m², each further coat 1.700 kr/m². Pick the number of coats next to the rate.' },
     spackle: { n: 'Plastering' },
     joints: { n: 'Plasterboard joints', s: 'mesh tape and two coats of compound' },
     renovate: { n: 'Renovating old walls', s: 'scraping, filling cracks, levelling and other work' },
@@ -60,7 +60,7 @@ export default {
     largeTile: { n: 'Large-format tiles and mosaics', s: 'e.g. 60×120 cm' },
     removeTile: { n: 'Removing old tiles' },
     waterproof: { n: 'Wet-area waterproofing', s: 'liquid membrane with sealing tapes' },
-    panelClick: { n: 'Click panels', s: 'click-lock system' },
+    panelClick: { n: 'Click panels', s: 'click-lock system, in a simple room' },
     panelGlue: { n: 'Vinyl panels', s: 'glued down' },
     leveling: { n: 'Self-levelling compound', s: 'screed' },
     removeFloor: { n: 'Removing old panels', s: 'with surface preparation' },
@@ -105,7 +105,7 @@ export default {
       photos: ['A freshly painted living room', 'Roller and paint on a wall', 'White wall, colour contrast'],
       faq: [
         ['Is paint included in the price?', 'No, the rate is for labour only. We settle materials when we quote. You can buy the paint yourself or ask us to.'],
-        ['How many coats do you apply?', 'That depends on the colour, the walls and the paint. We write it into the offer.'],
+        ['How much do extra coats of paint cost?', 'The 3.000 kr/m² rate is for the first coat. The second and third coats are 1.700 kr/m² each. In the calculator you pick the number of coats and the cost updates automatically. How many coats are needed depends on the colour, the walls and the paint.'],
         ['What if the walls are in poor condition?', 'Plastering and crack repair are priced separately, from the plastering rates.'],
         ['How long does it take to paint an apartment?', 'It depends on the area and the state of the walls. After the site visit, the offer gives an approximate time.'],
         ['Do you paint ceilings?', 'Yes, ceilings are part of the job. When you ask for a quote, give the total area of walls and ceilings.']
@@ -234,6 +234,7 @@ export default {
     listTitle: 'Price list', calcTitle: 'Cost calculator', calcLead: 'Choose the work and enter the area. Where a rate is a range, the result is a range too.',
     colWork: 'Work', colRate: 'Rate', colQty: 'Area', colCost: 'Cost',
     dimsLabel: 'Standard sizes',
+    layersLabel: 'Number of coats', layersShort: 'coats',
     shortNote: 'Prices are for labour only, without materials. The result is an estimate, and the final quote depends on the area, the condition of the surface and the scope of work.',
     qty: 'Area', enter: 'Enter', total: 'Estimated cost', empty: 'Choose the work and enter the area to see an estimate.',
     disclaimer: 'An estimate based on the rates in the price list. We set the final quote from the area, the state of the surface and what needs doing.',
