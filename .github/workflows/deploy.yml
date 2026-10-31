@@ -1,0 +1,47 @@
+# Deploy na seohost (primeverk.is) przez FTP przy każdym pushu na main.
+# Build robi się tutaj z SITE=https://primeverk.is i pustym BASE – zcommitowany docs/ (wersja pod GitHub Pages) zostaje bez zmian.
+# Wymaga w repo: zmiennej FTP_SERVER, FTP_USERNAME i sekretu FTP_PASSWORD (Settings → Secrets and variables → Actions).
+name: Deploy seohost
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-seohost
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build
+        run: node src/build.mjs
+        env:
+          SITE: https://primeverk.is
+          BASE: ''
+
+      - name: .htaccess
+        run: printf 'ErrorDocument 404 /404.html\n' > docs/.htaccess
+
+      - name: Upload FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ vars.FTP_SERVER }}
+          username: ${{ vars.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          security: loose # certyfikat FTP seohost jest na *.seohost.pl, nie na primeverk.is
+          local-dir: ./docs/
+          server-dir: ./
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .nojekyll
