@@ -108,7 +108,7 @@ const AREAS = ['Reykjavík', 'Keflavík', 'Selfoss'];
 const businessLd = L => ({
   '@context': 'https://schema.org', '@type': ['HomeAndConstructionBusiness', 'LocalBusiness'], '@id': BIZ_ID(),
   name: 'Prime Verk', url: abs(urlFor('is', '/')), description: L.seo.home[1],
-  image: abs(asset('og.png')), logo: abs(asset('icon-512.png')),
+  image: abs(asset(`og-${L.code}.png`)), logo: abs(asset('icon-512.png')),
   telephone: CONTACT.phone, email: CONTACT.email,
   address: { '@type': 'PostalAddress', addressCountry: 'IS', addressRegion: 'Höfuðborgarsvæðið' },
   areaServed: AREAS.map(n => ({ '@type': 'City', name: n })),
@@ -164,8 +164,8 @@ export function layout(L, { key, path, title, desc, body, head = '', pv = null, 
 <meta name="theme-color" content="#1E2023">
 <meta property="og:title" content="${esc(stripTags(title))}"><meta property="og:description" content="${esc(desc)}"><meta property="og:type" content="website">
 <meta property="og:site_name" content="Prime Verk"><meta property="og:url" content="${SITE}${urlFor(L.code, path)}"><meta property="og:locale" content="${{ is: 'is_IS', en: 'en_GB', pl: 'pl_PL' }[L.code]}">
-<meta property="og:image" content="${SITE}${asset('og.png')}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="${SITE}${asset('og.png')}">
+<meta property="og:image" content="${SITE}${asset(`og-${L.code}.png`)}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Prime Verk">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="${SITE}${asset(`og-${L.code}.png`)}">
 <link rel="icon" href="${asset('favicon.svg')}" type="image/svg+xml">
 <link rel="icon" href="${asset('favicon-32.png')}" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="${asset('apple-touch-icon.png')}">

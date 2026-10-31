@@ -28,8 +28,22 @@ jobs:
           SITE: https://primeverk.is
           BASE: ''
 
+      # 404 + przekierowania 301 na jeden adres: https://primeverk.is/... (bez www, bez index.html)
+      # X-Forwarded-Proto: za proxy Cloudflare serwer może dostać http, mimo że gość jest na https
       - name: .htaccess
-        run: printf 'ErrorDocument 404 /404.html\n' > docs/.htaccess
+        run: |
+          cat > docs/.htaccess <<'EOF'
+          ErrorDocument 404 /404.html
+          RewriteEngine On
+          RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+          RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+          RewriteCond %{HTTPS} off
+          RewriteCond %{HTTP:X-Forwarded-Proto} !https
+          RewriteCond %{REQUEST_URI} !^/\.well-known/
+          RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+          RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+          RewriteRule ^ /%1 [R=301,L]
+          EOF
 
       - name: Upload FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5

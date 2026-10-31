@@ -1,0 +1,35 @@
+<!doctype html>
+<!-- Szablon obrazków OG (1200x630). Render: tools/og.ps1 -> src/assets/og-{is,en,pl}.png -->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin: 0; }
+  .og { position: relative; width: 1200px; height: 630px; overflow: hidden; background: #1E2023; font-family: Arial, Helvetica, sans-serif; }
+  .bar { position: absolute; top: 0; left: 0; right: 0; height: 8px; background: #B38E55; }
+  .logo { position: absolute; left: 80px; top: 68px; width: 522px; height: 235px; }
+  .head { position: absolute; left: 80px; top: 362px; font-size: 54px; line-height: 70px; font-weight: bold; color: #F6F5F2; letter-spacing: -0.5px; }
+  .head em { font-style: normal; color: #B38E55; }
+  .ruler { position: absolute; left: 60px; right: 0; top: 560px; height: 22px;
+    background:
+      repeating-linear-gradient(90deg, #B38E55 0 2px, transparent 2px 190px) 0 0 / 100% 22px no-repeat,
+      repeating-linear-gradient(90deg, #6f5a38 0 2px, transparent 2px 19px) 0 8px / 100% 14px no-repeat; }
+</style>
+</head>
+<body>
+<div class="og">
+  <div class="bar"></div>
+  <img class="logo" src="../src/assets/logo-light.svg" alt="">
+  <div class="head" id="head"></div>
+  <div class="ruler"></div>
+</div>
+<script>
+  const T = {
+    is: 'Málun, flísar<br><em>og gólfefni í Reykjavík</em>',
+    en: 'Painting, tiling<br><em>and flooring in Reykjavík</em>',
+    pl: 'Malowanie, płytki<br><em>i podłogi w Reykjavíku</em>'
+  };
+  document.getElementById('head').innerHTML = T[location.hash.slice(1)] || T.is;
+</script>
+</body>
+</html>
